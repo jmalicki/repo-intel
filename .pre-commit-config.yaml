@@ -40,12 +40,17 @@ repos:
     rev: v1.0
     hooks:
       - id: fmt
-        files: \.rs$
+        files: ^src/common-library/.*\.rs$
+        args: [--manifest-path=src/common-library/Cargo.toml]
+        pass_filenames: false
       - id: clippy
-        args: [--, -D, warnings]
-        files: \.rs$
+        args: [--manifest-path=src/common-library/Cargo.toml, --, -D, warnings]
+        files: ^src/common-library/.*\.rs$
+        pass_filenames: false
       - id: cargo-check
-        files: \.rs$
+        args: [--manifest-path=src/common-library/Cargo.toml]
+        files: ^src/common-library/.*\.rs$
+        pass_filenames: false
 
   # General file checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
