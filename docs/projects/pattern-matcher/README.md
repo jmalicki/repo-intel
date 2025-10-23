@@ -2,29 +2,26 @@
 
 ## Overview
 
-The Pattern Matcher is a **Python script** that reads specific repository files (hardcoded list) and makes LLM API calls to analyze content. 
+The Pattern Matcher is a **Python script** that uses LLM analysis to discover novel patterns and practices in repositories. It's designed to find unexpected approaches, not just verify predetermined patterns.
 
-**LIMITATION**: This approach can only find files in expected locations with standard names. It cannot discover:
-- Different security tools (Snyk, OWASP, custom tools)
-- Files in non-standard locations (security/ directory, config/security.yml)
-- Non-standard naming (security-policy.md, SECURITY.txt)
-- Custom implementations or novel approaches
+**PURPOSE**: Discover novel practices, innovative approaches, and unexpected patterns that automated scripts cannot detect. This is essential for learning about new ways of doing things.
 
 ## What It Actually Does
 
 1. **Takes a repository path** as input
-2. **Script reads hardcoded list of files** (.github/dependabot.yml, README.md, SECURITY.md, etc.)
-3. **Script makes LLM API calls** with file content and specific prompts
-4. **Script parses LLM responses** and returns structured JSON
-5. **No human interaction** - fully automated script
+2. **Script scans repository structure** to discover files and patterns
+3. **Script makes LLM API calls** to analyze discovered content for novel practices
+4. **Script identifies unexpected patterns** and innovative approaches
+5. **Returns structured JSON** with discovered patterns and innovations
 
-**The script follows a hardcoded list** - it doesn't decide what files to look at, it just checks the predefined list.
+**The script discovers patterns** - it finds novel approaches, not just verifies predetermined ones.
 
-**This means it will miss**:
-- Projects with non-standard file locations
-- Projects using different security tools
-- Projects with custom implementations
-- Projects with novel approaches
+**This enables discovery of**:
+- Novel security practices and tools
+- Innovative documentation approaches
+- Custom CI/CD implementations
+- Unexpected organizational patterns
+- New best practices we haven't seen before
 
 ## Design Principles
 
@@ -75,33 +72,39 @@ The Pattern Matcher is a **Python script** that reads specific repository files 
 
 ## Script Implementation
 
-### Hardcoded File List
+### Repository Discovery
 ```python
-FILES_TO_CHECK = [
-    ".github/dependabot.yml",
-    "SECURITY.md", 
-    "README.md",
-    "CONTRIBUTING.md",
-    ".github/workflows/",
-    "package.json",
-    "Cargo.toml"
-]
+def discover_repository_structure(repo_path):
+    # Scan entire repository structure
+    all_files = scan_directory(repo_path)
+    
+    # Categorize files by type and purpose
+    security_files = find_security_related_files(all_files)
+    docs_files = find_documentation_files(all_files)
+    ci_files = find_ci_cd_files(all_files)
+    config_files = find_config_files(all_files)
+    
+    return {
+        "security": security_files,
+        "documentation": docs_files,
+        "ci_cd": ci_files,
+        "config": config_files
+    }
 ```
 
-### Python Script Structure
+### Pattern Discovery
 ```python
 def analyze_repository(repo_path):
-    results = {}
+    # Discover repository structure
+    structure = discover_repository_structure(repo_path)
     
-    # Check each hardcoded file
-    for file_path in FILES_TO_CHECK:
-        full_path = f"{repo_path}/{file_path}"
-        if os.path.exists(full_path):
-            content = read_file(full_path)
-            prompt = get_prompt_for_file(file_path)
-            results[file_path] = call_llm_api(content, prompt)
-        else:
-            results[file_path] = False
+    # Analyze each category for novel patterns
+    results = {}
+    for category, files in structure.items():
+        if files:
+            content = read_files(files)
+            prompt = f"Analyze these {category} files for novel practices, innovative approaches, and unexpected patterns. What new or interesting things do you see?"
+            results[category] = call_llm_api(content, prompt)
     
     return results
 ```
