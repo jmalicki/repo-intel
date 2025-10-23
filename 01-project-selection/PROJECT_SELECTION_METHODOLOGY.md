@@ -1,12 +1,16 @@
 # Project Selection Methodology
 
-**Navigation:** [Project Design](../../docs/PROJECT_DESIGN.md) → [Automation Opportunities](AUTOMATION_OPPORTUNITIES.md) → [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) → Project Selection Methodology
+**Parent:** [Project Design](../../docs/PROJECT_DESIGN.md)
 
 ## Overview
 
 This document outlines the systematic approach for selecting representative projects within each of our 8 categories for comprehensive analysis. The goal is to identify projects that exemplify best practices while representing different scales, approaches, and community dynamics.
 
 ## Selection Strategy
+
+**Related Documents:**
+- [Automation Opportunities](AUTOMATION_OPPORTUNITIES.md) - Tasks that can be automated
+- [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Detailed execution plan
 
 ### Phase 1: Initial Candidate Identification
 
