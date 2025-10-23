@@ -1,6 +1,6 @@
 # Project Selection Methodology
 
-**Parent:** [Project Design](../docs/PROJECT_DESIGN.md)
+**Parent:** [Project Design](../../docs/PROJECT_DESIGN.md)
 
 ## Overview
 

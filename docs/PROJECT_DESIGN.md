@@ -167,7 +167,7 @@ repo-intel/
 4. **Selection Refinement**: Iterate on selection criteria based on pilot results
 5. **Full Selection**: Systematic selection of 24-40 projects for analysis
 
-**Detailed Methodology:** [Project Selection Methodology](../../01-project-selection/PROJECT_SELECTION_METHODOLOGY.md)
+**Detailed Methodology:** [Project Selection Methodology](phases/01-project-selection/PROJECT_SELECTION_METHODOLOGY.md)
 
 ### Phase 2: Repository Analysis
 6. **Analysis Tooling**: Develop automated analysis scripts
