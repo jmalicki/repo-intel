@@ -30,7 +30,7 @@ This document provides a detailed step-by-step implementation plan for the Commo
    ```
 
 2. **Implementation Steps**
-   - [x] Create `common-library/` directory
+   - [x] Create `crates/common-library/` directory
    - [x] Initialize Rust crate with `cargo init --lib`
    - [x] Configure `Cargo.toml` with basic dependencies
    - [x] Create module structure in `src/`

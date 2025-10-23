@@ -36,7 +36,7 @@ The Common Library is a **Rust crate** that provides shared functionality for al
 ### Crate Structure
 
 ```
-common-library/
+crates/common-library/
 ├── Cargo.toml                  # Dependencies and metadata
 ├── src/
 │   ├── lib.rs                  # Public API exports
@@ -120,7 +120,7 @@ common-library/
 - `RateLimiter::update_limits()` - Update rate limit information from responses
 - `RateLimiter::remaining()` - Check remaining request quota
 - `RateLimiter::wait_for_reset()` - Wait until rate limit resets
-        
+
         let mut attempt = 0;
         loop {
             match self.check_rate_limit().await {
@@ -203,11 +203,11 @@ common-library/
 - `ConfigManager::validate()` - Validate configuration completeness
 - `ConfigManager::reload()` - Reload configuration from sources
 - `ConfigManager::export()` - Export current configuration
-            
+
         let app_config: AppConfig = config.try_deserialize()?;
         Ok(Self { config: app_config })
     }
-    
+
     pub fn get<T>(&self, key: &str) -> Result<T>
     where
         T: for<'de> Deserialize<'de>,
@@ -215,17 +215,17 @@ common-library/
         // Implementation for getting nested config values
         todo!()
     }
-    
+
     pub fn validate(&self) -> Result<()> {
         // Validate configuration values
         if self.config.database.max_connections == 0 {
             return Err(ConfigError::InvalidValue("max_connections must be > 0".to_string()));
         }
-        
+
         if self.config.http.timeout_seconds == 0 {
             return Err(ConfigError::InvalidValue("timeout_seconds must be > 0".to_string()));
         }
-        
+
 ## Logging Library
 
 ### Structured Logger
@@ -262,7 +262,7 @@ common-library/
 - `MetricsCalculator::activity_score()` - Calculate repository activity metrics
 - `MetricsCalculator::community_health()` - Assess community engagement
 - `MetricsCalculator::performance_indicators()` - Generate performance metrics
-    
+
 ## Validation Library
 
 ### Schema Validation
