@@ -14,28 +14,30 @@ This prompt guides the assessment of project quality across multiple dimensions.
 - [ ] Community metrics are available for {{ project_name }}
 - [ ] Quality assessment data is ready for {{ project_name }}
 - [ ] Review team is prepared for {{ project_name }} assessment
+- [ ] Quality assessment template is ready for {{ project_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Quality Dimensions
 
 ### 1. Code Quality (25% weight)
 
-**Architecture Assessment:**
-- [ ] Clear separation of concerns
-- [ ] Appropriate abstraction levels
-- [ ] Consistent design patterns
-- [ ] Scalable architecture
+**Architecture Assessment for {{ project_name }}:**
+- [ ] Clear separation of concerns in {{ project_name }}
+- [ ] Appropriate abstraction levels in {{ project_name }}
+- [ ] Consistent design patterns in {{ project_name }}
+- [ ] Scalable architecture for {{ project_name }}
 
-**Code Organization:**
-- [ ] Logical directory structure
-- [ ] Clear module boundaries
-- [ ] Consistent naming conventions
-- [ ] Appropriate file organization
+**Code Organization for {{ project_name }}:**
+- [ ] Logical directory structure in {{ project_name }}
+- [ ] Clear module boundaries in {{ project_name }}
+- [ ] Consistent naming conventions in {{ project_name }}
+- [ ] Appropriate file organization in {{ project_name }}
 
-**Code Quality:**
-- [ ] Code readability and clarity
-- [ ] Appropriate complexity levels
-- [ ] Error handling practices
-- [ ] Documentation within code
+**Code Quality for {{ project_name }}:**
+- [ ] Code readability and clarity in {{ project_name }}
+- [ ] Appropriate complexity levels in {{ project_name }}
+- [ ] Error handling practices in {{ project_name }}
+- [ ] Documentation within code in {{ project_name }}
 
 ### 2. Documentation Quality (20% weight)
 
@@ -165,6 +167,10 @@ This prompt guides the assessment of project quality across multiple dimensions.
 - Assessment date: {{ assessment_date }}
 - Reviewer: {{ reviewer_name }}
 - Review team: {{ review_team }}
+- Project: {{ project_name }}
+- Category: {{ project_category }}
+- Scale: {{ project_scale }}
+- URL: {{ project_url }}
 
 ## Quality Assurance
 

@@ -8,21 +8,23 @@ This prompt guides the assessment of scale diversity across project categories. 
 
 ## Pre-Assessment Checklist
 
-- [ ] Projects have been selected for each category
-- [ ] Project scales have been identified
-- [ ] Scale distribution has been analyzed
-- [ ] Scale requirements are defined
+- [ ] Projects have been selected for {{ category_name }}
+- [ ] Project scales have been identified for {{ category_name }}
+- [ ] Scale distribution has been analyzed for {{ category_name }}
+- [ ] Scale requirements are defined for {{ category_name }}
+- [ ] Scale diversity template is ready for {{ category_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Scale Categories
 
-### Small Projects (1-2 per category)
+### Small Projects (1-2 per {{ category_name }})
 
-**Characteristics:**
-- Personal/side projects
-- Individual maintainers
-- Simple architectures
-- Basic tooling
-- Limited scope
+**Characteristics for {{ category_name }}:**
+- Personal/side projects in {{ category_name }}
+- Individual maintainers for {{ category_name }}
+- Simple architectures for {{ category_name }}
+- Basic tooling for {{ category_name }}
+- Limited scope for {{ category_name }}
 
 **Selection Criteria:**
 - [ ] Individual or small team maintainers
@@ -179,5 +181,12 @@ This prompt guides the assessment of scale diversity across project categories. 
 - [ ] Category-specific requirements are met
 - [ ] Scale representation is meaningful
 - [ ] Quality is maintained across scales
+
+### Output Report
+- Save scale diversity assessment to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Category: {{ category_name }}
+- Scale distribution: {{ scale_distribution }}
 
 This prompt ensures comprehensive scale diversity while maintaining quality standards and meaningful representation across all project categories.

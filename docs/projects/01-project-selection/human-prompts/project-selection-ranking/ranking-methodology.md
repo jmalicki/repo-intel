@@ -8,24 +8,26 @@ This prompt guides the ranking of projects based on quality assessment and diver
 
 ## Pre-Ranking Checklist
 
-- [ ] Quality assessments have been completed
-- [ ] Automated metrics are available
-- [ ] Diversity requirements are defined
-- [ ] Category representation is assessed
+- [ ] Quality assessments have been completed for {{ project_name }}
+- [ ] Automated metrics are available for {{ project_name }}
+- [ ] Diversity requirements are defined for {{ project_category }}
+- [ ] Category representation is assessed for {{ project_category }}
+- [ ] Ranking template is ready for {{ project_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Ranking Framework
 
 ### 1. Quantitative Scoring (40% weight)
 
-**Automated Metrics:**
-- [ ] Star count and growth rate
-- [ ] Fork count and engagement
-- [ ] Commit frequency and consistency
-- [ ] Issue resolution time
-- [ ] PR merge rate
-- [ ] Documentation completeness
-- [ ] Security file presence
-- [ ] CI/CD pipeline sophistication
+**Automated Metrics for {{ project_name }}:**
+- [ ] Star count and growth rate: {{ automated_metrics.stars }}
+- [ ] Fork count and engagement: {{ automated_metrics.forks }}
+- [ ] Commit frequency and consistency: {{ automated_metrics.commits }}
+- [ ] Issue resolution time: {{ automated_metrics.issue_resolution }}
+- [ ] PR merge rate: {{ automated_metrics.pr_merge_rate }}
+- [ ] Documentation completeness: {{ automated_metrics.documentation }}
+- [ ] Security file presence: {{ automated_metrics.security }}
+- [ ] CI/CD pipeline sophistication: {{ automated_metrics.cicd }}
 
 **Scoring Process:**
 - Normalize metrics across categories
@@ -135,17 +137,26 @@ This prompt guides the ranking of projects based on quality assessment and diver
 - Diversity contribution analysis
 - Category representation assessment
 
-### Rationale
-- Ranking methodology
-- Scoring decisions and rationale
-- Diversity balancing decisions
-- Final ranking justification
+### Rationale for {{ project_name }}
+- Ranking methodology for {{ project_category }} projects
+- Scoring decisions and rationale for {{ project_name }}
+- Diversity balancing decisions for {{ project_category }}
+- Final ranking justification for {{ project_name }}
 
-### Recommendations
-- Areas for improvement
-- Best practices identified
-- Innovation examples
-- Category insights
+### Recommendations for {{ project_name }}
+- Areas for improvement in {{ project_name }}
+- Best practices identified in {{ project_name }}
+- Innovation examples from {{ project_name }}
+- Category insights for {{ project_category }}
+
+### Output Report
+- Save ranking to: {{ output_report }}
+- Ranking date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Project: {{ project_name }}
+- Category: {{ project_category }}
+- Scale: {{ project_scale }}
+- URL: {{ project_url }}
 
 ## Quality Assurance
 

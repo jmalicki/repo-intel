@@ -8,21 +8,23 @@ This prompt defines the criteria for project selection, including must-have requ
 
 ## Pre-Selection Checklist
 
-- [ ] Quality assessments have been completed
-- [ ] Rankings have been generated
-- [ ] Diversity requirements are defined
-- [ ] Category representation is assessed
+- [ ] Quality assessments have been completed for {{ project_name }}
+- [ ] Rankings have been generated for {{ project_name }}
+- [ ] Diversity requirements are defined for {{ project_category }}
+- [ ] Category representation is assessed for {{ project_category }}
+- [ ] Selection template is ready for {{ project_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Selection Criteria
 
 ### Must Have (Elimination Criteria)
 
-**Basic Requirements:**
-- [ ] Active development (commits in last 6 months)
-- [ ] Basic documentation (README, basic docs)
-- [ ] Community presence (issues, discussions)
-- [ ] License clarity
-- [ ] Security awareness (basic practices)
+**Basic Requirements for {{ project_name }}:**
+- [ ] Active development (commits in last 6 months): {{ automated_metrics.commits }}
+- [ ] Basic documentation (README, basic docs): {{ automated_metrics.documentation }}
+- [ ] Community presence (issues, discussions): {{ community_health.engagement }}
+- [ ] License clarity: {{ automated_metrics.license }}
+- [ ] Security awareness (basic practices): {{ automated_metrics.security }}
 
 **Quality Thresholds:**
 - [ ] Minimum quality score (5/10)
@@ -177,16 +179,25 @@ This prompt defines the criteria for project selection, including must-have requ
 
 ## Final Output
 
-### Project Shortlist
+### Project Shortlist for {{ project_name }}
 - 3-5 projects per category (24-40 total)
 - Ranked by quality and diversity
-- Clear selection rationale
-- Quality assessment summary
+- Clear selection rationale for {{ project_name }}
+- Quality assessment summary for {{ project_name }}
 
 ### Handoff Documentation
-- Selection methodology applied
-- Quality thresholds used
-- Diversity requirements met
+- Selection methodology applied to {{ project_name }}
+- Quality thresholds used for {{ project_category }}
+- Diversity requirements met for {{ project_category }}
 - Ready for Phase 2 analysis
+
+### Output Report
+- Save selection to: {{ output_report }}
+- Selection date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Project: {{ project_name }}
+- Category: {{ project_category }}
+- Scale: {{ project_scale }}
+- URL: {{ project_url }}
 
 This prompt ensures consistent, high-quality project selection while maintaining the diversity and quality standards required for comprehensive analysis.
