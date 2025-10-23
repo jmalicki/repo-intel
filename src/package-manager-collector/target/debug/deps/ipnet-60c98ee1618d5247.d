@@ -1,0 +1,11 @@
+/Users/josephmalicki/src/repo-intel/src/package-manager-collector/target/debug/deps/ipnet-60c98ee1618d5247.d: /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/lib.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipext.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipnet.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/parser.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/mask.rs
+
+/Users/josephmalicki/src/repo-intel/src/package-manager-collector/target/debug/deps/libipnet-60c98ee1618d5247.rlib: /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/lib.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipext.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipnet.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/parser.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/mask.rs
+
+/Users/josephmalicki/src/repo-intel/src/package-manager-collector/target/debug/deps/libipnet-60c98ee1618d5247.rmeta: /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/lib.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipext.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipnet.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/parser.rs /Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/mask.rs
+
+/Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/lib.rs:
+/Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipext.rs:
+/Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/ipnet.rs:
+/Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/parser.rs:
+/Users/josephmalicki/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ipnet-2.11.0/src/mask.rs:
