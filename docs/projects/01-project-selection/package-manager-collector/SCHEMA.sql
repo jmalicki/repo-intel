@@ -1,5 +1,5 @@
 -- Package Manager Collector Database Schema
--- 
+--
 -- Parent: [Package Manager Collector Design](DESIGN.md)
 -- Related: [API Schemas](API_SCHEMAS.md)
 --
@@ -30,7 +30,7 @@ CREATE TABLE packages (
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
     collected_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+
     -- Indexes for common queries
     INDEX idx_packages_registry (registry),
     INDEX idx_packages_name (name),
@@ -45,7 +45,7 @@ CREATE TABLE packages (
 CREATE TABLE package_health (
     id INTEGER PRIMARY KEY,
     package_id TEXT NOT NULL,
-    
+
     -- Maintenance Health (30% weight)
     maintenance_score REAL NOT NULL CHECK (maintenance_score >= 0 AND maintenance_score <= 100),
     update_frequency TEXT,  -- 'daily', 'weekly', 'monthly', 'yearly', 'irregular'
@@ -53,14 +53,14 @@ CREATE TABLE package_health (
     breaking_changes_count INTEGER DEFAULT 0,
     maintainer_activity_score REAL,
     documentation_freshness_score REAL,
-    
+
     -- Security Health (25% weight)
     security_score REAL NOT NULL CHECK (security_score >= 0 AND security_score <= 100),
     vulnerability_count INTEGER DEFAULT 0,
     dependency_security_score REAL,
     security_response_time_days REAL,
     security_practices_score REAL,
-    
+
     -- Community Health (25% weight)
     community_score REAL NOT NULL CHECK (community_score >= 0 AND community_score <= 100),
     download_trend TEXT,  -- 'growing', 'stable', 'declining'
@@ -70,20 +70,20 @@ CREATE TABLE package_health (
     github_issues INTEGER DEFAULT 0,
     github_prs INTEGER DEFAULT 0,
     community_engagement_score REAL,
-    
+
     -- Code Quality Health (20% weight)
     code_quality_score REAL NOT NULL CHECK (code_quality_score >= 0 AND code_quality_score <= 100),
     testing_score REAL,
     code_quality_tools_score REAL,
     documentation_score REAL,
     dependency_health_score REAL,
-    
+
     -- Overall Health Score
     overall_health_score REAL NOT NULL CHECK (overall_health_score >= 0 AND overall_health_score <= 100),
     health_category TEXT NOT NULL CHECK (health_category IN ('production_ready', 'beta_quality', 'alpha_quality', 'not_recommended')),
-    
+
     calculated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_health_overall_score (overall_health_score),
     INDEX idx_package_health_category (health_category)
@@ -97,25 +97,25 @@ CREATE TABLE package_health (
 CREATE TABLE package_downloads (
     id INTEGER PRIMARY KEY,
     package_id TEXT NOT NULL,
-    
+
     -- Download counts
     total_downloads INTEGER DEFAULT 0,
     daily_downloads INTEGER DEFAULT 0,
     weekly_downloads INTEGER DEFAULT 0,
     monthly_downloads INTEGER DEFAULT 0,
     yearly_downloads INTEGER DEFAULT 0,
-    
+
     -- Download trends
     growth_rate REAL,
     download_velocity REAL,
     seasonality TEXT,  -- 'stable', 'seasonal', 'irregular'
     popularity_rank INTEGER,
-    
+
     -- Period tracking
     period_start DATETIME NOT NULL,
     period_end DATETIME NOT NULL,
     calculated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_downloads_total (total_downloads),
     INDEX idx_package_downloads_period (period_start, period_end)
@@ -131,7 +131,7 @@ CREATE TABLE package_dependencies (
     is_vulnerable BOOLEAN DEFAULT FALSE,
     is_maintained BOOLEAN DEFAULT TRUE,
     last_updated DATETIME,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_dependencies_package (package_id),
     INDEX idx_package_dependencies_name (dependency_name),
@@ -146,7 +146,7 @@ CREATE TABLE package_dependents (
     dependent_version TEXT,
     dependent_type TEXT NOT NULL CHECK (dependent_type IN ('direct', 'indirect')),
     added_at DATETIME,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_dependents_package (package_id),
     INDEX idx_package_dependents_name (dependent_name)
@@ -165,7 +165,7 @@ CREATE TABLE package_content (
     api_documentation TEXT,
     repository_structure TEXT,  -- JSON of file organization
     scripts TEXT,  -- JSON of package scripts (NPM)
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -176,7 +176,7 @@ CREATE TABLE package_classifications (
     classification_type TEXT NOT NULL,  -- 'keyword', 'category', 'tag', 'classifier'
     classification_value TEXT NOT NULL,
     classification_metadata TEXT,  -- JSON for additional metadata
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_classifications (package_id, classification_type)
 );
@@ -194,7 +194,7 @@ CREATE TABLE npm_package_data (
     maintainers TEXT,  -- JSON of maintainer information
     bin_commands TEXT,  -- JSON of binary commands
     engines TEXT,  -- JSON of engine requirements
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -207,7 +207,7 @@ CREATE TABLE pypi_package_data (
     project_urls TEXT,  -- JSON of project URLs
     platform_support TEXT,  -- JSON of supported platforms
     requires_dist TEXT,  -- JSON of dependencies
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -220,7 +220,7 @@ CREATE TABLE crates_package_data (
     keywords TEXT,  -- JSON of package keywords
     badges TEXT,  -- JSON of CI/CD badges
     documentation_url TEXT,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -235,7 +235,7 @@ CREATE TABLE maven_package_data (
     parent_artifact_id TEXT,
     parent_version TEXT,
     properties TEXT,  -- JSON of Maven properties
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -248,7 +248,7 @@ CREATE TABLE go_package_data (
     replace_directives TEXT,  -- JSON of replace directives
     exclude_directives TEXT,  -- JSON of exclude directives
     retract_directives TEXT,  -- JSON of retract directives
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -261,7 +261,7 @@ CREATE TABLE rubygems_package_data (
     platform TEXT,  -- ruby, jruby, etc.
     extensions TEXT,  -- JSON of native extensions
     certificates TEXT,  -- JSON of code signing certificates
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -274,7 +274,7 @@ CREATE TABLE packagist_package_data (
     scripts TEXT,  -- JSON of Composer scripts
     repositories TEXT,  -- JSON of additional repositories
     minimum_stability TEXT,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -287,7 +287,7 @@ CREATE TABLE nuget_package_data (
     dependencies TEXT,  -- JSON of package dependencies
     tags TEXT,  -- JSON of package tags
     license_url TEXT,
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id)
 );
 
@@ -305,10 +305,10 @@ CREATE TABLE package_versions (
     download_url TEXT,
     yanked BOOLEAN DEFAULT FALSE,
     yanked_reason TEXT,
-    
+
     -- Version-specific metadata
     version_metadata TEXT,  -- JSON of version-specific data
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_versions_package (package_id),
     INDEX idx_package_versions_published (published_at)
@@ -322,7 +322,7 @@ CREATE TABLE version_dependencies (
     dependency_name TEXT NOT NULL,
     dependency_version TEXT,
     dependency_type TEXT NOT NULL CHECK (dependency_type IN ('runtime', 'development', 'peer', 'optional')),
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_version_dependencies_package_version (package_id, version)
 );
@@ -341,7 +341,7 @@ CREATE TABLE collection_runs (
     packages_collected INTEGER DEFAULT 0,
     errors_encountered INTEGER DEFAULT 0,
     rate_limit_hits INTEGER DEFAULT 0,
-    
+
     INDEX idx_collection_runs_status (status),
     INDEX idx_collection_runs_start_time (start_time)
 );
@@ -354,7 +354,7 @@ CREATE TABLE collection_errors (
     error_type TEXT NOT NULL,
     error_message TEXT,
     error_timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+
     FOREIGN KEY (run_id) REFERENCES collection_runs(run_id),
     INDEX idx_collection_errors_run (run_id),
     INDEX idx_collection_errors_type (error_type)
@@ -368,7 +368,7 @@ CREATE TABLE api_rate_limits (
     remaining_requests INTEGER NOT NULL,
     reset_time DATETIME NOT NULL,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+
     INDEX idx_api_rate_limits_registry (registry),
     INDEX idx_api_rate_limits_reset (reset_time)
 );
@@ -385,7 +385,7 @@ CREATE TABLE package_conflicts (
     requires_manual_review BOOLEAN DEFAULT FALSE,
     resolved_at DATETIME,
     resolved_by TEXT CHECK (resolved_by IN ('automatic', 'manual')),
-    
+
     FOREIGN KEY (package_id) REFERENCES packages(package_id),
     INDEX idx_package_conflicts_package (package_id),
     INDEX idx_package_conflicts_type (conflict_type),
@@ -398,7 +398,7 @@ CREATE TABLE package_conflicts (
 
 -- Package health summary view
 CREATE VIEW package_health_summary AS
-SELECT 
+SELECT
     p.package_id,
     p.name,
     p.registry,
@@ -416,14 +416,14 @@ FROM packages p
 LEFT JOIN package_health ph ON p.package_id = ph.package_id
 LEFT JOIN package_downloads pd ON p.package_id = pd.package_id
 WHERE pd.period_end = (
-    SELECT MAX(period_end) 
-    FROM package_downloads pd2 
+    SELECT MAX(period_end)
+    FROM package_downloads pd2
     WHERE pd2.package_id = p.package_id
 );
 
 -- High-quality packages view
 CREATE VIEW high_quality_packages AS
-SELECT 
+SELECT
     p.package_id,
     p.name,
     p.registry,
@@ -441,7 +441,7 @@ WHERE ph.health_category = 'production_ready'
 
 -- Package dependency health view
 CREATE VIEW package_dependency_health AS
-SELECT 
+SELECT
     p.package_id,
     p.name,
     p.registry,

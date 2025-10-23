@@ -242,7 +242,7 @@ llm:
   temperature: 0.1
   max_tokens: 4000
   timeout: 60
-  
+
   secondary_provider: "anthropic"
   model: "claude-3"
   temperature: 0.1
@@ -256,7 +256,7 @@ workflows:
     enabled: true
     prompts: ["pre-assessment", "quality-assessment", "ranking", "selection"]
     output_format: "markdown"
-    
+
   category_representation:
     enabled: true
     prompts: ["scale-diversity", "approach-diversity", "community-diversity"]

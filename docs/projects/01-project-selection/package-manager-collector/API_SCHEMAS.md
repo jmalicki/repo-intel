@@ -854,7 +854,7 @@ This document contains the actual API response schemas for NPM, PyPI, and Crates
 
 1. **Rate Limiting**: Each API has different rate limits
    - NPM: No official limits, but respectful usage recommended
-   - PyPI: No official limits, but respectful usage recommended  
+   - PyPI: No official limits, but respectful usage recommended
    - Crates.io: 10 requests per second
 2. **Authentication**: Most endpoints don't require authentication
 3. **Data Consistency**: Different APIs have different data structures

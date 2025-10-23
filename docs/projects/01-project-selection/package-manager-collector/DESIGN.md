@@ -1,7 +1,7 @@
 # Package Manager Collector - Detailed Design
 
 **Parent:** [Package Manager Collector](README.md)
-**Related:** 
+**Related:**
 - [API Schemas](API_SCHEMAS.md) - Package manager API specifications and data models
 - [Database Schema](SCHEMA.sql) - Complete SQL schema definition
 - [Common Library](../common-library/DESIGN.md) - Shared functionality dependencies

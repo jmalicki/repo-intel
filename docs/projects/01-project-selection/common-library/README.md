@@ -177,7 +177,7 @@ class Validator:
 - **Uses:** HTTP Client, Storage, Logging, Configuration
 - **Benefits:** Consistent rate limiting, error handling, data storage
 
-### Package Manager Collector  
+### Package Manager Collector
 - **Uses:** HTTP Client, Storage, Logging, Configuration
 - **Benefits:** Unified API handling across NPM, PyPI, crates.io
 
@@ -289,7 +289,7 @@ from common_library import MetricsCalculator
 
 calculator = MetricsCalculator()
 growth_rate = calculator.calculate_growth_rate(
-    star_counts, 
+    star_counts,
     time_periods
 )
 ```

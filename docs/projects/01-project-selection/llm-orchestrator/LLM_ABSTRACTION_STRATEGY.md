@@ -12,13 +12,13 @@ This document outlines the strategic approach for integrating LLM abstraction li
 ### Available LLM Abstraction Libraries
 
 **1. LiteLLM (Python) - Mature Reference Implementation**:
-- **Pros**: 
+- **Pros**:
   - Mature, supports 100+ providers
   - Built-in cost tracking and rate limiting
   - Model fallback mechanisms
   - Self-hostable proxy server
   - Enterprise-grade features
-- **Cons**: 
+- **Cons**:
   - Python-based, requires subprocess calls or separate service
   - Additional HTTP layer overhead
   - Language barrier for Rust integration
@@ -26,13 +26,13 @@ This document outlines the strategic approach for integrating LLM abstraction li
 - **Integration**: HTTP client calls to LiteLLM service
 
 **2. OpenRouter API - Production-Ready Unified Access**:
-- **Pros**: 
+- **Pros**:
   - Single API endpoint for 100+ models
   - Unified billing and cost optimization
   - Smart routing for cost/latency optimization
   - No vendor lock-in for individual providers
   - Mature and stable service
-- **Cons**: 
+- **Cons**:
   - External dependency
   - Additional service costs
   - Limited control over provider-specific optimizations
@@ -40,13 +40,13 @@ This document outlines the strategic approach for integrating LLM abstraction li
 - **Integration**: Direct HTTP API integration
 
 **3. Custom Rust Implementation - Core Orchestration**:
-- **Pros**: 
+- **Pros**:
   - Native performance and type safety
   - Full control over implementation
   - Async/await support throughout
   - No external dependencies
   - Optimized for specific use cases
-- **Cons**: 
+- **Cons**:
   - More development effort required
   - Need to handle provider-specific details
   - Limited to implemented providers
@@ -54,12 +54,12 @@ This document outlines the strategic approach for integrating LLM abstraction li
 - **Integration**: Direct API integration with trait-based abstraction
 
 **4. Ollama Rust Bindings - Local Processing**:
-- **Pros**: 
+- **Pros**:
   - Native Rust integration
   - Local processing, no API costs
   - Privacy and data control
   - No rate limits
-- **Cons**: 
+- **Cons**:
   - Limited to local models
   - Hardware requirements
   - Model availability constraints
@@ -67,12 +67,12 @@ This document outlines the strategic approach for integrating LLM abstraction li
 - **Integration**: Direct HTTP API calls to local Ollama instance
 
 **5. PyO3 + Python LLM Libraries - Hybrid Language Approach**:
-- **Pros**: 
+- **Pros**:
   - Access to mature Python LLM ecosystem (LiteLLM, LangChain, etc.)
   - Native Rust performance for orchestration logic
   - Best of both worlds: Python libraries + Rust performance
   - Minimal Python code, maximum Rust control
-- **Cons**: 
+- **Cons**:
   - PyO3 complexity and build requirements
   - Python runtime dependency
   - Cross-language debugging challenges
@@ -81,12 +81,12 @@ This document outlines the strategic approach for integrating LLM abstraction li
 - **Integration**: PyO3 bindings to call Python LLM libraries from Rust
 
 **6. Pure Python Implementation - LLM Orchestrator in Python**:
-- **Pros**: 
+- **Pros**:
   - Direct access to Python LLM ecosystem
   - Simplified development with mature libraries
   - Rich ecosystem of LLM tools and utilities
   - Easier integration with existing Python LLM workflows
-- **Cons**: 
+- **Cons**:
   - Performance overhead compared to Rust
   - GIL limitations for true parallelism
   - Less type safety than Rust
@@ -151,7 +151,7 @@ impl PythonLLMClient {
             let kwargs = PyDict::new(py);
             kwargs.set_item("model", model)?;
             kwargs.set_item("messages", vec![("role", "user"), ("content", prompt)])?;
-            
+
             let result = self.client.call_method(py, "completion", (), Some(kwargs))?;
             let response = result.getattr("choices")?.get_item(0)?.getattr("message")?.getattr("content")?;
             response.extract()
@@ -261,7 +261,7 @@ pub struct LLMClient {
 **LiteLLM Integration Details**:
 - **Service Architecture**: Python microservice with HTTP API
 - **Provider Coverage**: 100+ providers through LiteLLM
-- **Advanced Features**: 
+- **Advanced Features**:
   - Sophisticated cost tracking
   - Advanced rate limiting
   - Model fallback mechanisms
@@ -387,26 +387,26 @@ pub struct LLMClient {
 
 ## Next Steps
 
-1. **Evaluate Options**: 
+1. **Evaluate Options**:
    - Test OpenRouter and LiteLLM APIs
    - Evaluate PyO3 integration complexity
    - Compare Python LLM library ecosystem
-2. **Prototype Implementation**: 
+2. **Prototype Implementation**:
    - Build minimal viable implementation for each strategy
    - Test PyO3 integration with LiteLLM
    - Compare performance across approaches
-3. **Performance Testing**: 
+3. **Performance Testing**:
    - Compare custom Rust vs. PyO3 vs. pure Python
    - Measure latency and throughput
    - Test memory usage and resource consumption
-4. **Cost Analysis**: 
+4. **Cost Analysis**:
    - Calculate total cost of ownership
    - Include development time, runtime costs, maintenance
-5. **Decision**: 
+5. **Decision**:
    - Choose primary strategy based on evaluation
    - Consider team expertise and preferences
    - Factor in long-term maintenance requirements
-6. **Implementation**: 
+6. **Implementation**:
    - Begin development based on chosen strategy
    - Set up development environment and tooling
    - Create implementation plan and timeline
