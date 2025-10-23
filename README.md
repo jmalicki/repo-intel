@@ -6,12 +6,32 @@ This project analyzes how different types of software projects organize, structu
 
 ```
 repo-intel/
-├── 01-project-selection/    # Phase 1: Project identification and selection
-├── 02-analysis/            # Phase 2: Repository analysis and reporting
-├── 03-templates/           # Phase 3: Template repository generation
-├── 04-guidelines/          # Phase 4: Best practice guidelines
-└── docs/                   # Project documentation and design
+├── docs/                   # Project documentation and design
+│   ├── PROJECT_DESIGN.md   # Main project design document
+│   └── phases/             # Project phases
+│       ├── 01-project-selection/    # Phase 1: Project Selection
+│       ├── 02-analysis/            # Phase 2: Repository Analysis
+│       ├── 03-pattern-synthesis/   # Phase 3: Pattern Synthesis
+│       ├── 04-template-generation/ # Phase 4: Template Generation
+│       └── 05-guidelines-documentation/ # Phase 5: Guidelines & Documentation
+└── projects/               # Tool designs and implementations
+    └── 01-project-selection/ # Phase 1 tool designs
 ```
+
+## Documentation Navigation
+
+This project uses a **hierarchical navigation system** to maintain clear relationships between documents:
+
+- **Parent Links**: Each document links to its parent document
+- **Related Links**: Documents link to related documents with context
+- **Bidirectional Navigation**: Easy movement between high-level and detailed views
+- **Phase-Based Organization**: Clear separation between project phases and tool designs
+
+**Navigation Principles:**
+- Keep navigation clean and focused
+- Link to parent documents at the top
+- Add related documents in context
+- Maintain clear document hierarchy
 
 ## Target Categories
 
@@ -48,7 +68,11 @@ See the [Project Design Document](docs/PROJECT_DESIGN.md) for the complete proje
 
 ## Phase 1: Project Selection
 
-The project selection methodology is documented in [01-project-selection/PROJECT_SELECTION_METHODOLOGY.md](01-project-selection/PROJECT_SELECTION_METHODOLOGY.md).
+The project selection methodology is documented in [docs/phases/01-project-selection/PROJECT_SELECTION_METHODOLOGY.md](docs/phases/01-project-selection/PROJECT_SELECTION_METHODOLOGY.md).
+
+## Tool Designs
+
+Detailed tool specifications are available in [docs/projects/01-project-selection/](docs/projects/01-project-selection/).
 
 ## Contributing
 
