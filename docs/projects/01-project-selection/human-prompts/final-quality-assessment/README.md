@@ -7,6 +7,40 @@
 
 This directory contains discrete prompts for the final quality assessment of all selected projects. Each prompt focuses on a specific aspect of quality evaluation and validation.
 
+## Template Variables
+
+All prompts use Jinja-like templating with the following variables:
+
+### Project Variables
+- `{{ project_name }}` - Name of the project being evaluated
+- `{{ project_url }}` - GitHub URL of the project
+- `{{ project_category }}` - Category of the project
+- `{{ project_scale }}` - Scale of the project (Small, Medium, Large)
+
+### Quality Variables
+- `{{ quality_scores }}` - Quality assessment scores for the project
+- `{{ quality_standards }}` - Quality standards applied to the project
+- `{{ excellence_examples }}` - Excellence examples identified
+- `{{ quality_thresholds }}` - Quality thresholds for the project
+
+### Assessment Variables
+- `{{ assessment_criteria }}` - Assessment criteria used
+- `{{ assessment_methodology }}` - Assessment methodology applied
+- `{{ assessment_results }}` - Assessment results for the project
+- `{{ validation_results }}` - Validation results for the project
+
+### Output Variables
+- `{{ output_report }}` - Path to the output report file
+- `{{ assessment_date }}` - Date of the assessment
+- `{{ reviewer_name }}` - Name of the reviewer
+- `{{ review_team }}` - Review team information
+
+### Template Usage
+- Use `{{ variable_name }}` for single values
+- Use `{% for item in list %}{{ item }}{% endfor %}` for lists
+- Use `{% if condition %}content{% endif %}` for conditional content
+- All variables will be populated by the templating system before use
+
 ## Discrete Prompts
 
 ### Core Assessment Prompts

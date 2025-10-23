@@ -74,6 +74,15 @@ The project selection methodology is documented in [docs/phases/01-project-selec
 
 Detailed tool specifications are available in [docs/projects/01-project-selection/](docs/projects/01-project-selection/).
 
+## Development Guidelines
+
+All development follows the [Development Guidelines](docs/DEVELOPMENT_GUIDELINES.md):
+
+- **Template Variables**: All human prompts use Jinja-like templating with standardized variables
+- **Documentation Standards**: Clear navigation and self-contained documents
+- **Quality Assurance**: Comprehensive quality procedures throughout
+- **Development Practices**: Consistent file organization and standards
+
 ## Contributing
 
 This project follows a systematic approach to repository analysis. Each phase builds upon the previous one to create comprehensive template repositories and best practice guidelines.

@@ -7,6 +7,41 @@
 
 This directory contains discrete prompts for ensuring appropriate category coverage and diversity. Each prompt focuses on a specific aspect of representation assessment.
 
+## Template Variables
+
+All prompts use Jinja-like templating with the following variables:
+
+### Category Variables
+- `{{ category_name }}` - Name of the category being assessed
+- `{{ category_projects }}` - List of projects in the category
+- `{{ category_requirements }}` - Specific requirements for the category
+- `{{ category_diversity_goals }}` - Diversity goals for the category
+
+### Project Variables
+- `{{ project_name }}` - Name of the project being evaluated
+- `{{ project_url }}` - GitHub URL of the project
+- `{{ project_scale }}` - Scale of the project (Small, Medium, Large)
+- `{{ project_approach }}` - Approach/architecture of the project
+- `{{ project_community }}` - Community characteristics of the project
+
+### Diversity Variables
+- `{{ scale_distribution }}` - Distribution of project scales
+- `{{ approach_distribution }}` - Distribution of project approaches
+- `{{ community_distribution }}` - Distribution of community types
+- `{{ diversity_gaps }}` - Identified diversity gaps
+
+### Output Variables
+- `{{ output_report }}` - Path to the output report file
+- `{{ assessment_date }}` - Date of the assessment
+- `{{ reviewer_name }}` - Name of the reviewer
+- `{{ review_team }}` - Review team information
+
+### Template Usage
+- Use `{{ variable_name }}` for single values
+- Use `{% for item in list %}{{ item }}{% endfor %}` for lists
+- Use `{% if condition %}content{% endif %}` for conditional content
+- All variables will be populated by the templating system before use
+
 ## Discrete Prompts
 
 ### Core Assessment Prompts

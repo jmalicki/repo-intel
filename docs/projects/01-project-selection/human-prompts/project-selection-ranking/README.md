@@ -7,6 +7,34 @@
 
 This directory contains discrete prompts for the final project selection and ranking decisions. Each prompt focuses on a specific aspect of the selection process, providing structured guidance for human reviewers.
 
+## Template Variables
+
+All prompts use Jinja-like templating with the following variables:
+
+### Project Variables
+- `{{ project_name }}` - Name of the project being evaluated
+- `{{ project_url }}` - GitHub URL of the project
+- `{{ project_category }}` - Category of the project (Chrome Extension, MCP Server, etc.)
+- `{{ project_scale }}` - Scale of the project (Small, Medium, Large)
+
+### Data Variables
+- `{{ quality_scores }}` - Quality assessment scores for the project
+- `{{ diversity_metrics }}` - Diversity metrics for the project
+- `{{ automated_metrics }}` - Automated metrics collected for the project
+- `{{ community_health }}` - Community health metrics for the project
+
+### Output Variables
+- `{{ output_report }}` - Path to the output report file
+- `{{ assessment_date }}` - Date of the assessment
+- `{{ reviewer_name }}` - Name of the reviewer
+- `{{ review_team }}` - Review team information
+
+### Template Usage
+- Use `{{ variable_name }}` for single values
+- Use `{% for item in list %}{{ item }}{% endfor %}` for lists
+- Use `{% if condition %}content{% endif %}` for conditional content
+- All variables will be populated by the templating system before use
+
 ## Discrete Prompts
 
 ### Core Assessment Prompts

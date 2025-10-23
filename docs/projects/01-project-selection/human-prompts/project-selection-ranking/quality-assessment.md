@@ -8,10 +8,12 @@ This prompt guides the assessment of project quality across multiple dimensions.
 
 ## Pre-Assessment Checklist
 
-- [ ] Automated metrics have been collected
-- [ ] Quantitative scores are available
-- [ ] Project documentation has been reviewed
-- [ ] Community metrics are available
+- [ ] Automated metrics have been collected for {{ project_name }}
+- [ ] Quantitative scores are available for {{ project_name }}
+- [ ] Project documentation has been reviewed for {{ project_name }}
+- [ ] Community metrics are available for {{ project_name }}
+- [ ] Quality assessment data is ready for {{ project_name }}
+- [ ] Review team is prepared for {{ project_name }} assessment
 
 ## Quality Dimensions
 
@@ -145,17 +147,24 @@ This prompt guides the assessment of project quality across multiple dimensions.
 
 ## Documentation Requirements
 
-### Quality Assessment Summary
-- Overall quality score
-- Strengths and weaknesses
-- Areas of excellence
-- Improvement opportunities
+### Quality Assessment Summary for {{ project_name }}
+- Overall quality score: {{ quality_scores.overall }}
+- Strengths: {{ quality_scores.strengths }}
+- Weaknesses: {{ quality_scores.weaknesses }}
+- Areas of excellence: {{ excellence_examples }}
+- Improvement opportunities: {{ improvement_recommendations }}
 
 ### Rationale
-- Quality assessment reasoning
-- Context considerations
-- Score justification
+- Quality assessment reasoning for {{ project_name }}
+- Context considerations for {{ project_category }} projects
+- Score justification based on {{ quality_standards }}
 - Recommendations for improvement
+
+### Output Report
+- Save assessment to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Review team: {{ review_team }}
 
 ## Quality Assurance
 
