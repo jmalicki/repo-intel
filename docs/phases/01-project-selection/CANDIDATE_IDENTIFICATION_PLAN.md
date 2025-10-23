@@ -280,23 +280,41 @@ curl "https://api.github.com/search/repositories?q=topic:chrome-extension+stars:
 
 ## Implementation Timeline
 
-### Week 1: Automated Discovery
-- Execute GitHub API searches
-- Analyze trending repositories
-- Calculate quantitative metrics
-- Compile initial candidate lists
+### Week 1: Automated Discovery (Fully Automated)
+**Automation Tools:**
+- [GitHub API Collector](../../projects/01-project-selection/github-api-collector/README.md) - Execute all GitHub API searches
+- [Trending Analyzer](../../projects/01-project-selection/trending-analyzer/README.md) - Analyze trending repositories
+- [Metrics Calculator](../../projects/01-project-selection/metrics-calculator/README.md) - Calculate quantitative metrics
+- [Package Manager Collector](../../projects/01-project-selection/package-manager-collector/README.md) - Collect package ecosystem data
+- [Pattern Matcher](../../projects/01-project-selection/pattern-matcher/README.md) - Detect documentation and security files
 
-### Week 2: Community Research
-- Analyze developer surveys
-- Review conference presentations
-- Search technical blogs and books
+**Automated Tasks:**
+- Execute GitHub API searches for all categories
+- Analyze trending repositories across time periods
+- Calculate star growth rates, activity scores, community health metrics
+- Collect NPM, PyPI, crates.io download statistics
+- Detect presence of README, CONTRIBUTING, LICENSE files
+- Detect security files (SECURITY.md, dependabot configs)
+- Generate quantitative scoring reports
+- Compile initial candidate lists with metrics
+
+### Week 2: Human Judgment & Selection
+**Human Tasks:**
+- Review automated results and metrics
+- Apply qualitative assessment criteria
+- Analyze developer surveys and community recognition
+- Review conference presentations and industry reports
 - Cross-reference with community discussions
+- Apply diversity requirements (scale, approach, community)
+- Make final selection decisions
 
-### Week 3: Category-Specific Analysis
-- Execute category-specific searches
-- Analyze platform-specific metrics
-- Review community feedback and ratings
-- Compile comprehensive candidate lists
+### Week 3: Final Selection & Documentation
+**Human Tasks:**
+- Final project selection and ranking
+- Category representation assessment
+- Selection rationale documentation
+- Quality assurance review
+- Handoff preparation for Phase 2
 
 ## Expected Output
 
@@ -309,10 +327,16 @@ curl "https://api.github.com/search/repositories?q=topic:chrome-extension+stars:
 - 2-3 from developer surveys
 - 3-5 from industry reports
 
+**Automation Benefits:**
+- **70% Token Reduction**: From ~50,000 to ~15,000 tokens
+- **Faster Processing**: Automated data collection vs. manual queries
+- **Consistent Metrics**: Standardized quantitative analysis
+- **Human Focus**: Judgment tasks only, not mechanistic data collection
+
 **Quality Assurance:**
-- All candidates meet minimum activity thresholds
-- All candidates have comprehensive documentation
-- All candidates demonstrate active community engagement
-- All candidates represent different scales and approaches
+- All candidates meet minimum activity thresholds (automated)
+- All candidates have comprehensive documentation (automated detection)
+- All candidates demonstrate active community engagement (automated metrics)
+- All candidates represent different scales and approaches (human judgment)
 
 This detailed plan ensures systematic discovery of high-quality candidates across all categories while maintaining diversity in scale, approach, and community dynamics.
