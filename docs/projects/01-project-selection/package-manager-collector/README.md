@@ -22,25 +22,28 @@ The Package Manager Collector is a **deterministic Python script** that makes HT
 4. **Data Consistency** - Normalize data across different sources
 5. **Error Resilience** - Handle API failures gracefully
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **HTTP Client Library** - Rate limiting, retry logic, authentication
+- **Data Processing Library** - Validation, normalization, transformation
+- **Storage Library** - File I/O, database operations, serialization
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Data Sources
 
 ### NPM (Node.js)
 - **API Endpoint**: `https://registry.npmjs.org/`
 - **Data Collected**: Downloads, versions, dependencies, ratings
-- **Rate Limits**: 100 requests per minute
-- **Authentication**: Optional token for higher limits
 
 ### PyPI (Python)
 - **API Endpoint**: `https://pypi.org/pypi/`
 - **Data Collected**: Downloads, versions, dependencies, ratings
-- **Rate Limits**: 100 requests per minute
-- **Authentication**: Optional token for higher limits
 
 ### Crates.io (Rust)
 - **API Endpoint**: `https://crates.io/api/v1/`
 - **Data Collected**: Downloads, versions, dependencies, ratings
-- **Rate Limits**: 100 requests per minute
-- **Authentication**: Optional token for higher limits
 
 ## Data Collection Process
 
@@ -206,15 +209,11 @@ def collect_crates_data(package_name):
 
 ## Error Handling
 
-### API Errors
+Uses **[Common Library HTTP Client](../common-library/README.md#http-client-library)** for:
 - **Rate Limiting** - Handle rate limit errors with backoff
 - **Authentication** - Handle authentication errors
 - **Network Errors** - Handle network connectivity issues
 - **Data Validation** - Validate API response data
-
-### Data Quality Issues
-- **Missing Data** - Handle missing package data
-- **Inconsistent Data** - Handle data inconsistencies
 - **Malformed Data** - Handle malformed API responses
 - **Duplicate Data** - Handle duplicate package entries
 
@@ -258,36 +257,11 @@ serde,crates.io,600000,30000,4.9,2,1200
 
 ## Configuration
 
-### Registry Configuration
-```yaml
-registries:
-  npm:
-    enabled: true
-    api_url: "https://registry.npmjs.org/"
-    rate_limit: 100
-    timeout: 30
-  pypi:
-    enabled: true
-    api_url: "https://pypi.org/pypi/"
-    rate_limit: 100
-    timeout: 30
-  crates:
-    enabled: true
-    api_url: "https://crates.io/api/v1/"
-    rate_limit: 100
-    timeout: 30
-```
-
-### Collection Configuration
-```yaml
-collection:
-  batch_size: 10
-  concurrent_requests: 5
-  retry_count: 3
-  retry_delay: 1
-  cache_responses: true
-  cache_duration: 3600
-```
+Uses **[Common Library Configuration](../common-library/README.md#configuration-library)** for:
+- **Settings Management** - YAML, JSON, INI file support
+- **Environment Variables** - API tokens and registry settings
+- **Default Values** - Sensible defaults for all settings
+- **Validation** - Configuration validation and error reporting
 
 ## Dependencies
 

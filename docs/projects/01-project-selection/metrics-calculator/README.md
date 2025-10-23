@@ -22,6 +22,15 @@ The Metrics Calculator is a **deterministic Python script** that performs mathem
 4. **Scalable Processing** - Handle large datasets efficiently
 5. **Reproducible Results** - Consistent calculations across runs
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **Metrics Library** - Statistical calculations, scoring algorithms
+- **Validation Library** - Schema validation, business rules
+- **Storage Library** - File I/O, database operations, serialization
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Input Data
 
 ### Repository Data

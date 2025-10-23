@@ -22,6 +22,15 @@ The Quality Filter is a **deterministic Python script** that applies mathematica
 4. **Scalable Processing** - Handle large datasets efficiently
 5. **Reproducible Results** - Consistent filtering across runs
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **Validation Library** - Schema validation, business rules
+- **Metrics Library** - Statistical calculations, scoring algorithms
+- **Storage Library** - File I/O, database operations, serialization
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Filtering Criteria
 
 ### 1. Minimum Requirements

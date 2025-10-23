@@ -22,6 +22,15 @@ The Data Aggregator is a **deterministic Python script** that merges data from m
 4. **Conflict Resolution** - Handle conflicting data from multiple sources
 5. **Scalable Processing** - Handle large datasets efficiently
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **Data Processing Library** - Validation, normalization, transformation
+- **Storage Library** - File I/O, database operations, serialization
+- **Validation Library** - Schema validation, business rules
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Data Sources
 
 ### Primary Sources

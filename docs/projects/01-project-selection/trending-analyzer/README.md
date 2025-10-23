@@ -22,6 +22,15 @@ The Trending Analyzer is a **deterministic Python script** that queries GitHub's
 4. **Historical Tracking** - Track trending patterns over time
 5. **Performance Optimization** - Efficient data processing and analysis
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **HTTP Client Library** - Rate limiting, retry logic, authentication
+- **Metrics Library** - Statistical calculations, scoring algorithms
+- **Storage Library** - File I/O, database operations, serialization
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Data Sources
 
 ### GitHub Trending API

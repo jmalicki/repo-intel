@@ -22,6 +22,14 @@ The Report Generator is a **deterministic Python script** that processes structu
 4. **Comprehensive Coverage** - Include all relevant data and analysis
 5. **Professional Quality** - Generate publication-ready reports
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **Storage Library** - File I/O, database operations, serialization
+- **Metrics Library** - Statistical calculations, scoring algorithms
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Report Types
 
 ### 1. Project Summary Reports

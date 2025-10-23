@@ -23,6 +23,14 @@ The GitHub API Collector is a **deterministic Python script** that makes HTTP re
 4. **Error Handling** - Robust error handling and retry logic
 5. **Scalability** - Handle large numbers of repositories efficiently
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **HTTP Client Library** - Rate limiting, retry logic, authentication
+- **Storage Library** - File I/O, database operations, serialization
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 ## Input Sources
 
 ### Category-Specific Searches
@@ -80,19 +88,13 @@ The GitHub API Collector is a **deterministic Python script** that makes HTTP re
 - `/repos/{owner}/{repo}/stats/code_frequency` - Code frequency
 - `/repos/{owner}/{repo}/stats/commit_activity` - Commit activity
 
-### Rate Limiting
-- **Authenticated**: 5,000 requests/hour
-- **Unauthenticated**: 60 requests/hour
-- **Retry Logic**: Exponential backoff with jitter
-- **Queue Management**: Request queuing and prioritization
-
 ## Data Storage
 
-### Format
-- **Primary**: JSON files per category
-- **Secondary**: CSV files for analysis
-- **Database**: SQLite for complex queries
-- **Backup**: Compressed archives
+Uses **[Common Library Storage](../common-library/README.md#storage-library)** for:
+- **File I/O** - JSON, CSV file operations
+- **Database Operations** - SQLite integration
+- **Data Serialization** - JSON, MessagePack support
+- **Backup & Recovery** - Data backup and restoration
 
 ### Structure
 ```json
@@ -128,17 +130,11 @@ The GitHub API Collector is a **deterministic Python script** that makes HTTP re
 
 ## Error Handling
 
-### API Errors
-- **Rate Limiting**: Automatic retry with backoff
-- **Authentication**: Token refresh and retry
-- **Network**: Connection retry and timeout handling
-- **Data Validation**: Schema validation and error reporting
-
-### Data Quality
-- **Missing Data**: Flag incomplete records
-- **Inconsistent Data**: Validate data consistency
-- **Duplicate Data**: Detect and handle duplicates
-- **Data Freshness**: Track data age and staleness
+Uses **[Common Library HTTP Client](../common-library/README.md#http-client-library)** for:
+- **Rate Limiting** - Automatic retry with exponential backoff
+- **Authentication** - Token refresh and retry
+- **Network Errors** - Connection retry and timeout handling
+- **Data Validation** - Schema validation and error reporting
 
 ## Performance Optimization
 
@@ -171,28 +167,11 @@ The GitHub API Collector is a **deterministic Python script** that makes HTTP re
 
 ## Configuration
 
-### API Configuration
-```yaml
-github:
-  api_url: "https://api.github.com"
-  token: "${GITHUB_TOKEN}"
-  rate_limit: 5000
-  timeout: 30
-  retry_count: 3
-  retry_delay: 1
-```
-
-### Search Configuration
-```yaml
-categories:
-  rust-libraries:
-    queries:
-      - "language:rust stars:>1000"
-      - "topic:rust-library stars:>500"
-    min_stars: 1000
-    min_activity: 0.1
-    max_results: 30
-```
+Uses **[Common Library Configuration](../common-library/README.md#configuration-library)** for:
+- **Settings Management** - YAML, JSON, INI file support
+- **Environment Variables** - GitHub token and API settings
+- **Default Values** - Sensible defaults for all settings
+- **Validation** - Configuration validation and error reporting
 
 ## Dependencies
 

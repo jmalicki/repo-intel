@@ -39,6 +39,14 @@ The Pattern Matcher is a **Python script** that uses LLM analysis to discover co
 4. **Script identifies unexpected patterns** and innovative approaches
 5. **Returns structured JSON** with discovered patterns and innovations
 
+## Dependencies
+
+This tool uses the **[Common Library](../common-library/README.md)** for:
+- **HTTP Client Library** - LLM API calls, rate limiting, retry logic
+- **Storage Library** - File I/O, database operations, serialization
+- **Logging Library** - Structured logging, performance metrics
+- **Configuration Library** - Settings management, environment variables
+
 **The script discovers patterns** - it finds novel approaches, not just verifies predetermined ones.
 
 **This enables discovery of**:
