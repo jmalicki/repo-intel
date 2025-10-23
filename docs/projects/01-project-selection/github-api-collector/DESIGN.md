@@ -108,7 +108,7 @@ CREATE TABLE repositories (
     updated_at DATETIME NOT NULL,
     pushed_at DATETIME NOT NULL,
     category_id INTEGER NOT NULL,
-    collected_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    collected_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
@@ -123,7 +123,7 @@ CREATE TABLE repository_metrics (
     avg_pr_merge_time REAL,
     activity_score REAL,
     community_health_score REAL,
-    calculated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    calculated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (repository_id) REFERENCES repositories(id)
 );
 
@@ -146,7 +146,7 @@ CREATE TABLE rate_limits (
     endpoint TEXT NOT NULL,
     remaining INTEGER NOT NULL,
     reset_time DATETIME NOT NULL,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
