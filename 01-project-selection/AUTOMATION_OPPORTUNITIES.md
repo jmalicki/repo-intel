@@ -94,6 +94,12 @@ This document identifies parts of the candidate identification workflow that can
 - Calculate documentation update frequency
 - Generate documentation completeness scores
 
+**Discovery Mechanisms:**
+- Pattern matching for documentation-related keywords in filenames
+- Content analysis for documentation-related terms in file contents
+- Detection of unexpected documentation structures
+- Identification of novel documentation practices
+
 **Human Role:** Review documentation completeness assessment, not individual file analysis
 
 ## Partially Automatable Tasks
@@ -114,6 +120,12 @@ This document identifies parts of the candidate identification workflow that can
 - Generate community health scores based on quantitative data
 - Identify community health patterns in the data
 
+**Discovery Mechanisms:**
+- Pattern matching for community-related keywords in filenames
+- Content analysis for community-related terms in file contents
+- Detection of unexpected community practices
+- Identification of novel community engagement patterns
+
 **Human Role:** Review community health assessment, not individual metric calculations
 
 ### 7. Security Practice Detection
@@ -131,6 +143,12 @@ This document identifies parts of the candidate identification workflow that can
 - Detect presence of dependency scanning tools (dependabot, renovate, snyk configs)
 - Count security-related GitHub Actions workflows
 - Generate security file presence reports
+
+**Discovery Mechanisms:**
+- Pattern matching for security-related keywords in filenames
+- Content analysis for security-related terms in file contents
+- Detection of unexpected security configurations
+- Identification of novel security practices
 
 **Human Role:** Review security file presence assessment, not individual file detection
 
