@@ -7,12 +7,12 @@
 This document identifies parts of the candidate identification workflow that can be automated to reduce token usage and focus human intelligence on high-value judgment tasks.
 
 **Related Documents:**
-- [Project Selection Methodology](PROJECT_SELECTION_METHODOLOGY.md) - Detailed selection approach
+- [Project Selection Methodology](README.md) - Detailed selection approach
 - [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Execution plan
 - [Tool Designs](../../projects/01-project-selection/) - Detailed tool specifications
 
 **Document Relationships:**
-- **PROJECT_SELECTION_METHODOLOGY.md**: High-level strategy, criteria, and timeline
+- **README.md**: High-level strategy, criteria, and timeline
 - **CANDIDATE_IDENTIFICATION_PLAN.md**: Detailed implementation steps and specific queries
 - **AUTOMATION_OPPORTUNITIES.md** (this document): Which tasks can be automated vs. require human judgment
 
