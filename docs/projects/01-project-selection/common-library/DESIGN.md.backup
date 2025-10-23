@@ -254,24 +254,61 @@ common-library/
 - `Logger::warn()` - Log warning messages
 - `Logger::error()` - Log error messages
 - `Logger::debug()` - Log debug messages
+            )
+            .with(tracing_subscriber::fmt::layer().json())
+            .init();
+        Ok(())
+    }
+    
+    pub fn log_performance(&self, operation: &str, duration: Duration) {
+        info!(
+            operation = operation,
+            duration_ms = duration.as_millis(),
+            "Performance metric"
+        );
+    }
+    
+    pub fn log_api_call(&self, endpoint: &str, status: u16, duration: Duration) {
+        info!(
+            endpoint = endpoint,
+            status = status,
+            duration_ms = duration.as_millis(),
+            "API call completed"
+        );
+    }
+}
+```
 
 ## Metrics Library
 
 ### Statistical Calculations
-**Purpose**: Provides statistical analysis and metrics calculation for repository data
+```rust
+pub struct MetricsCalculator;
 
-**Key Components**:
-- **Growth Rate Calculation**: Compound annual growth rate calculations
-- **Trend Analysis**: Statistical trend detection and classification
-- **Performance Metrics**: Activity scores and community health indicators
-- **Time Series Analysis**: Temporal data analysis and forecasting
-
-**API Surface**:
-- `MetricsCalculator::calculate_growth_rate()` - Calculate compound growth rates
-- `MetricsCalculator::calculate_trend()` - Analyze data trends over time
-- `MetricsCalculator::activity_score()` - Calculate repository activity metrics
-- `MetricsCalculator::community_health()` - Assess community engagement
-- `MetricsCalculator::performance_indicators()` - Generate performance metrics
+impl MetricsCalculator {
+    pub fn calculate_growth_rate(&self, values: &[f64], time_periods: &[DateTime<Utc>]) -> f64 {
+        if values.len() < 2 {
+            return 0.0;
+        }
+        
+        let first_value = values[0];
+        let last_value = values[values.len() - 1];
+        let time_span = time_periods[time_periods.len() - 1] - time_periods[0];
+        let years = time_span.num_days() as f64 / 365.25;
+        
+        if years > 0.0 && first_value > 0.0 {
+            (last_value / first_value).powf(1.0 / years) - 1.0
+        } else {
+            0.0
+        }
+    }
+    
+    pub fn calculate_trend(&self, values: &[f64], window_size: usize) -> Trend {
+        if values.len() < window_size {
+            return Trend::InsufficientData;
+        }
+        
+        let recent_values = &values[values.len() - window_size..];
         let slope = self.calculate_slope(recent_values);
         
         match slope {
