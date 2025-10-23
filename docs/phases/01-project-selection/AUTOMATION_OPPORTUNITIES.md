@@ -10,7 +10,7 @@ This document identifies parts of the candidate identification workflow that can
 - [Project Selection Methodology](README.md) - Detailed selection approach
 - [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Execution plan
 - [Tool Designs](../../projects/01-project-selection/) - Detailed tool specifications
-- [Human Prompts](../../projects/01-project-selection/human-prompts/) - Human judgment task prompts
+- [Human Prompts](../../data/prompts/01-project-selection/) - Human judgment task prompts
 
 **Document Relationships:**
 - **README.md**: High-level strategy, criteria, and timeline
@@ -166,21 +166,21 @@ This document identifies parts of the candidate identification workflow that can
 ### 8. Project Selection and Ranking
 **Current Process:** Manual project selection and ranking
 **Automation Potential:** 0% - Requires human judgment
-**Human Prompts:** [Project Selection and Ranking](../../projects/01-project-selection/human-prompts/project-selection-ranking/README.md)
+**Human Prompts:** [Project Selection and Ranking](../../data/prompts/01-project-selection/project-selection-ranking/README.md)
 **Human Role:** Essential for final project selection
 **Reasoning:** Project selection requires understanding of project quality, community health, and representativeness
 
 ### 9. Category Representation
 **Current Process:** Manual assessment of category coverage
 **Automation Potential:** 0% - Requires human judgment
-**Human Prompts:** [Category Representation](../../projects/01-project-selection/human-prompts/category-representation/README.md)
+**Human Prompts:** [Category Representation](../../data/prompts/01-project-selection/category-representation/README.md)
 **Human Role:** Essential for ensuring category representation
 **Reasoning:** Category representation requires understanding of project diversity and category-specific needs
 
 ### 10. Final Quality Assessment
 **Current Process:** Manual final quality assessment
 **Automation Potential:** 0% - Requires human judgment
-**Human Prompts:** [Final Quality Assessment](../../projects/01-project-selection/human-prompts/final-quality-assessment/README.md)
+**Human Prompts:** [Final Quality Assessment](../../data/prompts/01-project-selection/final-quality-assessment/README.md)
 **Human Role:** Essential for final quality decisions
 **Reasoning:** Final quality assessment requires understanding of project maturity, community health, and best practices
 

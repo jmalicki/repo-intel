@@ -1,6 +1,6 @@
 # Human Prompts for Phase 1: Project Selection
 
-**Parent:** [Projects Overview](../README.md)
+**Parent:** [Projects Overview](../../../projects/01-project-selection/README.md)
 **Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Human judgment tasks
 
 ## Overview
