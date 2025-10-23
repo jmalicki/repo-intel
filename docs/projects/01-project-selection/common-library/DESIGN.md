@@ -22,8 +22,7 @@ The Common Library is a **Rust crate** that provides shared functionality for al
 - `reqwest` - HTTP client with async support
 - `tokio` - Async runtime and utilities
 - `serde` + `serde_json` - Serialization framework
-- `rusqlite` - SQLite database operations
-- `sqlx` - Async SQL toolkit
+- `sqlx` - Async SQL toolkit with SQLite support
 - `chrono` - Date/time handling
 - `tracing` - Structured logging
 - `anyhow` + `thiserror` - Error handling
@@ -200,17 +199,17 @@ impl RateLimiter {
 
 ### Database Operations
 ```rust
-use rusqlite::{Connection, Result as SqlResult};
+use sqlx::{SqlitePool, Row};
 use serde::{Deserialize, Serialize};
 
 pub struct Database {
-    connection: Connection,
+    pool: SqlitePool,
 }
 
 impl Database {
-    pub fn new(path: &str) -> Result<Self> {
-        let connection = Connection::open(path)?;
-        Ok(Self { connection })
+    pub async fn new(database_url: &str) -> Result<Self> {
+        let pool = SqlitePool::connect(database_url).await?;
+        Ok(Self { pool })
     }
     
     pub async fn insert<T>(&self, table: &str, data: &T) -> Result<()>
@@ -218,8 +217,10 @@ impl Database {
         T: Serialize,
     {
         let json = serde_json::to_string(data)?;
-        let query = format!("INSERT INTO {} (data) VALUES (?)", table);
-        self.connection.execute(&query, [json])?;
+        sqlx::query(&format!("INSERT INTO {} (data) VALUES (?)", table))
+            .bind(json)
+            .execute(&self.pool)
+            .await?;
         Ok(())
     }
     
@@ -227,15 +228,15 @@ impl Database {
     where
         T: for<'de> Deserialize<'de>,
     {
-        let mut stmt = self.connection.prepare(query)?;
-        let rows = stmt.query_map([], |row| {
-            let json: String = row.get(0)?;
-            Ok(serde_json::from_str(&json)?)
-        })?;
+        let rows = sqlx::query(query)
+            .fetch_all(&self.pool)
+            .await?;
         
         let mut results = Vec::new();
         for row in rows {
-            results.push(row??);
+            let json: String = row.get("data");
+            let data: T = serde_json::from_str(&json)?;
+            results.push(data);
         }
         Ok(results)
     }
