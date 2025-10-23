@@ -6,14 +6,6 @@
 
 This prompt guides the assessment of approach diversity across project categories. It ensures representation of different architectural patterns, technology stacks, and organizational models.
 
-## Pre-Assessment Checklist
-
-- [ ] Projects have been selected for {{ category_name }}
-- [ ] Architectural patterns have been identified for {{ category_name }}
-- [ ] Technology stacks have been analyzed for {{ category_name }}
-- [ ] Organizational models have been assessed for {{ category_name }}
-- [ ] Approach diversity template is ready for {{ category_name }}
-- [ ] Output report path is configured: {{ output_report }}
 
 ## Approach Categories
 
@@ -170,20 +162,6 @@ This prompt guides the assessment of approach diversity across project categorie
 - Approach balancing decisions
 - Quality impact considerations
 - Final approach diversity validation
-
-## Quality Assurance
-
-### Approach Validation
-- [ ] Each approach is represented appropriately
-- [ ] Quality standards are maintained across approaches
-- [ ] Approach characteristics are accurate
-- [ ] Diversity is meaningful
-
-### Category Validation
-- [ ] Each category has appropriate approach diversity
-- [ ] Category-specific requirements are met
-- [ ] Approach representation is meaningful
-- [ ] Quality is maintained across approaches
 
 ### Output Report
 - Save approach diversity assessment to: {{ output_report }}

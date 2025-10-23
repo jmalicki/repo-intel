@@ -6,14 +6,6 @@
 
 This prompt guides the assessment of community diversity across project categories. It ensures representation of different community sizes, governance models, and contribution patterns.
 
-## Pre-Assessment Checklist
-
-- [ ] Projects have been selected for {{ category_name }}
-- [ ] Community characteristics have been identified for {{ category_name }}
-- [ ] Governance models have been analyzed for {{ category_name }}
-- [ ] Contribution patterns have been assessed for {{ category_name }}
-- [ ] Community diversity template is ready for {{ category_name }}
-- [ ] Output report path is configured: {{ output_report }}
 
 ## Community Categories
 
@@ -170,20 +162,6 @@ This prompt guides the assessment of community diversity across project categori
 - Community balancing decisions
 - Quality impact considerations
 - Final community diversity validation
-
-## Quality Assurance
-
-### Community Validation
-- [ ] Each community type is represented appropriately
-- [ ] Quality standards are maintained across communities
-- [ ] Community characteristics are accurate
-- [ ] Diversity is meaningful
-
-### Category Validation
-- [ ] Each category has appropriate community diversity
-- [ ] Category-specific requirements are met
-- [ ] Community representation is meaningful
-- [ ] Quality is maintained across communities
 
 ### Output Report
 - Save community diversity assessment to: {{ output_report }}

@@ -6,15 +6,6 @@
 
 This prompt defines the criteria for project selection, including must-have requirements, quality standards, and excellence indicators. It provides clear guidelines for making selection decisions.
 
-## Pre-Selection Checklist
-
-- [ ] Quality assessments have been completed for {{ project_name }}
-- [ ] Rankings have been generated for {{ project_name }}
-- [ ] Diversity requirements are defined for {{ project_category }}
-- [ ] Category representation is assessed for {{ project_category }}
-- [ ] Selection template is ready for {{ project_name }}
-- [ ] Output report path is configured: {{ output_report }}
-
 ## Selection Criteria
 
 ### Must Have (Elimination Criteria)
@@ -162,20 +153,6 @@ This prompt defines the criteria for project selection, including must-have requ
 - Scale representation (small/medium/large)
 - Approach representation (architecture/technology)
 - Community model representation
-
-## Quality Assurance
-
-### Cross-Validation
-- [ ] Multiple reviewers for controversial decisions
-- [ ] Cross-reference with automated metrics
-- [ ] Validate against selection criteria
-- [ ] Ensure diversity requirements met
-
-### Documentation Review
-- [ ] Selection rationale is clear
-- [ ] Quality assessment is documented
-- [ ] Diversity contribution is explained
-- [ ] Final selection is well-supported
 
 ## Final Output
 

@@ -6,15 +6,6 @@
 
 This prompt guides the ranking of projects based on quality assessment and diversity requirements. It provides a structured approach for combining quantitative metrics with qualitative judgment.
 
-## Pre-Ranking Checklist
-
-- [ ] Quality assessments have been completed for {{ project_name }}
-- [ ] Automated metrics are available for {{ project_name }}
-- [ ] Diversity requirements are defined for {{ project_category }}
-- [ ] Category representation is assessed for {{ project_category }}
-- [ ] Ranking template is ready for {{ project_name }}
-- [ ] Output report path is configured: {{ output_report }}
-
 ## Ranking Framework
 
 ### 1. Quantitative Scoring (40% weight)
@@ -157,19 +148,5 @@ This prompt guides the ranking of projects based on quality assessment and diver
 - Category: {{ project_category }}
 - Scale: {{ project_scale }}
 - URL: {{ project_url }}
-
-## Quality Assurance
-
-### Cross-Validation
-- [ ] Multiple reviewers for controversial rankings
-- [ ] Cross-reference with automated metrics
-- [ ] Validate against ranking criteria
-- [ ] Ensure consistency across rankings
-
-### Documentation Review
-- [ ] Ranking methodology is documented
-- [ ] Scoring rationale is clear
-- [ ] Diversity requirements are met
-- [ ] Final rankings are well-supported
 
 This prompt ensures consistent, high-quality ranking while maintaining the balance between quality standards and diversity requirements.

@@ -6,17 +6,6 @@
 
 This prompt guides the assessment of project quality across multiple dimensions. It provides structured criteria for evaluating code quality, documentation, testing, and community health.
 
-## Pre-Assessment Checklist
-
-- [ ] Automated metrics have been collected for {{ project_name }}
-- [ ] Quantitative scores are available for {{ project_name }}
-- [ ] Project documentation has been reviewed for {{ project_name }}
-- [ ] Community metrics are available for {{ project_name }}
-- [ ] Quality assessment data is ready for {{ project_name }}
-- [ ] Review team is prepared for {{ project_name }} assessment
-- [ ] Quality assessment template is ready for {{ project_name }}
-- [ ] Output report path is configured: {{ output_report }}
-
 ## Quality Dimensions
 
 ### 1. Code Quality (25% weight)
@@ -171,19 +160,5 @@ This prompt guides the assessment of project quality across multiple dimensions.
 - Category: {{ project_category }}
 - Scale: {{ project_scale }}
 - URL: {{ project_url }}
-
-## Quality Assurance
-
-### Cross-Validation
-- [ ] Multiple reviewers for borderline cases
-- [ ] Cross-reference with automated metrics
-- [ ] Validate against quality criteria
-- [ ] Ensure consistency across assessments
-
-### Documentation Review
-- [ ] Quality assessment is documented
-- [ ] Scoring rationale is clear
-- [ ] Recommendations are actionable
-- [ ] Assessment is well-supported
 
 This prompt ensures consistent, high-quality assessment while maintaining the balance between quantitative metrics and qualitative judgment.

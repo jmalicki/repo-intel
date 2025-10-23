@@ -6,15 +6,6 @@
 
 This prompt guides the assessment of scale diversity across project categories. It ensures appropriate representation of small, medium, and large projects within each category.
 
-## Pre-Assessment Checklist
-
-- [ ] Projects have been selected for {{ category_name }}
-- [ ] Project scales have been identified for {{ category_name }}
-- [ ] Scale distribution has been analyzed for {{ category_name }}
-- [ ] Scale requirements are defined for {{ category_name }}
-- [ ] Scale diversity template is ready for {{ category_name }}
-- [ ] Output report path is configured: {{ output_report }}
-
 ## Scale Categories
 
 ### Small Projects (1-2 per {{ category_name }})
@@ -167,20 +158,6 @@ This prompt guides the assessment of scale diversity across project categories. 
 - Scale balancing decisions
 - Quality impact considerations
 - Final scale distribution validation
-
-## Quality Assurance
-
-### Scale Validation
-- [ ] Each scale is represented appropriately
-- [ ] Quality standards are maintained across scales
-- [ ] Scale characteristics are accurate
-- [ ] Distribution is balanced
-
-### Category Validation
-- [ ] Each category has appropriate scale diversity
-- [ ] Category-specific requirements are met
-- [ ] Scale representation is meaningful
-- [ ] Quality is maintained across scales
 
 ### Output Report
 - Save scale diversity assessment to: {{ output_report }}

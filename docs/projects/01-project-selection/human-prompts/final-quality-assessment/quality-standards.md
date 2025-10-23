@@ -245,20 +245,6 @@ This prompt guides the assessment of quality standards across all selected proje
 - Quality improvement opportunities
 - Quality standards recommendations
 
-## Quality Assurance
-
-### Standards Validation
-- [ ] Quality standards are consistently applied
-- [ ] Thresholds are appropriate
-- [ ] Excellence criteria are meaningful
-- [ ] Quality assessment is comprehensive
-
-### Excellence Validation
-- [ ] Excellence examples are well-identified
-- [ ] Best practices are documented
-- [ ] Innovation examples are highlighted
-- [ ] Quality leadership is recognized
-
 ### Output Report
 - Save quality standards assessment to: {{ output_report }}
 - Assessment date: {{ assessment_date }}
