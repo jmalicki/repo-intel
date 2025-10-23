@@ -8,7 +8,7 @@ This document identifies parts of the candidate identification workflow that can
 
 ### 1. GitHub API Data Collection
 **Current Process:** Manual API queries and data extraction
-**Automation Potential:** 95% - Fully automatable
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
 - Script to execute all GitHub API searches
 - Automated data extraction and formatting
@@ -26,7 +26,7 @@ This document identifies parts of the candidate identification workflow that can
 
 ### 2. Trending Repository Analysis
 **Current Process:** Manual trending analysis across time periods
-**Automation Potential:** 90% - Highly automatable
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
 - Script to query GitHub trending APIs
 - Automated analysis of trending patterns
@@ -44,7 +44,7 @@ This document identifies parts of the candidate identification workflow that can
 
 ### 3. Quantitative Metrics Calculation
 **Current Process:** Manual calculation of metrics from raw data
-**Automation Potential:** 100% - Fully automatable
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
 - Automated calculation of all quantitative metrics
 - Statistical analysis and ranking
@@ -62,7 +62,7 @@ This document identifies parts of the candidate identification workflow that can
 
 ### 4. Package Manager Data Collection
 **Current Process:** Manual queries to NPM, PyPI, crates.io
-**Automation Potential:** 95% - Highly automatable
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
 - Scripts to query package manager APIs
 - Automated download count and rating collection
@@ -80,30 +80,25 @@ This document identifies parts of the candidate identification workflow that can
 
 ### 5. Documentation Completeness Analysis
 **Current Process:** Manual review of documentation quality
-**Automation Potential:** 70% - Partially automatable
+**Automation Potential:** 60% - Partially automatable (LLM needed for pattern matching)
 **Implementation:**
 - Script to analyze repository structure for documentation files
 - Automated detection of documentation completeness
 - Analysis of documentation update frequency
 - Generation of documentation quality scores
 
-**Script Responsibilities:**
+**Script Responsibilities (No LLM needed):**
 - Detect presence of README, CONTRIBUTING, LICENSE files
 - Count documentation file types and sizes
 - Check for presence of API documentation, tutorials, examples
 - Calculate documentation update frequency
 - Generate documentation completeness scores
 
-**Discovery Mechanisms:**
+**LLM Responsibilities (Pattern matching requires judgment):**
 - Pattern matching for documentation-related keywords in filenames
 - Content analysis for documentation-related terms in file contents
 - Detection of unexpected documentation structures
 - Identification of novel documentation practices
-
-**LLM Call Approach:**
-- Script makes LLM call to analyze documentation patterns
-- LLM generates documentation practice sub-report
-- Human reviews LLM findings, not individual pattern matching
 
 **Human Role:** Review documentation completeness assessment, not individual file analysis
 
@@ -111,59 +106,49 @@ This document identifies parts of the candidate identification workflow that can
 
 ### 6. Community Health Metrics
 **Current Process:** Manual analysis of community engagement
-**Automation Potential:** 60% - Partially automatable
+**Automation Potential:** 70% - Partially automatable (LLM needed for pattern matching)
 **Implementation:**
 - Script to analyze issue/PR response times
 - Automated calculation of community engagement metrics
 - Analysis of contributor diversity and activity
 - Generation of community health reports
 
-**Script Responsibilities:**
+**Script Responsibilities (No LLM needed):**
 - Calculate issue/PR response times and resolution rates
 - Count contributor activity and diversity metrics
 - Calculate community engagement metrics (comments, reactions, participation)
 - Generate community health scores based on quantitative data
 - Identify community health patterns in the data
 
-**Discovery Mechanisms:**
+**LLM Responsibilities (Pattern matching requires judgment):**
 - Pattern matching for community-related keywords in filenames
 - Content analysis for community-related terms in file contents
 - Detection of unexpected community practices
 - Identification of novel community engagement patterns
 
-**LLM Call Approach:**
-- Script makes LLM call to analyze community patterns
-- LLM generates community practice sub-report
-- Human reviews LLM findings, not individual pattern matching
-
 **Human Role:** Review community health assessment, not individual metric calculations
 
 ### 7. Security Practice Detection
 **Current Process:** Manual review of security practices
-**Automation Potential:** 50% - Partially automatable
+**Automation Potential:** 60% - Partially automatable (LLM needed for pattern matching)
 **Implementation:**
 - Script to detect security-related files and configurations
 - Automated analysis of dependency scanning setup
 - Detection of security documentation and policies
 - Generation of security practice reports
 
-**Script Responsibilities:**
+**Script Responsibilities (No LLM needed):**
 - Detect presence of specific security files (SECURITY.md, .github/security.yml, .github/dependabot.yml)
 - Count security-related file occurrences
 - Detect presence of dependency scanning tools (dependabot, renovate, snyk configs)
 - Count security-related GitHub Actions workflows
 - Generate security file presence reports
 
-**Discovery Mechanisms:**
+**LLM Responsibilities (Pattern matching requires judgment):**
 - Pattern matching for security-related keywords in filenames
 - Content analysis for security-related terms in file contents
 - Detection of unexpected security configurations
 - Identification of novel security practices
-
-**LLM Call Approach:**
-- Script makes LLM call to analyze security-related patterns
-- LLM generates security practice sub-report
-- Human reviews LLM findings, not individual pattern matching
 
 **Human Role:** Review security file presence assessment, not individual file detection
 
