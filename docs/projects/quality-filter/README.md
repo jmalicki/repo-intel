@@ -1,5 +1,7 @@
 # Quality Filter
 
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Quality Filter
+
 ## Overview
 
 The Quality Filter is a **deterministic Python script** that applies mathematical thresholds and filtering rules to candidate projects. No LLM calls, no human interaction, no subagents.

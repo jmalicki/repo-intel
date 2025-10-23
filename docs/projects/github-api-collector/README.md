@@ -1,5 +1,7 @@
 # GitHub API Collector
 
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → GitHub API Collector
+
 ## Overview
 
 The GitHub API Collector is a **deterministic Python script** that makes HTTP requests to GitHub's API, processes JSON responses, and stores data in structured formats. No LLM calls, no human interaction, no subagents.

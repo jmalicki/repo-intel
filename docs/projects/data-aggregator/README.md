@@ -1,5 +1,7 @@
 # Data Aggregator
 
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Data Aggregator
+
 ## Overview
 
 The Data Aggregator is a **deterministic Python script** that merges data from multiple sources, resolves conflicts, and creates unified datasets. No LLM calls, no human interaction, no subagents.

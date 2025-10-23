@@ -1,5 +1,7 @@
 # Pattern Matcher
 
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Pattern Matcher
+
 ## 🚨 CRITICAL DESIGN DECISION TODO 🚨
 
 **FUNDAMENTAL QUESTION**: How do we balance discovery vs. efficiency?

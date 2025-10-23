@@ -1,5 +1,7 @@
 # Package Manager Collector
 
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Package Manager Collector
+
 ## Overview
 
 The Package Manager Collector is a **deterministic Python script** that makes HTTP requests to package manager APIs (NPM, PyPI, crates.io), processes JSON responses, and stores data. No LLM calls, no human interaction, no subagents.

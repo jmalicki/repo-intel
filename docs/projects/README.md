@@ -1,5 +1,7 @@
 # Phase 1 Tool Design Overview
 
+**Navigation:** [Project Selection](../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Projects Overview
+
 This directory contains the detailed design specifications for tools needed to support Phase 1 (Project Selection) of the repo intelligence project.
 
 ## Tool Architecture

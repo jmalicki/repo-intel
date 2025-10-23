@@ -1,5 +1,7 @@
 # Report Generator
 
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Report Generator
+
 ## Overview
 
 The Report Generator is a **deterministic Python script** that processes structured data and generates reports using templates and formatting rules. No LLM calls, no human interaction, no subagents.
