@@ -1,0 +1,26 @@
+[workspace]
+members = [
+    "src/common-library",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Repository Intelligence Team"]
+license = "MIT"
+repository = "https://github.com/jmalicki/repo-intel"
+description = "Repository intelligence and analysis tools"
+
+[workspace.dependencies]
+# Common dependencies across all workspace members
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+reqwest = { version = "0.11", features = ["json"] }
+config = "0.13"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }

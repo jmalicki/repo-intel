@@ -1,0 +1,172 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'src/**/*.rs'
+      - 'src/**/Cargo.toml'
+      - 'src/**/Cargo.lock'
+      - '.github/workflows/rust-ci.yml'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'src/**/*.rs'
+      - 'src/**/Cargo.toml'
+      - 'src/**/Cargo.lock'
+      - '.github/workflows/rust-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  rust-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust-version: ['stable', 'beta', 'nightly']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust-version }}
+          components: rustfmt, clippy
+          override: true
+
+      - name: Cache cargo registry
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo index
+        uses: actions/cache@v3
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo build
+        uses: actions/cache@v3
+        with:
+          path: |
+            src/*/target
+          key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Find Rust projects
+        id: find-projects
+        run: |
+          echo "projects=$(find src -name 'Cargo.toml' -not -path '*/target/*' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo "Found Rust projects: $(find src -name 'Cargo.toml' -not -path '*/target/*')"
+
+      - name: Check Rust projects
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Checking project: $project"
+            cd "$(dirname "$project")"
+            cargo check --verbose
+            cd - > /dev/null
+          done
+
+      - name: Format check
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Checking format for project: $project"
+            cd "$(dirname "$project")"
+            cargo fmt -- --check
+            cd - > /dev/null
+          done
+
+      - name: Clippy check
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Running clippy for project: $project"
+            cd "$(dirname "$project")"
+            cargo clippy -- -D warnings
+            cd - > /dev/null
+          done
+
+      - name: Run tests
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Running tests for project: $project"
+            cd "$(dirname "$project")"
+            cargo test --verbose
+            cd - > /dev/null
+          done
+
+  rust-security-audit:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install cargo-audit
+        run: cargo install cargo-audit
+
+      - name: Find Rust projects
+        id: find-projects
+        run: |
+          echo "projects=$(find src -name 'Cargo.toml' -not -path '*/target/*' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+
+      - name: Security audit
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Running security audit for project: $project"
+            cd "$(dirname "$project")"
+            cargo audit
+            cd - > /dev/null
+          done
+
+  rust-docs:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Find Rust projects
+        id: find-projects
+        run: |
+          echo "projects=$(find src -name 'Cargo.toml' -not -path '*/target/*' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+
+      - name: Build documentation
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Building docs for project: $project"
+            cd "$(dirname "$project")"
+            cargo doc --no-deps --documentation-private-items
+            cd - > /dev/null
+          done
+
+      - name: Check documentation
+        if: steps.find-projects.outputs.projects != ''
+        run: |
+          for project in ${{ steps.find-projects.outputs.projects }}; do
+            echo "Checking docs for project: $project"
+            cd "$(dirname "$project")"
+            cargo doc --no-deps --documentation-private-items --open
+            cd - > /dev/null
+          done

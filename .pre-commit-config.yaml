@@ -35,6 +35,23 @@ repos:
         types: [json]
         args: [--write]
 
+  # Rust formatting and linting
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+        files: ^src/common-library/.*\.rs$
+        args: [--manifest-path=src/common-library/Cargo.toml]
+        pass_filenames: false
+      - id: clippy
+        args: [--manifest-path=src/common-library/Cargo.toml, --, -D, warnings]
+        files: ^src/common-library/.*\.rs$
+        pass_filenames: false
+      - id: cargo-check
+        args: [--manifest-path=src/common-library/Cargo.toml]
+        files: ^src/common-library/.*\.rs$
+        pass_filenames: false
+
   # General file checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
