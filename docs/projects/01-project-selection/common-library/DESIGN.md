@@ -146,10 +146,6 @@ common-library/
                 }
             }
         }
-    }
-}
-```
-
 ## Storage Library
 
 ### Database Operations
@@ -170,7 +166,6 @@ common-library/
 - `Database::delete()` - Type-safe record deletion
 - `Database::transaction()` - Transaction management
 - `Database::migrate()` - Schema migration execution
-```
 
 ### File Operations
 **Purpose**: Provides async file system operations for JSON data persistence and backup
@@ -231,11 +226,6 @@ common-library/
             return Err(ConfigError::InvalidValue("timeout_seconds must be > 0".to_string()));
         }
         
-        Ok(())
-    }
-}
-```
-
 ## Logging Library
 
 ### Structured Logger
@@ -306,147 +296,55 @@ common-library/
                 }
             }
         }
-    }
-}
-```
-
 ## Validation Library
 
 ### Schema Validation
-```rust
-use serde_json::Value;
-use std::collections::HashMap;
+**Purpose**: Provides JSON schema validation for data integrity and type safety
 
-pub struct SchemaValidator {
-    schemas: HashMap<String, JsonSchema>,
-}
+**Key Components**:
+- **Schema Registry**: Centralized schema management and versioning
+- **Type Validation**: Runtime type checking and constraint validation
+- **Error Reporting**: Detailed validation error messages and suggestions
+- **Performance**: Fast validation with minimal overhead
 
-impl SchemaValidator {
-    pub fn validate_schema(&self, data: &Value, schema_name: &str) -> Result<()> {
-        let schema = self.schemas.get(schema_name)
-            .ok_or_else(|| ValidationError::SchemaNotFound(schema_name.to_string()))?;
-            
-        self.validate_value(data, schema)
-    }
-    
-    fn validate_value(&self, value: &Value, schema: &JsonSchema) -> Result<()> {
-        match schema {
-            JsonSchema::Object { properties, required } => {
-                if let Value::Object(obj) = value {
-                    // Check required fields
-                    for field in required {
-                        if !obj.contains_key(field) {
-                            return Err(ValidationError::MissingRequiredField(field.clone()));
-                        }
-                    }
-                    
-                    // Validate each property
-                    for (key, value) in obj {
-                        if let Some(prop_schema) = properties.get(key) {
-                            self.validate_value(value, prop_schema)?;
-                        }
-                    }
-                } else {
-                    return Err(ValidationError::TypeMismatch("object".to_string()));
-                }
-            }
-            JsonSchema::String { min_length, max_length } => {
-                if let Value::String(s) = value {
-                    if let Some(min) = min_length {
-                        if s.len() < *min {
-                            return Err(ValidationError::StringTooShort(*min));
-                        }
-                    }
-                    if let Some(max) = max_length {
-                        if s.len() > *max {
-                            return Err(ValidationError::StringTooLong(*max));
-                        }
-                    }
-                } else {
-                    return Err(ValidationError::TypeMismatch("string".to_string()));
-                }
-            }
-            JsonSchema::Number { min, max } => {
-                if let Value::Number(n) = value {
-                    if let Some(min_val) = min {
-                        if n.as_f64().unwrap() < *min_val {
-                            return Err(ValidationError::NumberTooSmall(*min_val));
-                        }
-                    }
-                    if let Some(max_val) = max {
-                        if n.as_f64().unwrap() > *max_val {
-                            return Err(ValidationError::NumberTooLarge(*max_val));
-                        }
-                    }
-                } else {
-                    return Err(ValidationError::TypeMismatch("number".to_string()));
-                }
-            }
-            _ => {} // Handle other schema types
-        }
-        Ok(())
-    }
-}
-```
+**API Surface**:
+- `SchemaValidator::validate_schema()` - Validate data against named schema
+- `SchemaValidator::register_schema()` - Register new validation schemas
+- `SchemaValidator::validate_batch()` - Validate multiple records efficiently
+- `SchemaValidator::get_errors()` - Retrieve detailed validation errors
 
 ## Testing Strategy
 
 ### Unit Tests
-```rust
-#[cfg(test)]
-mod tests {
-    use super::*;
-    
-    #[test]
-    fn test_metrics_calculation() {
-        let calculator = MetricsCalculator;
-        let values = vec![100.0, 110.0, 121.0, 133.1];
-        let growth_rate = calculator.calculate_growth_rate(&values, &[]);
-        assert!((growth_rate - 0.1).abs() < 0.01);
-    }
-    
-    #[test]
-    fn test_config_validation() {
-        let config = AppConfig {
-            database: DatabaseConfig {
-                url: "sqlite:test.db".to_string(),
-                max_connections: 10,
-                timeout_seconds: 30,
-            },
-            // ... other fields
-        };
-        
-        let manager = ConfigManager::new();
-        assert!(manager.validate().is_ok());
-    }
-}
-```
+**Purpose**: Comprehensive testing of all library components with high coverage
+
+**Key Components**:
+- **Component Testing**: Individual component functionality testing
+- **Integration Testing**: Cross-component interaction testing
+- **Performance Testing**: Benchmarking and performance regression testing
+- **Error Testing**: Error condition and edge case testing
+
+**Test Categories**:
+- **HTTP Client Tests**: Request/response handling, rate limiting, retry logic
+- **Database Tests**: CRUD operations, transaction handling, connection pooling
+- **Metrics Tests**: Statistical calculations, trend analysis, performance indicators
+- **Validation Tests**: Schema validation, data integrity, error handling
+- **Configuration Tests**: Config loading, validation, environment variable handling
 
 ### Integration Tests
-```rust
-#[cfg(test)]
-mod integration_tests {
-    use super::*;
-    
-    #[tokio::test]
-    async fn test_http_client_with_rate_limiting() {
-        let client = APIClient::new("https://api.github.com".to_string(), config);
-        let response = client.get("repos/octocat/Hello-World").await.unwrap();
-        assert!(response.status().is_success());
-    }
-    
-    #[tokio::test]
-    async fn test_database_operations() {
-        let db = Database::in_memory().unwrap();
-        let data = serde_json::json!({"name": "test", "value": 42});
-        
-        db.insert("test_table", &data).await.unwrap();
-        let retrieved: Value = db.select("SELECT data FROM test_table").await.unwrap();
-        assert_eq!(retrieved["name"], "test");
-    }
-}
-```
+**Purpose**: End-to-end testing of component interactions and real-world scenarios
 
+**Key Components**:
+- **HTTP Integration**: Full HTTP client testing with real API endpoints
+- **Database Integration**: Complete database operation testing with real data
+- **End-to-End Workflows**: Full application workflow testing
+- **Performance Integration**: Load testing and performance validation
+
+**Test Scenarios**:
+- **API Collection Workflows**: Complete data collection and storage workflows
+- **Error Recovery**: Network failures, rate limiting, and retry scenarios
+- **Data Consistency**: Cross-component data integrity validation
+- **Performance Benchmarks**: Throughput and latency testing
 ## Performance Considerations
 
 ### Memory Management
