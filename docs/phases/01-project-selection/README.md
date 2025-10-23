@@ -1,4 +1,4 @@
-# Project Selection Methodology
+# Phase 1: Project Selection
 
 **Parent:** [Project Design](../../PROJECT_DESIGN.md)
 
@@ -13,7 +13,7 @@ This document outlines the systematic approach for selecting representative proj
 - [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Detailed execution plan
 
 **Document Relationships:**
-- **PROJECT_SELECTION_METHODOLOGY.md** (this document): High-level strategy, criteria, and timeline
+- **README.md** (this document): High-level strategy, criteria, and timeline
 - **CANDIDATE_IDENTIFICATION_PLAN.md**: Detailed implementation steps and specific queries
 - **AUTOMATION_OPPORTUNITIES.md**: Which tasks can be automated vs. require human judgment
 
