@@ -6,6 +6,8 @@ This document outlines the systematic approach for selecting representative proj
 
 ## Selection Strategy
 
+**Navigation:** [Project Design](../../docs/PROJECT_DESIGN.md) → [Automation Opportunities](AUTOMATION_OPPORTUNITIES.md) → [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) → Project Selection Methodology
+
 ### Phase 1: Initial Candidate Identification
 
 #### Knowledge-Based Selection
@@ -149,22 +151,26 @@ This document outlines the systematic approach for selecting representative proj
 
 ## Selection Timeline
 
-### Week 1: Initial Research
+### Week 1: Initial Research & Pilot Selection
 - Compile comprehensive candidate lists for each category
 - Gather quantitative metrics for all candidates
+- **Pilot Selection**: Select 2-3 representative projects per category for pilot analysis
 - Identify category-specific evaluation criteria
 
-### Week 2: Deep Evaluation
+### Week 2: Pilot Analysis & Methodology Refinement
+- **Pilot Analysis**: Deep dive into pilot projects to understand analysis requirements
+- **Methodology Refinement**: Iterate on selection criteria based on pilot results
 - Manual review of top candidates
 - Community health assessment
 - Documentation and code quality evaluation
 - Security and performance analysis
 
-### Week 3: Final Selection
+### Week 3: Full Selection
 - Apply diversity requirements
 - Cross-category pattern analysis
-- Final shortlist compilation
+- Final shortlist compilation (24-40 projects total)
 - Selection rationale documentation
+- **Output**: Ready for Phase 2 (Repository Analysis)
 
 ## Documentation Requirements
 
@@ -182,5 +188,21 @@ For each selected project, document:
 - **Diversity Achievement**: Appropriate scale and approach diversity
 - **Community Validation**: Selection rationale can be defended to project maintainers
 - **Analysis Readiness**: Selected projects provide sufficient data for comprehensive analysis
+- **Pilot Validation**: Pilot analysis confirms methodology effectiveness
+
+## Phase 1 Outputs
+
+### Deliverables
+- **Project Shortlist**: 24-40 selected projects (3-5 per category)
+- **Selection Rationale**: Documented reasoning for each project choice
+- **Quality Metrics**: Quantitative data for all selected projects
+- **Diversity Analysis**: Coverage analysis across scales and approaches
+- **Pilot Learnings**: Methodology refinements based on pilot analysis
+
+### Handoff to Phase 2
+- **Analysis-Ready Projects**: All selected projects ready for deep analysis
+- **Analysis Requirements**: Clear understanding of what analysis tools need to do
+- **Quality Baseline**: Established quality thresholds and metrics
+- **Category Context**: Understanding of category-specific patterns and requirements
 
 This methodology ensures we select projects that will provide the most valuable insights for creating high-quality template repositories across all categories and scales.
