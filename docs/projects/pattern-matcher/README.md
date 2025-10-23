@@ -2,9 +2,9 @@
 
 ## Overview
 
-The Pattern Matcher is a **Python script** that uses LLM analysis to discover novel patterns and practices in repositories. It's designed to find unexpected approaches, not just verify predetermined patterns.
+The Pattern Matcher is a **Python script** that uses LLM analysis to discover completely novel patterns and practices in repositories. It's designed to find unexpected approaches that we've never seen before.
 
-**PURPOSE**: Discover novel practices, innovative approaches, and unexpected patterns that automated scripts cannot detect. This is essential for learning about new ways of doing things.
+**PURPOSE**: Discover truly novel practices, innovative approaches, and unexpected patterns that challenge our assumptions about how projects should be organized. This is essential for learning about new ways of doing things.
 
 ## What It Actually Does
 
@@ -72,64 +72,67 @@ The Pattern Matcher is a **Python script** that uses LLM analysis to discover no
 
 ## Script Implementation
 
-### Smart Repository Discovery
+### Novel Pattern Discovery
 ```python
-def discover_repository_structure(repo_path):
-    # Smart scanning - look for patterns, not every file
+def discover_novel_patterns(repo_path):
+    """Discover completely novel patterns and practices"""
     all_files = scan_directory(repo_path)
     
-    # Use heuristics to identify relevant files
-    security_files = find_files_by_pattern(all_files, [
-        "security", "vulnerability", "dependabot", "snyk", "owasp"
-    ])
-    docs_files = find_files_by_pattern(all_files, [
-        "readme", "contributing", "docs", "guide", "tutorial"
-    ])
-    ci_files = find_files_by_pattern(all_files, [
-        "workflow", "action", "ci", "cd", "deploy", "test"
-    ])
-    config_files = find_files_by_pattern(all_files, [
-        "config", "package", "cargo", "pom", "requirements"
-    ])
+    # Send entire repository structure to LLM for novel pattern discovery
+    structure_summary = create_structure_summary(all_files)
     
-    return {
-        "security": security_files,
-        "documentation": docs_files,
-        "ci_cd": ci_files,
-        "config": config_files
-    }
+    prompt = f"""
+    Analyze this repository structure for NOVEL and UNEXPECTED patterns:
+    
+    {structure_summary}
+    
+    Look for:
+    - Completely new approaches to organization
+    - Unexpected file naming conventions
+    - Novel directory structures
+    - Innovative practices we haven't seen before
+    - Creative solutions to common problems
+    
+    What NEW and INTERESTING patterns do you see that challenge conventional wisdom?
+    """
+    
+    novel_patterns = call_llm_api(structure_summary, prompt)
+    return novel_patterns
 ```
 
-### Efficient Pattern Discovery
+### Learning and Discovery
 ```python
 def analyze_repository(repo_path):
-    # Smart discovery - only analyze relevant files
     structure = discover_repository_structure(repo_path)
-    
-    # Limit file size and count for efficiency
     results = {}
+    new_patterns = {}
+    
     for category, files in structure.items():
         if files:
-            # Limit to reasonable number of files
             relevant_files = files[:5]  # Max 5 files per category
-            content = read_files_smart(relevant_files)  # Limit content size
+            content = read_files_smart(relevant_files)
             
-            if content:  # Only if we have content
+            if content:
                 prompt = f"Analyze these {category} files for novel practices, innovative approaches, and unexpected patterns. What new or interesting things do you see?"
-                results[category] = call_llm_api(content, prompt)
+                analysis = call_llm_api(content, prompt)
+                results[category] = analysis
+                
+                # Extract new patterns discovered by LLM
+                new_patterns[category] = extract_new_patterns(analysis)
+    
+    # Update known patterns database with new discoveries
+    update_patterns_database(new_patterns)
     
     return results
 
-def read_files_smart(files):
-    # Limit total content size
-    max_size = 10000  # characters
-    content = ""
-    for file in files:
-        if len(content) > max_size:
-            break
-        file_content = read_file(file)
-        content += f"\n--- {file} ---\n{file_content[:2000]}"  # Limit per file
-    return content
+def update_patterns_database(new_patterns):
+    """Update the known patterns database with new discoveries"""
+    for category, patterns in new_patterns.items():
+        if patterns:
+            # Add new patterns to database
+            KNOWN_PATTERNS[category].extend(patterns)
+            # Save to file for persistence
+            save_patterns_to_file(KNOWN_PATTERNS)
 ```
 
 ### LLM API Call
