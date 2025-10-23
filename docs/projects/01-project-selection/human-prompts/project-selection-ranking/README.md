@@ -1,164 +1,52 @@
-# Project Selection and Ranking Prompt
+# Project Selection and Ranking
 
 **Parent:** [Human Prompts](../README.md)
 **Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Project Selection and Ranking task
 
 ## Overview
 
-This prompt guides human reviewers through the final project selection and ranking decisions. It provides a structured framework for evaluating projects and making informed selection choices.
+This directory contains discrete prompts for the final project selection and ranking decisions. Each prompt focuses on a specific aspect of the selection process, providing structured guidance for human reviewers.
 
-## Pre-Review Checklist
+## Discrete Prompts
 
-- [ ] Automated metrics have been collected for all candidates
-- [ ] Quantitative scores have been calculated
-- [ ] Initial filtering has been applied
-- [ ] Data is ready for human review
+### 1. [Quality Assessment](quality-assessment.md)
+**Purpose:** Assess project quality across multiple dimensions
+**Focus:** Code quality, documentation, testing, security, performance, community health
+**Output:** Quality scores and assessment rationale
 
-## Evaluation Framework
+### 2. [Ranking Methodology](ranking-methodology.md)
+**Purpose:** Rank projects based on quality and diversity requirements
+**Focus:** Quantitative scoring, qualitative assessment, diversity balancing
+**Output:** Final project rankings with rationale
 
-### 1. Quality Assessment (40% weight)
+### 3. [Selection Criteria](selection-criteria.md)
+**Purpose:** Define criteria for project selection decisions
+**Focus:** Must-have requirements, quality standards, excellence indicators
+**Output:** Selection decisions and rationale
 
-**Code Quality Indicators:**
-- [ ] Well-organized codebase structure
-- [ ] Clear separation of concerns
-- [ ] Consistent coding patterns
-- [ ] Appropriate abstraction levels
+## Usage Workflow
 
-**Documentation Quality:**
-- [ ] Comprehensive README
-- [ ] Clear API documentation
-- [ ] Contributing guidelines
-- [ ] Examples and tutorials
+### Step 1: Quality Assessment
+- Use [quality-assessment.md](quality-assessment.md) to evaluate project quality
+- Apply structured criteria across all quality dimensions
+- Document quality scores and assessment rationale
 
-**Testing Practices:**
-- [ ] Test coverage evidence
-- [ ] Testing strategy clarity
-- [ ] CI/CD integration
-- [ ] Quality assurance processes
+### Step 2: Ranking Methodology
+- Use [ranking-methodology.md](ranking-methodology.md) to rank projects
+- Combine quantitative metrics with qualitative assessment
+- Apply diversity requirements and balancing
 
-### 2. Community Health (30% weight)
+### Step 3: Selection Criteria
+- Use [selection-criteria.md](selection-criteria.md) to make final selections
+- Apply must-have, should-have, and nice-to-have criteria
+- Document selection rationale and decisions
 
-**Maintainer Responsiveness:**
-- [ ] Issue response time
-- [ ] PR review quality
-- [ ] Communication clarity
-- [ ] Long-term commitment
+## Expected Outcomes
 
-**Community Engagement:**
-- [ ] Active contributor base
-- [ ] Discussion quality
-- [ ] Code of conduct presence
-- [ ] Inclusive practices
-
-**Governance:**
-- [ ] Clear decision-making process
-- [ ] Transparent communication
-- [ ] Conflict resolution
-- [ ] Project sustainability
-
-### 3. Innovation and Best Practices (20% weight)
-
-**Innovative Approaches:**
-- [ ] Novel problem-solving
-- [ ] Creative architecture
-- [ ] Unique features
-- [ ] Industry leadership
-
-**Best Practice Examples:**
-- [ ] Security practices
-- [ ] Performance optimization
-- [ ] Accessibility compliance
-- [ ] Internationalization
-
-### 4. Category Representation (10% weight)
-
-**Scale Diversity:**
-- [ ] Small projects (personal/side projects)
-- [ ] Medium projects (team projects)
-- [ ] Large projects (enterprise/community)
-
-**Approach Diversity:**
-- [ ] Different architectural patterns
-- [ ] Various technology stacks
-- [ ] Different organizational models
-- [ ] Various deployment strategies
-
-## Selection Criteria
-
-### Must Have (Elimination Criteria)
-- [ ] Active development (commits in last 6 months)
-- [ ] Basic documentation (README, basic docs)
-- [ ] Community presence (issues, discussions)
-- [ ] License clarity
-- [ ] Security awareness (basic practices)
-
-### Should Have (Quality Indicators)
-- [ ] Comprehensive documentation
-- [ ] Testing practices
-- [ ] CI/CD pipeline
-- [ ] Contributing guidelines
-- [ ] Code of conduct
-
-### Nice to Have (Excellence Indicators)
-- [ ] Performance optimization
-- [ ] Accessibility compliance
-- [ ] Internationalization
-- [ ] Advanced security practices
-- [ ] Innovative approaches
-
-## Ranking Methodology
-
-### 1. Quantitative Scoring
-- Use automated metrics as baseline
-- Weight by category importance
-- Normalize across categories
-
-### 2. Qualitative Assessment
-- Apply human judgment criteria
-- Consider context and nuance
-- Balance different quality aspects
-
-### 3. Diversity Requirements
-- Ensure scale representation
-- Maintain approach diversity
-- Balance technology stacks
-- Consider community models
-
-## Decision Documentation
-
-For each selected project, document:
-
-### Selection Rationale
-- Why this project was chosen
-- Key strengths and qualities
-- Unique or innovative aspects
-- Category representation value
-
-### Quality Assessment
-- Specific quality indicators observed
-- Areas of excellence
-- Potential improvement areas
-- Overall quality score
-
-### Diversity Contribution
-- How this project contributes to diversity
-- Scale representation (small/medium/large)
-- Approach representation (architecture/technology)
-- Community model representation
-
-## Final Output
-
-### Project Shortlist
-- 3-5 projects per category (24-40 total)
-- Ranked by quality and diversity
-- Clear selection rationale
-- Quality assessment summary
-
-### Handoff Documentation
-- Selection methodology applied
-- Quality thresholds used
-- Diversity requirements met
-- Ready for Phase 2 analysis
+- **Consistent Quality Assessment**: Standardized evaluation across all projects
+- **Informed Rankings**: Well-reasoned project rankings based on quality and diversity
+- **Clear Selection Decisions**: Transparent criteria and rationale for selections
+- **Comprehensive Documentation**: Complete rationale for all decisions
 
 ## Quality Assurance
 
@@ -169,9 +57,9 @@ For each selected project, document:
 - [ ] Ensure diversity requirements met
 
 ### Documentation Review
-- [ ] Selection rationale is clear
-- [ ] Quality assessment is documented
-- [ ] Diversity contribution is explained
-- [ ] Handoff documentation is complete
+- [ ] All assessments are documented
+- [ ] Rankings are well-reasoned
+- [ ] Selection decisions are clear
+- [ ] Rationale is comprehensive
 
-This prompt ensures consistent, high-quality project selection while maintaining the diversity and quality standards required for comprehensive analysis.
+This approach ensures consistent, high-quality project selection while maintaining the diversity and quality standards required for comprehensive analysis.
