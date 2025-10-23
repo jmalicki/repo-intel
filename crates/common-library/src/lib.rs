@@ -40,8 +40,8 @@ pub mod error;
 pub mod logging;
 pub mod utils;
 
-// Future modules (to be implemented in subsequent phases)
-// These will be added in later phases
+// HTTP client module
+pub mod http;
 
 /// Re-exports for convenient usage
 pub mod prelude {
@@ -49,8 +49,7 @@ pub mod prelude {
     pub use crate::error::{Error, Result};
     pub use crate::logging::Logger;
     pub use crate::utils::*;
-
-    // Future re-exports will be added in subsequent phases
+    pub use crate::http::*;
 }
 
 /// Common result type used throughout the library

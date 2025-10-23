@@ -70,7 +70,7 @@ pub fn init_with_config(config: LoggerConfig) -> Result<()> {
                 .create(true)
                 .append(true)
                 .open(&path)
-                .map_err(|e| Error::Io(e))?;
+                .map_err(|e| Error::Io(e.to_string()))?;
 
             let fmt_layer = match config.format {
                 LogFormat::Json => fmt::layer().json().with_writer(file).boxed(),

@@ -28,8 +28,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
 # Configuration
 config = "0.13"
 
-# HTTP client (for future phases)
-reqwest = { version = "0.11", features = ["json"], optional = true }
+# HTTP client
+reqwest = { version = "0.11", features = ["json"] }
 
 # Database (for future phases)
 diesel = { version = "2.0", features = ["sqlite"], optional = true }
@@ -44,6 +44,9 @@ uuid = { version = "1.0", features = ["v4", "serde"] }
 # Base64 encoding
 base64 = "0.21"
 
+# Random number generation for jitter
+fastrand = "2.0"
+
 # Compression (for future phases)
 flate2 = { version = "1.0", optional = true }
 
@@ -55,8 +58,8 @@ tokio-test = "0.4"
 wiremock = "0.5"
 
 [features]
-default = []
-http = ["reqwest"]
+default = ["http"]
+http = []
 database = ["diesel", "diesel-async"]
 compression = ["flate2"]
 cli = ["clap"]

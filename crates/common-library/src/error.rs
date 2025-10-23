@@ -3,7 +3,7 @@
 use thiserror::Error;
 
 /// Common error type used throughout the library
-#[derive(Error, Debug)]
+#[derive(Error, Debug, Clone)]
 pub enum Error {
     #[error("Configuration error: {0}")]
     Config(String),
@@ -27,13 +27,13 @@ pub enum Error {
     Metrics(String),
 
     #[error("IO error: {0}")]
-    Io(#[from] std::io::Error),
+    Io(String),
 
     #[error("Serialization error: {0}")]
-    Serialization(#[from] serde_json::Error),
+    Serialization(String),
 
     #[error("Configuration parsing error: {0}")]
-    ConfigParse(#[from] config::ConfigError),
+    ConfigParse(String),
 
     #[error("Generic error: {0}")]
     Generic(String),
@@ -78,6 +78,24 @@ impl Error {
     /// Create a new generic error
     pub fn generic(msg: impl Into<String>) -> Self {
         Self::Generic(msg.into())
+    }
+}
+
+impl From<std::io::Error> for Error {
+    fn from(err: std::io::Error) -> Self {
+        Self::Io(err.to_string())
+    }
+}
+
+impl From<serde_json::Error> for Error {
+    fn from(err: serde_json::Error) -> Self {
+        Self::Serialization(err.to_string())
+    }
+}
+
+impl From<config::ConfigError> for Error {
+    fn from(err: config::ConfigError) -> Self {
+        Self::ConfigParse(err.to_string())
     }
 }
 
