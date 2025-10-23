@@ -89,12 +89,12 @@ This document identifies parts of the candidate identification workflow that can
 
 **Script Responsibilities:**
 - Detect presence of README, CONTRIBUTING, LICENSE files
-- Analyze documentation file structure and completeness
-- Check for API documentation, tutorials, examples
+- Count documentation file types and sizes
+- Check for presence of API documentation, tutorials, examples
 - Calculate documentation update frequency
-- Generate documentation quality scores
+- Generate documentation completeness scores
 
-**Human Role:** Review documentation quality assessment, not individual file analysis
+**Human Role:** Review documentation completeness assessment, not individual file analysis
 
 ## Partially Automatable Tasks
 
@@ -109,10 +109,10 @@ This document identifies parts of the candidate identification workflow that can
 
 **Script Responsibilities:**
 - Calculate issue/PR response times and resolution rates
-- Analyze contributor activity and diversity
-- Calculate community engagement metrics
-- Generate community health scores
-- Identify community health patterns
+- Count contributor activity and diversity metrics
+- Calculate community engagement metrics (comments, reactions, participation)
+- Generate community health scores based on quantitative data
+- Identify community health patterns in the data
 
 **Human Role:** Review community health assessment, not individual metric calculations
 
@@ -126,13 +126,13 @@ This document identifies parts of the candidate identification workflow that can
 - Generation of security practice reports
 
 **Script Responsibilities:**
-- Detect security-related files (SECURITY.md, .github/security.yml)
-- Analyze dependency scanning configuration
-- Check for security documentation and policies
-- Calculate security practice scores
-- Generate security practice reports
+- Detect presence of specific security files (SECURITY.md, .github/security.yml, .github/dependabot.yml)
+- Count security-related file occurrences
+- Detect presence of dependency scanning tools (dependabot, renovate, snyk configs)
+- Count security-related GitHub Actions workflows
+- Generate security file presence reports
 
-**Human Role:** Review security practice assessment, not individual security file analysis
+**Human Role:** Review security file presence assessment, not individual file detection
 
 ## Low Automation Potential (Human Judgment Required)
 
