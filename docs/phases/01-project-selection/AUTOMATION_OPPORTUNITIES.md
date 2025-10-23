@@ -78,120 +78,100 @@ This document identifies parts of the candidate identification workflow that can
 
 **Human Role:** Review package ecosystem analysis, not individual package data
 
-### 5. Documentation Completeness Analysis
-**Current Process:** Manual review of documentation quality
-**Automation Potential:** 60% - Partially automatable (LLM needed for pattern matching)
+### 5. Documentation File Detection
+**Current Process:** Manual review of documentation presence
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
-- Script to analyze repository structure for documentation files
-- Automated detection of documentation completeness
-- Analysis of documentation update frequency
-- Generation of documentation quality scores
+- Script to detect presence of documentation files
+- Automated detection of basic documentation completeness
+- Analysis of documentation file types and sizes
+- Generation of documentation presence scores
 
-**Script Responsibilities (No LLM needed):**
+**Script Responsibilities:**
 - Detect presence of README, CONTRIBUTING, LICENSE files
 - Count documentation file types and sizes
-- Check for presence of API documentation, tutorials, examples
-- Calculate documentation update frequency
-- Generate documentation completeness scores
+- Check for presence of basic documentation files
+- Calculate documentation file update frequency
+- Generate documentation presence scores
 
-**LLM Responsibilities (Pattern matching requires judgment):**
-- Pattern matching for documentation-related keywords in filenames
-- Content analysis for documentation-related terms in file contents
-- Detection of unexpected documentation structures
-- Identification of novel documentation practices
+**Human Role:** Review documentation presence assessment, not individual file detection
 
-**Human Role:** Review documentation completeness assessment, not individual file analysis
-
-## Partially Automatable Tasks
+## Fully Automatable Tasks (Continued)
 
 ### 6. Community Health Metrics
 **Current Process:** Manual analysis of community engagement
-**Automation Potential:** 70% - Partially automatable (LLM needed for pattern matching)
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
 - Script to analyze issue/PR response times
 - Automated calculation of community engagement metrics
 - Analysis of contributor diversity and activity
 - Generation of community health reports
 
-**Script Responsibilities (No LLM needed):**
+**Script Responsibilities:**
 - Calculate issue/PR response times and resolution rates
 - Count contributor activity and diversity metrics
 - Calculate community engagement metrics (comments, reactions, participation)
 - Generate community health scores based on quantitative data
 - Identify community health patterns in the data
 
-**LLM Responsibilities (Pattern matching requires judgment):**
-- Pattern matching for community-related keywords in filenames
-- Content analysis for community-related terms in file contents
-- Detection of unexpected community practices
-- Identification of novel community engagement patterns
-
 **Human Role:** Review community health assessment, not individual metric calculations
 
-### 7. Security Practice Detection
-**Current Process:** Manual review of security practices
-**Automation Potential:** 60% - Partially automatable (LLM needed for pattern matching)
+### 7. Security File Detection
+**Current Process:** Manual review of security file presence
+**Automation Potential:** 100% - Fully automatable (no LLM needed)
 **Implementation:**
 - Script to detect security-related files and configurations
-- Automated analysis of dependency scanning setup
+- Automated detection of security file presence
 - Detection of security documentation and policies
-- Generation of security practice reports
+- Generation of security file presence reports
 
-**Script Responsibilities (No LLM needed):**
+**Script Responsibilities:**
 - Detect presence of specific security files (SECURITY.md, .github/security.yml, .github/dependabot.yml)
 - Count security-related file occurrences
 - Detect presence of dependency scanning tools (dependabot, renovate, snyk configs)
 - Count security-related GitHub Actions workflows
 - Generate security file presence reports
 
-**LLM Responsibilities (Pattern matching requires judgment):**
-- Pattern matching for security-related keywords in filenames
-- Content analysis for security-related terms in file contents
-- Detection of unexpected security configurations
-- Identification of novel security practices
-
 **Human Role:** Review security file presence assessment, not individual file detection
 
-## Low Automation Potential (Human Judgment Required)
+## Phase 1 Selection Tasks (Human Judgment Required)
 
-### 8. Code Quality Assessment
-**Current Process:** Manual code review and quality analysis
-**Automation Potential:** 20% - Low automation potential
-**Human Role:** Essential for code quality judgment
-**Reasoning:** Code quality requires architectural understanding, design pattern recognition, and subjective quality assessment
+### 8. Project Selection and Ranking
+**Current Process:** Manual project selection and ranking
+**Automation Potential:** 0% - Requires human judgment
+**Human Role:** Essential for final project selection
+**Reasoning:** Project selection requires understanding of project quality, community health, and representativeness
 
-### 9. Community Culture Analysis
-**Current Process:** Manual analysis of community dynamics and culture
-**Automation Potential:** 10% - Very low automation potential
-**Human Role:** Essential for community culture assessment
-**Reasoning:** Community culture requires understanding of communication patterns, governance models, and social dynamics
+### 9. Category Representation
+**Current Process:** Manual assessment of category coverage
+**Automation Potential:** 0% - Requires human judgment
+**Human Role:** Essential for ensuring category representation
+**Reasoning:** Category representation requires understanding of project diversity and category-specific needs
 
-### 10. Innovation and Best Practice Identification
-**Current Process:** Manual identification of innovative practices
-**Automation Potential:** 5% - Minimal automation potential
-**Human Role:** Essential for innovation assessment
-**Reasoning:** Innovation requires understanding of industry context, creative problem-solving, and best practice recognition
+### 10. Final Quality Assessment
+**Current Process:** Manual final quality assessment
+**Automation Potential:** 0% - Requires human judgment
+**Human Role:** Essential for final quality decisions
+**Reasoning:** Final quality assessment requires understanding of project maturity, community health, and best practices
 
 ## Recommended Automation Strategy
 
-### Phase 1: Full Automation (Week 1)
+### Week 1: Full Automation
 - GitHub API data collection
 - Trending repository analysis
 - Quantitative metrics calculation
 - Package manager data collection
-- Documentation completeness analysis
-
-### Phase 2: Partial Automation (Week 2)
+- Documentation file detection
 - Community health metrics
-- Security practice detection
+- Security file detection
 - Automated filtering and scoring
 - Report generation and formatting
 
-### Phase 3: Human Judgment (Week 3)
-- Code quality assessment
-- Community culture analysis
-- Innovation and best practice identification
-- Final candidate selection and ranking
+### Week 2: Human Judgment
+- Project selection and ranking
+- Category representation assessment
+- Final quality assessment
+- Selection rationale documentation
 
 ## Expected Token Savings
 
