@@ -8,20 +8,22 @@ This prompt guides the assessment of approach diversity across project categorie
 
 ## Pre-Assessment Checklist
 
-- [ ] Projects have been selected for each category
-- [ ] Architectural patterns have been identified
-- [ ] Technology stacks have been analyzed
-- [ ] Organizational models have been assessed
+- [ ] Projects have been selected for {{ category_name }}
+- [ ] Architectural patterns have been identified for {{ category_name }}
+- [ ] Technology stacks have been analyzed for {{ category_name }}
+- [ ] Organizational models have been assessed for {{ category_name }}
+- [ ] Approach diversity template is ready for {{ category_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Approach Categories
 
 ### Architectural Patterns
 
-**Monolithic vs. Microservices:**
-- [ ] Monolithic architectures
-- [ ] Microservices architectures
-- [ ] Hybrid approaches
-- [ ] Service-oriented architectures
+**Monolithic vs. Microservices for {{ category_name }}:**
+- [ ] Monolithic architectures in {{ category_name }}
+- [ ] Microservices architectures in {{ category_name }}
+- [ ] Hybrid approaches in {{ category_name }}
+- [ ] Service-oriented architectures in {{ category_name }}
 
 **Client-Server vs. Peer-to-Peer:**
 - [ ] Traditional client-server
@@ -182,5 +184,12 @@ This prompt guides the assessment of approach diversity across project categorie
 - [ ] Category-specific requirements are met
 - [ ] Approach representation is meaningful
 - [ ] Quality is maintained across approaches
+
+### Output Report
+- Save approach diversity assessment to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Category: {{ category_name }}
+- Approach distribution: {{ approach_distribution }}
 
 This prompt ensures comprehensive approach diversity while maintaining quality standards and meaningful representation across all project categories.

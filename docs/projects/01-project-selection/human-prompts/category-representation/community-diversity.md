@@ -8,20 +8,22 @@ This prompt guides the assessment of community diversity across project categori
 
 ## Pre-Assessment Checklist
 
-- [ ] Projects have been selected for each category
-- [ ] Community characteristics have been identified
-- [ ] Governance models have been analyzed
-- [ ] Contribution patterns have been assessed
+- [ ] Projects have been selected for {{ category_name }}
+- [ ] Community characteristics have been identified for {{ category_name }}
+- [ ] Governance models have been analyzed for {{ category_name }}
+- [ ] Contribution patterns have been assessed for {{ category_name }}
+- [ ] Community diversity template is ready for {{ category_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Community Categories
 
 ### Community Sizes
 
-**Small Communities (10-100 contributors):**
-- [ ] Personal projects with contributors
-- [ ] Small team projects
-- [ ] Niche community projects
-- [ ] Specialized interest groups
+**Small Communities (10-100 contributors) for {{ category_name }}:**
+- [ ] Personal projects with contributors in {{ category_name }}
+- [ ] Small team projects in {{ category_name }}
+- [ ] Niche community projects in {{ category_name }}
+- [ ] Specialized interest groups in {{ category_name }}
 
 **Medium Communities (100-1000 contributors):**
 - [ ] Team projects with community
@@ -182,5 +184,12 @@ This prompt guides the assessment of community diversity across project categori
 - [ ] Category-specific requirements are met
 - [ ] Community representation is meaningful
 - [ ] Quality is maintained across communities
+
+### Output Report
+- Save community diversity assessment to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Category: {{ category_name }}
+- Community distribution: {{ community_distribution }}
 
 This prompt ensures comprehensive community diversity while maintaining quality standards and meaningful representation across all project categories.

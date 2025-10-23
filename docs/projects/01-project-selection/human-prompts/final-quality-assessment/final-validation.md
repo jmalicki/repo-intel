@@ -8,20 +8,22 @@ This prompt guides the final validation of all selected projects. It ensures qua
 
 ## Pre-Validation Checklist
 
-- [ ] All projects have been selected
-- [ ] Quality standards have been applied
-- [ ] Excellence examples have been identified
-- [ ] Diversity requirements have been assessed
+- [ ] All projects have been selected for {{ project_name }}
+- [ ] Quality standards have been applied to {{ project_name }}
+- [ ] Excellence examples have been identified for {{ project_name }}
+- [ ] Diversity requirements have been assessed for {{ project_name }}
+- [ ] Final validation template is ready for {{ project_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Validation Framework
 
 ### 1. Quality Validation
 
-**Quality Standards Compliance:**
-- [ ] All projects meet minimum quality thresholds
-- [ ] Quality standards are consistently applied
-- [ ] Excellence examples are well-identified
-- [ ] Quality distribution is appropriate
+**Quality Standards Compliance for {{ project_name }}:**
+- [ ] All projects meet minimum quality thresholds for {{ project_name }}
+- [ ] Quality standards are consistently applied to {{ project_name }}
+- [ ] Excellence examples are well-identified for {{ project_name }}
+- [ ] Quality distribution is appropriate for {{ project_name }}
 
 **Quality Assessment:**
 - [ ] Code quality standards met
@@ -184,5 +186,13 @@ This prompt guides the final validation of all selected projects. It ensures qua
 - [ ] Diversity insights generated
 - [ ] Category insights documented
 - [ ] Best practices identified
+
+### Output Report
+- Save final validation to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Project: {{ project_name }}
+- Category: {{ project_category }}
+- Validation results: {{ validation_results }}
 
 This prompt ensures comprehensive final validation while preparing for Phase 2 analysis and maintaining quality standards throughout the selection process.

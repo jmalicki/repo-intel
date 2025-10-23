@@ -10,11 +10,11 @@ This prompt defines the comprehensive documentation requirements for all human j
 
 ### 1. Assessment Documentation
 
-**Quality Assessment Documentation:**
+**Quality Assessment Documentation for {{ project_name }}:**
 - [ ] Quality assessment methodology is documented for {{ project_name }}
-- [ ] Quality criteria are clearly defined
-- [ ] Quality scores are documented with rationale
-- [ ] Quality assessment process is recorded
+- [ ] Quality criteria are clearly defined for {{ project_name }}
+- [ ] Quality scores are documented with rationale for {{ project_name }}
+- [ ] Quality assessment process is recorded for {{ project_name }}
 
 **Quality Assessment Content:**
 - [ ] Quality scores for {{ project_name }}: {{ quality_scores }}

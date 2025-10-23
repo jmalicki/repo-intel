@@ -8,20 +8,22 @@ This prompt guides the identification of excellence examples across all selected
 
 ## Pre-Assessment Checklist
 
-- [ ] Quality standards have been applied
-- [ ] Quality assessments have been completed
-- [ ] Excellence criteria have been defined
-- [ ] Best practice examples have been identified
+- [ ] Quality standards have been applied to {{ project_name }}
+- [ ] Quality assessments have been completed for {{ project_name }}
+- [ ] Excellence criteria have been defined for {{ project_name }}
+- [ ] Best practice examples have been identified for {{ project_name }}
+- [ ] Excellence identification template is ready for {{ project_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Excellence Categories
 
 ### 1. Code Excellence
 
-**Architecture Excellence:**
-- [ ] Innovative architectural patterns
-- [ ] Exceptional design decisions
-- [ ] Scalable architecture solutions
-- [ ] Industry-leading practices
+**Architecture Excellence in {{ project_name }}:**
+- [ ] Innovative architectural patterns in {{ project_name }}
+- [ ] Exceptional design decisions in {{ project_name }}
+- [ ] Scalable architecture solutions in {{ project_name }}
+- [ ] Industry-leading practices in {{ project_name }}
 
 **Code Quality Excellence:**
 - [ ] Exceptional code clarity
@@ -230,5 +232,13 @@ This prompt guides the identification of excellence examples across all selected
 - [ ] Common themes are documented
 - [ ] Innovation opportunities are noted
 - [ ] Industry insights are generated
+
+### Output Report
+- Save excellence identification to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Project: {{ project_name }}
+- Category: {{ project_category }}
+- Excellence examples: {{ excellence_examples }}
 
 This prompt ensures comprehensive excellence identification while documenting best practices and innovation examples across all project categories.

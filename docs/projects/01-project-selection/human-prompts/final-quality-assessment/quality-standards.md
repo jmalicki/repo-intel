@@ -8,20 +8,22 @@ This prompt guides the assessment of quality standards across all selected proje
 
 ## Pre-Assessment Checklist
 
-- [ ] All projects have been selected
-- [ ] Quality assessments have been completed
-- [ ] Quality standards have been defined
-- [ ] Excellence criteria have been established
+- [ ] All projects have been selected for {{ project_name }}
+- [ ] Quality assessments have been completed for {{ project_name }}
+- [ ] Quality standards have been defined for {{ project_name }}
+- [ ] Excellence criteria have been established for {{ project_name }}
+- [ ] Quality standards template is ready for {{ project_name }}
+- [ ] Output report path is configured: {{ output_report }}
 
 ## Quality Standards Framework
 
 ### 1. Code Quality Standards (25% weight)
 
-**Architecture Quality:**
-- [ ] Clear separation of concerns
-- [ ] Appropriate abstraction levels
-- [ ] Consistent design patterns
-- [ ] Scalable architecture
+**Architecture Quality for {{ project_name }}:**
+- [ ] Clear separation of concerns in {{ project_name }}
+- [ ] Appropriate abstraction levels in {{ project_name }}
+- [ ] Consistent design patterns in {{ project_name }}
+- [ ] Scalable architecture for {{ project_name }}
 
 **Code Organization:**
 - [ ] Logical directory structure
@@ -256,5 +258,13 @@ This prompt guides the assessment of quality standards across all selected proje
 - [ ] Best practices are documented
 - [ ] Innovation examples are highlighted
 - [ ] Quality leadership is recognized
+
+### Output Report
+- Save quality standards assessment to: {{ output_report }}
+- Assessment date: {{ assessment_date }}
+- Reviewer: {{ reviewer_name }}
+- Project: {{ project_name }}
+- Category: {{ project_category }}
+- Quality scores: {{ quality_scores }}
 
 This prompt ensures consistent quality standards while identifying excellence examples and maintaining high-quality project selection.

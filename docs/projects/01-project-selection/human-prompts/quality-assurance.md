@@ -30,11 +30,11 @@ This prompt provides comprehensive quality assurance procedures for all human ju
 
 ### 2. Documentation Quality Assurance
 
-**Assessment Documentation:**
+**Assessment Documentation for {{ project_name }}:**
 - [ ] All assessments are documented for {{ project_name }}
-- [ ] Assessment rationale is clear and comprehensive
-- [ ] Quality scores are justified
-- [ ] Assessment methodology is consistent
+- [ ] Assessment rationale is clear and comprehensive for {{ project_name }}
+- [ ] Quality scores are justified for {{ project_name }}
+- [ ] Assessment methodology is consistent for {{ project_name }}
 
 **Decision Documentation:**
 - [ ] All decisions are documented

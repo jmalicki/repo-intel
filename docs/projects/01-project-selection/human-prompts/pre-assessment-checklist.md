@@ -19,9 +19,9 @@ This prompt provides a comprehensive checklist to ensure all necessary data and 
 
 ### Quality Assessment Data
 - [ ] Quality assessments have been completed for {{ project_name }}
-- [ ] Quality standards have been applied
-- [ ] Quality scores have been calculated
-- [ ] Quality insights have been generated
+- [ ] Quality standards have been applied to {{ project_name }}
+- [ ] Quality scores have been calculated for {{ project_name }}
+- [ ] Quality insights have been generated for {{ project_name }}
 
 ### Diversity Assessment Data
 - [ ] Scale diversity analysis is complete
