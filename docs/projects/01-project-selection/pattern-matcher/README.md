@@ -1,6 +1,6 @@
 # Pattern Matcher
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Pattern Matcher
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Pattern Matcher
 
 ## 🚨 CRITICAL DESIGN DECISION TODO 🚨
 
@@ -11,7 +11,7 @@
 - Fast, efficient, predictable
 - **LIMITATION**: Misses novel approaches, non-standard locations, custom implementations
 
-**Option B: Discovery Approach** 
+**Option B: Discovery Approach**
 - Scan repository structure to find unexpected patterns
 - Expensive, slow, unpredictable
 - **BENEFIT**: Finds truly novel approaches and innovations
@@ -87,7 +87,7 @@ The Pattern Matcher is a **Python script** that uses LLM analysis to discover co
 - **Check .github/dependabot.yml**: Read file, send to LLM with prompt "Does this file enable security updates?"
 - **Check SECURITY.md**: Read file, send to LLM with prompt "Does this file contain vulnerability disclosure process?"
 
-### Documentation Files  
+### Documentation Files
 - **Check README.md**: Read file, send to LLM with prompt "Does this README have installation instructions and usage examples?"
 - **Check CONTRIBUTING.md**: Read file, send to LLM with prompt "Does this file have clear contribution process?"
 

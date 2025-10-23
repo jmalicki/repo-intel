@@ -1,6 +1,6 @@
 # Data Aggregator
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Data Aggregator
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Data Aggregator
 
 ## Overview
 
@@ -160,14 +160,14 @@ def calculate_quality_score(repository_data):
     consistency = calculate_consistency(repository_data)
     freshness = calculate_freshness(repository_data)
     accuracy = calculate_accuracy(repository_data)
-    
+
     quality_score = (
         completeness * 0.3 +
         consistency * 0.25 +
         freshness * 0.25 +
         accuracy * 0.2
     )
-    
+
     return quality_score
 ```
 

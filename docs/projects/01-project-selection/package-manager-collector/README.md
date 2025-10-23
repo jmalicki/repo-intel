@@ -1,6 +1,6 @@
 # Package Manager Collector
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Package Manager Collector
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Package Manager Collector
 
 ## Overview
 
@@ -135,7 +135,7 @@ The Package Manager Collector is a **deterministic Python script** that makes HT
 def collect_npm_data(package_name):
     url = f"https://registry.npmjs.org/{package_name}"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         data = response.json()
         return {
@@ -152,7 +152,7 @@ def collect_npm_data(package_name):
 def collect_pypi_data(package_name):
     url = f"https://pypi.org/pypi/{package_name}/json"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         data = response.json()
         return {
@@ -169,7 +169,7 @@ def collect_pypi_data(package_name):
 def collect_crates_data(package_name):
     url = f"https://crates.io/api/v1/crates/{package_name}"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         data = response.json()
         return {

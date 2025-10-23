@@ -1,6 +1,6 @@
 # Quality Filter
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Quality Filter
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Quality Filter
 
 ## Overview
 
@@ -73,14 +73,14 @@ def calculate_quality_score(repository):
     activity_score = calculate_activity_score(repository)
     community_score = calculate_community_score(repository)
     quality_score = calculate_quality_metrics(repository)
-    
+
     overall_score = (
         popularity_score * 0.3 +
         activity_score * 0.25 +
         community_score * 0.25 +
         quality_score * 0.2
     )
-    
+
     return overall_score
 ```
 

@@ -1,6 +1,6 @@
 # Trending Analyzer
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Trending Analyzer
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Trending Analyzer
 
 ## Overview
 
@@ -68,7 +68,7 @@ def calculate_star_growth_rate(repository, time_period):
     current_stars = repository.stars
     historical_stars = get_historical_stars(repository, time_period)
     time_delta = get_time_delta(time_period)
-    
+
     growth_rate = (current_stars - historical_stars) / time_delta
     return growth_rate
 ```
@@ -79,13 +79,13 @@ def calculate_trending_score(repository):
     star_velocity = calculate_star_velocity(repository)
     fork_velocity = calculate_fork_velocity(repository)
     activity_velocity = calculate_activity_velocity(repository)
-    
+
     trending_score = (
         star_velocity * 0.4 +
         fork_velocity * 0.3 +
         activity_velocity * 0.3
     )
-    
+
     return trending_score
 ```
 
@@ -94,7 +94,7 @@ def calculate_trending_score(repository):
 def calculate_popularity_momentum(repository):
     recent_stars = get_recent_stars(repository, days=7)
     historical_stars = get_historical_stars(repository, days=30)
-    
+
     momentum = (recent_stars - historical_stars) / historical_stars
     return momentum
 ```

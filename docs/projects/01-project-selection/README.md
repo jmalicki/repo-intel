@@ -1,6 +1,6 @@
 # Phase 2: Repository Analysis Tools
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Phase 2 Tools
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Phase 2 Tools
 
 This directory contains tools for **analyzing** the selected projects to discover patterns and best practices.
 

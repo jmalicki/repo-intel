@@ -38,7 +38,7 @@ This project uses a **hierarchical navigation system** to maintain clear relatio
 We analyze 8 main categories of projects:
 
 1. **Chrome Extensions** - Browser extension projects
-2. **MCP Servers** - Model Context Protocol server implementations  
+2. **MCP Servers** - Model Context Protocol server implementations
 3. **Rust Libraries** - Ranging from small utilities to large frameworks
 4. **Full-Stack Systems** - Projects with both frontend and backend components
 5. **Data Science & ML Projects** - Machine learning libraries and data science tools
@@ -68,7 +68,7 @@ See the [Project Design Document](docs/PROJECT_DESIGN.md) for the complete proje
 
 ## Phase 1: Project Selection
 
-The project selection methodology is documented in [docs/phases/01-project-selection/PROJECT_SELECTION_METHODOLOGY.md](docs/phases/01-project-selection/PROJECT_SELECTION_METHODOLOGY.md).
+The project selection methodology is documented in [docs/phases/01-project-selection/README.md](docs/phases/01-project-selection/README.md).
 
 ## Tool Designs
 

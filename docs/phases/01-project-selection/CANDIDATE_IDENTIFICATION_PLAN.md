@@ -65,7 +65,7 @@ topic:chrome-extension
 topic:browser-extension
 language:JavaScript topic:extension
 
-# MCP Servers  
+# MCP Servers
 topic:mcp-server
 topic:model-context-protocol
 language:Python topic:mcp

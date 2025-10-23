@@ -1,0 +1,50 @@
+repos:
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.36.0
+    hooks:
+      - id: markdownlint
+        args: [--config, .markdownlint.json]
+
+  # Markdown link checking
+  - repo: https://github.com/tcort/markdown-link-check
+    rev: v3.11.0
+    hooks:
+      - id: markdown-link-check
+        args: [--config, .markdownlinkcheck.json]
+
+  # Spell checking - commented out for now, will be updated separately
+  # - repo: https://github.com/streetsidesoftware/cspell-cli
+  #   rev: v8.6.0
+  #   hooks:
+  #     - id: cspell
+  #       args: [--config, .cspell.json]
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint]
+
+  # JSON linting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+        types: [json]
+        args: [--write]
+
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: mixed-line-ending
+        args: [--fix=lf]

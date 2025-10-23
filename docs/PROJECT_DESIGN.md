@@ -9,7 +9,7 @@ This project aims to analyze and understand how different types of software proj
 We will analyze eight main categories of projects:
 
 1. **Chrome Extensions** - Browser extension projects
-2. **MCP Servers** - Model Context Protocol server implementations  
+2. **MCP Servers** - Model Context Protocol server implementations
 3. **Rust Libraries** - Ranging from small utilities (like parking_lot) to large frameworks (like tokio)
 4. **Full-Stack Systems** - Projects with both frontend and backend components (including API-first services)
 5. **Data Science & ML Projects** - Machine learning libraries, data science tools, and ML frameworks

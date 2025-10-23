@@ -1,6 +1,6 @@
 # Report Generator
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Report Generator
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Report Generator
 
 ## Overview
 
@@ -175,12 +175,12 @@ templates:
     template: "templates/individual_project.md"
     output_format: "markdown"
     sections: ["executive_summary", "project_details", "analysis_results", "recommendations"]
-  
+
   category_summary:
     template: "templates/category_summary.md"
     output_format: "markdown"
     sections: ["category_overview", "top_projects", "category_insights"]
-  
+
   executive_report:
     template: "templates/executive_report.md"
     output_format: "markdown"
@@ -193,11 +193,11 @@ content_templates:
   project_overview:
     template: "templates/project_overview.md"
     variables: ["name", "description", "stars", "forks", "language"]
-  
+
   quality_assessment:
     template: "templates/quality_assessment.md"
     variables: ["quality_score", "rankings", "strengths", "weaknesses"]
-  
+
   recommendations:
     template: "templates/recommendations.md"
     variables: ["immediate_actions", "medium_term", "long_term"]
@@ -212,12 +212,12 @@ reports:
     enabled: true
     output_formats: ["markdown", "html", "pdf"]
     sections: ["executive_summary", "project_details", "analysis_results"]
-  
+
   category_summary:
     enabled: true
     output_formats: ["markdown", "html"]
     sections: ["category_overview", "top_projects", "insights"]
-  
+
   executive_report:
     enabled: true
     output_formats: ["markdown", "pdf"]
@@ -231,13 +231,13 @@ output:
     enabled: true
     template_engine: "jinja2"
     output_directory: "reports/markdown"
-  
+
   html:
     enabled: true
     template_engine: "jinja2"
     css_file: "templates/style.css"
     output_directory: "reports/html"
-  
+
   pdf:
     enabled: true
     template_engine: "jinja2"

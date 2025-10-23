@@ -1,6 +1,6 @@
 # Metrics Calculator
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Metrics Calculator
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Metrics Calculator
 
 ## Overview
 
@@ -77,31 +77,31 @@ star_growth_rate = (current_stars - stars_6_months_ago) / 6
 
 ### Activity Score
 ```
-activity_score = (commits_last_month * 0.4) + 
-                 (contributors_last_month * 0.3) + 
+activity_score = (commits_last_month * 0.4) +
+                 (contributors_last_month * 0.3) +
                  (releases_last_month * 0.3)
 ```
 
 ### Community Health Score
 ```
-community_health = (response_time_score * 0.3) + 
-                   (resolution_rate_score * 0.4) + 
+community_health = (response_time_score * 0.3) +
+                   (resolution_rate_score * 0.4) +
                    (contributor_diversity_score * 0.3)
 ```
 
 ### Quality Score
 ```
-quality_score = (documentation_score * 0.3) + 
-                (test_coverage_score * 0.3) + 
-                (security_score * 0.2) + 
+quality_score = (documentation_score * 0.3) +
+                (test_coverage_score * 0.3) +
+                (security_score * 0.2) +
                 (code_quality_score * 0.2)
 ```
 
 ### Overall Score
 ```
-overall_score = (popularity_score * 0.3) + 
-                (activity_score * 0.25) + 
-                (community_health * 0.25) + 
+overall_score = (popularity_score * 0.3) +
+                (activity_score * 0.25) +
+                (community_health * 0.25) +
                 (quality_score * 0.2)
 ```
 
