@@ -114,6 +114,9 @@ For each phase, the following workflow will be strictly adhered to:
 **Tests**:
 -   **Unit Tests**: Test `BaseCollector` and `PackageCollector` trait implementations, configuration management, and authentication handling.
 -   **Integration Tests**: Verify HTTP client integration and rate limiting functionality.
+-   **Mocking Setup**: Implement `mockito` infrastructure for HTTP request mocking across all package manager APIs.
+-   **Fixture Data**: Create initial fixture data structure for storing mock API responses.
+-   **Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - Comprehensive API mocking approach
 
 **Benchmarking**:
 -   Measure HTTP client performance under various rate limit conditions.
@@ -145,6 +148,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test NPM API integration, data processing, and metadata extraction (mocking NPM API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to NPM API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking NPM API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real NPM API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - NPM API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure NPM API call latency and throughput under various conditions.
@@ -176,6 +182,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test PyPI API integration, data processing, and metadata extraction (mocking PyPI API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to PyPI API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking PyPI API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real PyPI API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - PyPI API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure PyPI API call latency and throughput under various conditions.
@@ -207,6 +216,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test Crates.io API integration, data processing, and metadata extraction (mocking Crates.io API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to Crates.io API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking Crates.io API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real Crates.io API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - Crates.io API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure Crates.io API call latency and throughput under various conditions.
@@ -238,6 +250,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test Maven Central API integration, data processing, and metadata extraction (mocking Maven Central API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to Maven Central API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking Maven Central API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real Maven Central API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - Maven Central API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure Maven Central API call latency and throughput under various conditions.
@@ -269,6 +284,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test Go Modules API integration, data processing, and metadata extraction (mocking Go Modules API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to Go Modules API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking Go Modules API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real Go Modules API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - Go Modules API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure Go Modules API call latency and throughput under various conditions.
@@ -300,6 +318,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test RubyGems API integration, data processing, and metadata extraction (mocking RubyGems API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to RubyGems API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking RubyGems API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real RubyGems API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - RubyGems API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure RubyGems API call latency and throughput under various conditions.
@@ -331,6 +352,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test Packagist API integration, data processing, and metadata extraction (mocking Packagist API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to Packagist API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking Packagist API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real Packagist API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - Packagist API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure Packagist API call latency and throughput under various conditions.
@@ -362,6 +386,9 @@ For each phase, the following workflow will be strictly adhered to:
 -   **Unit Tests**: Test NuGet API integration, data processing, and metadata extraction (mocking NuGet API responses).
 -   **Integration Tests**: Make actual (rate-limited) calls to NuGet API for known packages to verify functionality.
 -   **Mocking**: Use `mockito` or similar for mocking NuGet API responses in unit tests.
+-   **Manual Validation**: Implement manual validation tests to compare mocks with real NuGet API responses.
+
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - NuGet API mocking implementation and validation
 
 **Benchmarking**:
 -   Measure NuGet API call latency and throughput under various conditions.
