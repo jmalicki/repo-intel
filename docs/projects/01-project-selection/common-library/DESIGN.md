@@ -198,131 +198,61 @@ impl RateLimiter {
 ## Storage Library
 
 ### Database Operations
-```rust
-use diesel_async::{AsyncSqliteConnection, AsyncConnection};
-use diesel::prelude::*;
-use serde::{Deserialize, Serialize};
+**Purpose**: Provides async database operations with type safety and connection pooling
 
-pub struct Database {
-    connection: AsyncSqliteConnection,
-}
+**Key Components**:
+- **Connection Management**: Async SQLite connection establishment and pooling
+- **Type-Safe Queries**: Compile-time checked SQL operations using diesel
+- **Transaction Support**: ACID-compliant database transactions
+- **Migration Management**: Database schema versioning and updates
+- **Connection Pooling**: Efficient connection reuse for high-throughput operations
 
-impl Database {
-    pub async fn new(database_url: &str) -> Result<Self> {
-        let connection = AsyncSqliteConnection::establish(database_url).await?;
-        Ok(Self { connection })
-    }
-    
-    pub async fn insert<T>(&mut self, data: &T) -> Result<()>
-    where
-        T: Serialize + diesel::Insertable<dyn diesel::Table>,
-    {
-        diesel::insert_into(table)
-            .values(data)
-            .execute(&mut self.connection)
-            .await?;
-        Ok(())
-    }
-    
-    pub async fn select<T>(&mut self, query: diesel::dsl::SelectStatement) -> Result<Vec<T>>
-    where
-        T: diesel::Queryable<dyn diesel::Table, diesel::sqlite::Sqlite> + Send,
-    {
-        let results = query.load(&mut self.connection).await?;
-        Ok(results)
-    }
-}
+**API Surface**:
+- `Database::new()` - Establish database connection
+- `Database::insert()` - Type-safe record insertion
+- `Database::select()` - Type-safe query execution
+- `Database::update()` - Type-safe record updates
+- `Database::delete()` - Type-safe record deletion
+- `Database::transaction()` - Transaction management
+- `Database::migrate()` - Schema migration execution
 ```
 
 ### File Operations
-```rust
-use std::path::Path;
-use tokio::fs;
+**Purpose**: Provides async file system operations for JSON data persistence and backup
 
-pub struct FileManager {
-    base_path: PathBuf,
-}
+**Key Components**:
+- **JSON Serialization**: Automatic serialization/deserialization of structured data
+- **Directory Management**: Automatic directory creation and path resolution
+- **Async I/O**: Non-blocking file operations using tokio
+- **Error Handling**: Comprehensive error handling for file system operations
+- **Path Safety**: Secure path handling and validation
 
-impl FileManager {
-    pub async fn save_json<T>(&self, data: &T, path: &Path) -> Result<()>
-    where
-        T: Serialize,
-    {
-        let json = serde_json::to_string_pretty(data)?;
-        let full_path = self.base_path.join(path);
-        
-        if let Some(parent) = full_path.parent() {
-            fs::create_dir_all(parent).await?;
-        }
-        
-        fs::write(full_path, json).await?;
-        Ok(())
-    }
-    
-    pub async fn load_json<T>(&self, path: &Path) -> Result<T>
-    where
-        T: for<'de> Deserialize<'de>,
-    {
-        let full_path = self.base_path.join(path);
-        let content = fs::read_to_string(full_path).await?;
-        let data = serde_json::from_str(&content)?;
-        Ok(data)
-    }
-    
-    pub async fn backup(&self, source: &Path, destination: &Path) -> Result<()> {
-        let source_path = self.base_path.join(source);
-        let dest_path = self.base_path.join(destination);
-        
-        if let Some(parent) = dest_path.parent() {
-            fs::create_dir_all(parent).await?;
-        }
-        
-        fs::copy(source_path, dest_path).await?;
-        Ok(())
-    }
-}
-```
+**API Surface**:
+- `FileManager::new()` - Initialize with base directory
+- `FileManager::save_json()` - Save structured data as JSON
+- `FileManager::load_json()` - Load and deserialize JSON data
+- `FileManager::exists()` - Check file existence
+- `FileManager::delete()` - Remove files safely
+- `FileManager::list_files()` - Directory listing with filtering
 
 ## Configuration Library
 
 ### Configuration Manager
-```rust
-use config::{Config, ConfigError, File, Environment};
-use serde::{Deserialize, Serialize};
+**Purpose**: Centralized configuration management with environment variable support and validation
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AppConfig {
-    pub database: DatabaseConfig,
-    pub http: HttpConfig,
-    pub logging: LoggingConfig,
-    pub storage: StorageConfig,
-}
+**Key Components**:
+- **Multi-Source Loading**: File-based configs with environment variable overrides
+- **Type Safety**: Strongly-typed configuration structures
+- **Validation**: Runtime configuration validation and error reporting
+- **Environment Support**: Development, staging, production environment handling
+- **Hot Reloading**: Optional configuration reloading without restart
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DatabaseConfig {
-    pub url: String,
-    pub max_connections: u32,
-    pub timeout_seconds: u64,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct HttpConfig {
-    pub timeout_seconds: u64,
-    pub retry_attempts: u32,
-    pub rate_limit: u32,
-}
-
-pub struct ConfigManager {
-    config: AppConfig,
-}
-
-impl ConfigManager {
-    pub fn new() -> Result<Self> {
-        let config = Config::builder()
-            .add_source(File::with_name("config/default"))
-            .add_source(File::with_name("config/local").required(false))
-            .add_source(Environment::with_prefix("APP"))
-            .build()?;
+**API Surface**:
+- `ConfigManager::new()` - Load configuration from multiple sources
+- `ConfigManager::get()` - Retrieve typed configuration values
+- `ConfigManager::validate()` - Validate configuration completeness
+- `ConfigManager::reload()` - Reload configuration from sources
+- `ConfigManager::export()` - Export current configuration
             
         let app_config: AppConfig = config.try_deserialize()?;
         Ok(Self { config: app_config })

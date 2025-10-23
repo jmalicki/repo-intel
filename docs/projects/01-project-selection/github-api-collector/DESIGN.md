@@ -178,103 +178,57 @@ data/
 
 ## Core Data Models
 
-### Repository Model
-```rust
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Repository {
-    pub id: u64,
-    pub name: String,
-    pub full_name: String,
-    pub owner: String,
-    pub description: Option<String>,
-    pub language: Option<String>,
-    pub topics: Vec<String>,
-    pub license: Option<String>,
-    pub stars: u32,
-    pub forks: u32,
-    pub watchers: u32,
-    pub open_issues: u32,
-    pub open_prs: u32,
-    pub size: u64,
-    pub created_at: DateTime<Utc>,
-    pub updated_at: DateTime<Utc>,
-    pub pushed_at: DateTime<Utc>,
-    pub category: String,
-}
+### Data Models
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RepositoryMetrics {
-    pub repository_id: u64,
-    pub commit_count: u32,
-    pub contributor_count: u32,
-    pub release_count: u32,
-    pub avg_issue_response_time: Option<f64>,
-    pub avg_pr_merge_time: Option<f64>,
-    pub activity_score: f64,
-    pub community_health_score: f64,
-    pub calculated_at: DateTime<Utc>,
-}
-```
+**Repository Model**:
+- **Core Fields**: ID, name, owner, description, language, topics, license
+- **Metrics**: Stars, forks, watchers, open issues/PRs, repository size
+- **Timestamps**: Created, updated, and last pushed dates
+- **Categorization**: Project category assignment for analysis grouping
 
-### Search Configuration Model
-```rust
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SearchConfig {
-    pub category: String,
-    pub queries: Vec<String>,
-    pub min_stars: u32,
-    pub max_results: u32,
-    pub sort_by: SortBy,
-}
+**Repository Metrics Model**:
+- **Activity Metrics**: Commit count, contributor count, release frequency
+- **Response Times**: Average issue response time, PR merge time
+- **Health Scores**: Activity score, community health score
+- **Temporal Data**: Calculation timestamps for freshness tracking
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub enum SortBy {
-    Stars,
-    Activity,
-    Relevance,
-}
-```
+**Search Configuration Model**:
+- **Category Management**: Project category definitions and search parameters
+- **Query Configuration**: Multiple search queries per category with result limits
+- **Filtering**: Minimum star thresholds and maximum result constraints
+- **Sorting Options**: Stars, activity, or relevance-based result ordering
 
 ## API Client Design
 
 ### Rate Limiting Strategy
-```rust
-pub struct RateLimiter {
-    remaining: u32,
-    reset_time: DateTime<Utc>,
-    client: reqwest::Client,
-}
+**Purpose**: Intelligent rate limit management to maximize API throughput while respecting GitHub's limits
 
-impl RateLimiter {
-    pub async fn make_request(&mut self, request: RequestBuilder) -> Result<Response> {
-        // Check rate limit before making request
-        if self.remaining == 0 {
-            self.wait_for_reset().await?;
-        }
-        
-        let response = request.send().await?;
-        self.update_rate_limit(&response);
-        Ok(response)
-    }
-    
-    async fn wait_for_reset(&self) -> Result<()> {
-        let wait_time = self.reset_time - Utc::now();
-        tokio::time::sleep(wait_time.to_std()?).await;
-        Ok(())
-    }
-}
-```
+**Key Components**:
+- **Rate Limit Tracking**: Monitor remaining requests and reset times
+- **Automatic Backoff**: Smart waiting when limits are reached
+- **Request Queuing**: Queue requests during rate limit periods
+- **Header Parsing**: Extract rate limit information from API responses
+
+**API Surface**:
+- `RateLimiter::make_request()` - Make rate-limited API requests
+- `RateLimiter::remaining()` - Check remaining request quota
+- `RateLimiter::wait_for_reset()` - Wait until rate limit resets
+- `RateLimiter::update_limits()` - Update limits from response headers
 
 ### Concurrent Collection
-```rust
-pub struct ConcurrentCollector {
-    rate_limiter: RateLimiter,
-    semaphore: Semaphore,
-    database: Database,
-}
+**Purpose**: Parallel repository collection with controlled concurrency and rate limiting
 
-impl ConcurrentCollector {
-    pub async fn collect_repositories(&self, configs: Vec<SearchConfig>) -> Result<()> {
+**Key Components**:
+- **Semaphore Control**: Limit concurrent requests to prevent overwhelming the API
+- **Batch Processing**: Process multiple search configurations efficiently
+- **Error Handling**: Robust error handling for failed requests
+- **Progress Tracking**: Monitor collection progress and completion status
+
+**API Surface**:
+- `ConcurrentCollector::collect_repositories()` - Main collection orchestration
+- `ConcurrentCollector::collect_category()` - Single category collection
+- `ConcurrentCollector::process_batch()` - Process repository batches
+- `ConcurrentCollector::handle_errors()` - Error recovery and retry logic
         let mut tasks = Vec::new();
         
         for config in configs {
