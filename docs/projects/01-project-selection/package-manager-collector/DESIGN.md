@@ -691,6 +691,8 @@ data/
 
 ## Testing Strategy
 
+**Related**: [Mocking Strategy](MOCKING_STRATEGY.md) - Comprehensive API mocking approach for all 8 package manager APIs
+
 ### Unit Tests
 **Purpose**: Comprehensive testing of all collection components with high coverage
 
@@ -707,6 +709,13 @@ data/
 - **Configuration Tests**: Config loading, validation, environment variable handling
 - **Validation Tests**: Data validation, schema validation, error handling
 
+**Mocking Strategy**:
+- **API Mocking**: Use `mockito` for HTTP request mocking across all 8 package manager APIs
+- **Fixture Data**: Static JSON fixtures for realistic API responses
+- **Error Injection**: Comprehensive error scenario testing (404, 429, 500, timeouts)
+- **Rate Limit Testing**: Mock rate limiting scenarios and retry logic
+- **Network Error Testing**: Connection failures, DNS issues, SSL errors
+
 ### Integration Tests
 **Purpose**: End-to-end testing of component interactions and real-world scenarios
 
@@ -721,6 +730,12 @@ data/
 - **Error Recovery**: Network failures, API errors, and retry scenarios
 - **Data Consistency**: Cross-component data integrity validation
 - **Performance Benchmarks**: Throughput and latency testing
+
+**Mocking Integration**:
+- **Partial Mocking**: Mock problematic APIs while using real APIs for others
+- **Full Mocking**: Complete API mocking for reliable CI/CD testing
+- **Scenario Testing**: Test success, error, and edge case scenarios
+- **Data Validation**: Test data consistency and validation across mocked APIs
 
 ## Performance Considerations
 
