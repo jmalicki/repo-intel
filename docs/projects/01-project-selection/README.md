@@ -34,10 +34,21 @@ This directory contains tools for **selecting** high-quality projects for analys
 ### 3. Integration Tools
 - **[Data Aggregator](data-aggregator/README.md)** - Multi-source data integration
 - **[Report Generator](report-generator/README.md)** - Automated report generation
+- **[LLM Orchestrator](llm-orchestrator/README.md)** - Human judgment task execution
 - **[Common Library](common-library/README.md)** - Shared functionality across all tools
 
 ### 4. Human Judgment Tasks
 - **[Human Prompts](../../data/prompts/01-project-selection/)** - Structured prompts for human judgment
+
+## LLM Orchestrator Integration
+
+The **[LLM Orchestrator](llm-orchestrator/README.md)** executes human judgment tasks by:
+
+- **Templating Prompts** - Uses Jinja templating with project data
+- **Chaining Workflows** - Sequential prompt execution with data flow
+- **Quality Preservation** - Maintains human-level decision quality
+- **Structured Outputs** - Generates reports following prompt specifications
+- **Audit Trail** - Complete documentation of all decisions
 
 ## Common Library Benefits
 
