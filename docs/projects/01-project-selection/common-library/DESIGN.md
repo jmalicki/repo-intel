@@ -22,7 +22,7 @@ The Common Library is a **Rust crate** that provides shared functionality for al
 - `reqwest` - HTTP client with async support
 - `tokio` - Async runtime and utilities
 - `serde` + `serde_json` - Serialization framework
-- `sqlx` - Async SQL toolkit with SQLite support
+- `diesel` + `diesel-async` - Type-safe ORM with async support
 - `chrono` - Date/time handling
 - `tracing` - Structured logging
 - `anyhow` + `thiserror` - Error handling
@@ -199,45 +199,36 @@ impl RateLimiter {
 
 ### Database Operations
 ```rust
-use sqlx::{SqlitePool, Row};
+use diesel_async::{AsyncSqliteConnection, AsyncConnection};
+use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 
 pub struct Database {
-    pool: SqlitePool,
+    connection: AsyncSqliteConnection,
 }
 
 impl Database {
     pub async fn new(database_url: &str) -> Result<Self> {
-        let pool = SqlitePool::connect(database_url).await?;
-        Ok(Self { pool })
+        let connection = AsyncSqliteConnection::establish(database_url).await?;
+        Ok(Self { connection })
     }
     
-    pub async fn insert<T>(&self, table: &str, data: &T) -> Result<()>
+    pub async fn insert<T>(&mut self, data: &T) -> Result<()>
     where
-        T: Serialize,
+        T: Serialize + diesel::Insertable<dyn diesel::Table>,
     {
-        let json = serde_json::to_string(data)?;
-        sqlx::query(&format!("INSERT INTO {} (data) VALUES (?)", table))
-            .bind(json)
-            .execute(&self.pool)
+        diesel::insert_into(table)
+            .values(data)
+            .execute(&mut self.connection)
             .await?;
         Ok(())
     }
     
-    pub async fn select<T>(&self, query: &str) -> Result<Vec<T>>
+    pub async fn select<T>(&mut self, query: diesel::dsl::SelectStatement) -> Result<Vec<T>>
     where
-        T: for<'de> Deserialize<'de>,
+        T: diesel::Queryable<dyn diesel::Table, diesel::sqlite::Sqlite> + Send,
     {
-        let rows = sqlx::query(query)
-            .fetch_all(&self.pool)
-            .await?;
-        
-        let mut results = Vec::new();
-        for row in rows {
-            let json: String = row.get("data");
-            let data: T = serde_json::from_str(&json)?;
-            results.push(data);
-        }
+        let results = query.load(&mut self.connection).await?;
         Ok(results)
     }
 }

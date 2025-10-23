@@ -15,14 +15,14 @@ The GitHub API Collector is a **Rust application** that systematically collects 
 - **Concurrency**: Native async/await for efficient parallel API requests
 - **Error Handling**: Robust error handling with Result types
 - **HTTP Libraries**: Excellent crates like `reqwest`, `tokio`, `serde`
-- **Database Integration**: Async SQLite support with `sqlx`
+- **Database Integration**: Type-safe ORM with async support via `diesel-async`
 - **JSON Processing**: Fast JSON parsing with `serde_json`
 
 ### Key Rust Crates
 - `reqwest` - HTTP client with async support
 - `tokio` - Async runtime for concurrent operations
 - `serde` + `serde_json` - JSON serialization/deserialization
-- `sqlx` - Async SQL toolkit with SQLite support
+- `diesel` + `diesel-async` - Type-safe ORM with async support
 - `chrono` - Date/time handling
 - `clap` - Command-line argument parsing
 - `tracing` - Structured logging
