@@ -1,11 +1,68 @@
-# Final Quality Assessment Prompt
+# Final Quality Assessment
 
 **Parent:** [Human Prompts](../README.md)
 **Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Final Quality Assessment task
 
 ## Overview
 
-This prompt guides human reviewers through final quality decisions and threshold application. It provides a structured framework for applying human judgment to quality assessment after automated metrics collection.
+This directory contains discrete prompts for the final quality assessment of all selected projects. Each prompt focuses on a specific aspect of quality evaluation and validation.
+
+## Discrete Prompts
+
+### 1. [Quality Standards](quality-standards.md)
+**Purpose:** Apply quality standards across all selected projects
+**Focus:** Code quality, documentation, testing, security, performance, community
+**Output:** Quality standards compliance and assessment
+
+### 2. [Excellence Identification](excellence-identification.md)
+**Purpose:** Identify excellence examples and best practices
+**Focus:** Code excellence, documentation excellence, testing excellence, security excellence, performance excellence, community excellence
+**Output:** Excellence examples and best practice documentation
+
+### 3. [Final Validation](final-validation.md)
+**Purpose:** Validate final selection and prepare for Phase 2
+**Focus:** Quality validation, diversity validation, category validation, selection rationale
+**Output:** Final validation report and Phase 2 handoff
+
+## Usage Workflow
+
+### Step 1: Quality Standards Assessment
+- Use [quality-standards.md](quality-standards.md) to apply quality standards
+- Assess all projects against quality thresholds
+- Document quality compliance and gaps
+
+### Step 2: Excellence Identification
+- Use [excellence-identification.md](excellence-identification.md) to identify excellence
+- Document best practices and innovation examples
+- Generate excellence report
+
+### Step 3: Final Validation
+- Use [final-validation.md](final-validation.md) to validate final selection
+- Ensure all requirements are met
+- Prepare for Phase 2 handoff
+
+## Expected Outcomes
+
+- **Quality Standards Compliance**: All projects meet minimum quality thresholds
+- **Excellence Examples**: Best practices and innovation examples identified
+- **Final Validation**: Comprehensive validation of selection decisions
+- **Phase 2 Readiness**: Complete handoff documentation for analysis phase
+
+## Quality Assurance
+
+### Cross-Validation
+- [ ] Multiple reviewers for controversial decisions
+- [ ] Cross-reference with automated metrics
+- [ ] Validate against quality standards
+- [ ] Ensure diversity requirements met
+
+### Documentation Review
+- [ ] Quality assessments are documented
+- [ ] Excellence examples are identified
+- [ ] Final selection is justified
+- [ ] Handoff documentation is complete
+
+This approach ensures comprehensive quality assessment while maintaining diversity requirements and preparing for Phase 2 analysis.
 
 ## Pre-Assessment Checklist
 
