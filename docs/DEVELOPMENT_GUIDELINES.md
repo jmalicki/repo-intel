@@ -84,6 +84,43 @@ All human prompts must use Jinja-like templating with standardized variables:
 - All decisions must be justified
 - All outputs must be validated
 
+## CI/CD Requirements
+
+### Pre-commit Hooks
+All code changes must pass pre-commit hooks before being committed:
+
+#### Rust Code Quality
+- **Formatting**: `cargo fmt` ensures consistent code formatting
+- **Linting**: `cargo clippy` with `-D warnings` catches potential issues
+- **Compilation**: `cargo check` verifies code compiles without errors
+- **Testing**: All tests must pass before commit
+
+#### Documentation Quality
+- **Markdown Linting**: Consistent formatting and style
+- **Link Checking**: All internal and external links must be valid
+- **Spell Checking**: Proper spelling and terminology
+- **YAML/JSON Validation**: Configuration files must be valid
+
+### Continuous Integration
+GitHub Actions workflows automatically run on all pull requests and pushes:
+
+#### Rust CI Pipeline
+- **Multi-version Testing**: Tests against stable, beta, and nightly Rust
+- **Security Auditing**: `cargo audit` checks for known vulnerabilities
+- **Documentation Building**: Ensures docs compile and are accessible
+- **Performance Caching**: Optimized build times with dependency caching
+
+#### Quality Gates
+- All Rust code must compile without warnings
+- All tests must pass across all Rust versions
+- No security vulnerabilities in dependencies
+- Documentation must build successfully
+
+### Workspace Configuration
+- **Root Cargo.toml**: Defines workspace with all Rust projects
+- **Shared Dependencies**: Common versions across all workspace members
+- **Consistent Tooling**: Same Rust toolchain and formatting rules
+
 ## Template System Requirements
 
 ### Templating Engine
@@ -199,6 +236,15 @@ common-library/
 - [ ] All links are maintained
 - [ ] All standards are followed
 - [ ] All quality is maintained
+
+### CI/CD Compliance
+- [ ] All Rust code passes pre-commit hooks
+- [ ] Code formatting is consistent (cargo fmt)
+- [ ] No clippy warnings or errors
+- [ ] All tests pass before commit
+- [ ] Documentation links are valid
+- [ ] Security audit passes (cargo audit)
+- [ ] Multi-version CI tests pass
 
 ### Model Compliance
 - [ ] Follow Common Library documentation structure
