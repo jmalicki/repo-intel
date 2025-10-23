@@ -1,14 +1,23 @@
 # Automation Opportunities for Candidate Identification
 
+**Parent:** [Project Design](../PROJECT_DESIGN.md)
+
 ## Overview
 
 This document identifies parts of the candidate identification workflow that can be automated to reduce token usage and focus human intelligence on high-value judgment tasks.
+
+**Related Documents:**
+- [Project Selection Methodology](PROJECT_SELECTION_METHODOLOGY.md) - Detailed selection approach
+- [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Execution plan
+- [Tool Designs](../../projects/01-project-selection/) - Detailed tool specifications
 
 ## Highly Automatable Tasks
 
 ### 1. GitHub API Data Collection
 **Current Process:** Manual API queries and data extraction
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [GitHub API Collector](../../projects/01-project-selection/github-api-collector/README.md)
+
 **Implementation:**
 - Script to execute all GitHub API searches
 - Automated data extraction and formatting
@@ -27,6 +36,8 @@ This document identifies parts of the candidate identification workflow that can
 ### 2. Trending Repository Analysis
 **Current Process:** Manual trending analysis across time periods
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [Trending Analyzer](../../projects/01-project-selection/trending-analyzer/README.md)
+
 **Implementation:**
 - Script to query GitHub trending APIs
 - Automated analysis of trending patterns
@@ -45,6 +56,8 @@ This document identifies parts of the candidate identification workflow that can
 ### 3. Quantitative Metrics Calculation
 **Current Process:** Manual calculation of metrics from raw data
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [Metrics Calculator](../../projects/01-project-selection/metrics-calculator/README.md)
+
 **Implementation:**
 - Automated calculation of all quantitative metrics
 - Statistical analysis and ranking
@@ -63,6 +76,8 @@ This document identifies parts of the candidate identification workflow that can
 ### 4. Package Manager Data Collection
 **Current Process:** Manual queries to NPM, PyPI, crates.io
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [Package Manager Collector](../../projects/01-project-selection/package-manager-collector/README.md)
+
 **Implementation:**
 - Scripts to query package manager APIs
 - Automated download count and rating collection
@@ -81,6 +96,8 @@ This document identifies parts of the candidate identification workflow that can
 ### 5. Documentation File Detection
 **Current Process:** Manual review of documentation presence
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [Pattern Matcher](../../projects/01-project-selection/pattern-matcher/README.md) (file detection mode)
+
 **Implementation:**
 - Script to detect presence of documentation files
 - Automated detection of basic documentation completeness
@@ -101,6 +118,8 @@ This document identifies parts of the candidate identification workflow that can
 ### 6. Community Health Metrics
 **Current Process:** Manual analysis of community engagement
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [Metrics Calculator](../../projects/01-project-selection/metrics-calculator/README.md) (community health mode)
+
 **Implementation:**
 - Script to analyze issue/PR response times
 - Automated calculation of community engagement metrics
@@ -119,6 +138,8 @@ This document identifies parts of the candidate identification workflow that can
 ### 7. Security File Detection
 **Current Process:** Manual review of security file presence
 **Automation Potential:** 100% - Fully automatable (no LLM needed)
+**Tool Design:** [Pattern Matcher](../../projects/01-project-selection/pattern-matcher/README.md) (security file detection mode)
+
 **Implementation:**
 - Script to detect security-related files and configurations
 - Automated detection of security file presence
