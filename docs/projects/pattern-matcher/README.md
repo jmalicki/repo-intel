@@ -2,17 +2,17 @@
 
 ## Overview
 
-The Pattern Matcher is a **Python script** that reads repository files and makes LLM API calls to analyze content. The script is deterministic - it decides what files to read and what questions to ask the LLM. The LLM is just an API that answers questions.
+The Pattern Matcher is a **Python script** that reads specific repository files (hardcoded list) and makes LLM API calls to analyze content. The script follows a predefined list of files to check - it doesn't decide what to look at, it just follows instructions.
 
 ## What It Actually Does
 
 1. **Takes a repository path** as input
-2. **Script reads specific files** (.github/dependabot.yml, README.md, etc.)
+2. **Script reads hardcoded list of files** (.github/dependabot.yml, README.md, SECURITY.md, etc.)
 3. **Script makes LLM API calls** with file content and specific prompts
 4. **Script parses LLM responses** and returns structured JSON
 5. **No human interaction** - fully automated script
 
-**The LLM is just an API** - it doesn't decide what to do, the script does.
+**The script follows a hardcoded list** - it doesn't decide what files to look at, it just checks the predefined list.
 
 ## Design Principles
 
@@ -63,31 +63,33 @@ The Pattern Matcher is a **Python script** that reads repository files and makes
 
 ## Script Implementation
 
+### Hardcoded File List
+```python
+FILES_TO_CHECK = [
+    ".github/dependabot.yml",
+    "SECURITY.md", 
+    "README.md",
+    "CONTRIBUTING.md",
+    ".github/workflows/",
+    "package.json",
+    "Cargo.toml"
+]
+```
+
 ### Python Script Structure
 ```python
 def analyze_repository(repo_path):
     results = {}
     
-    # Check .github/dependabot.yml
-    dependabot_file = f"{repo_path}/.github/dependabot.yml"
-    if os.path.exists(dependabot_file):
-        content = read_file(dependabot_file)
-        prompt = "Does this dependabot.yml file enable security updates? Answer yes/no only."
-        results["has_dependabot"] = call_llm_api(content, prompt)
-    
-    # Check SECURITY.md
-    security_file = f"{repo_path}/SECURITY.md"
-    if os.path.exists(security_file):
-        content = read_file(security_file)
-        prompt = "Does this SECURITY.md file contain vulnerability disclosure process? Answer yes/no only."
-        results["has_security_md"] = call_llm_api(content, prompt)
-    
-    # Check README.md
-    readme_file = f"{repo_path}/README.md"
-    if os.path.exists(readme_file):
-        content = read_file(readme_file)
-        prompt = "Does this README have installation instructions and usage examples? Answer yes/no only."
-        results["readme_has_installation"] = call_llm_api(content, prompt)
+    # Check each hardcoded file
+    for file_path in FILES_TO_CHECK:
+        full_path = f"{repo_path}/{file_path}"
+        if os.path.exists(full_path):
+            content = read_file(full_path)
+            prompt = get_prompt_for_file(file_path)
+            results[file_path] = call_llm_api(content, prompt)
+        else:
+            results[file_path] = False
     
     return results
 ```
