@@ -9,6 +9,7 @@ This directory contains discrete prompts for the final project selection and ran
 
 ## Discrete Prompts
 
+### Core Assessment Prompts
 ### 1. [Quality Assessment](quality-assessment.md)
 **Purpose:** Assess project quality across multiple dimensions
 **Focus:** Code quality, documentation, testing, security, performance, community health
@@ -23,6 +24,22 @@ This directory contains discrete prompts for the final project selection and ran
 **Purpose:** Define criteria for project selection decisions
 **Focus:** Must-have requirements, quality standards, excellence indicators
 **Output:** Selection decisions and rationale
+
+### Process Support Prompts
+### 4. [Pre-Assessment Checklist](pre-assessment-checklist.md)
+**Purpose:** Ensure all necessary data and preparations are complete
+**Focus:** Data collection, team preparation, process readiness
+**Output:** Readiness validation and go/no-go decision
+
+### 5. [Quality Assurance](quality-assurance.md)
+**Purpose:** Ensure consistent, high-quality decisions throughout the process
+**Focus:** Cross-validation, documentation quality, process consistency
+**Output:** Quality assurance procedures and validation
+
+### 6. [Documentation Requirements](documentation-requirements.md)
+**Purpose:** Define comprehensive documentation requirements
+**Focus:** Assessment documentation, ranking documentation, selection documentation
+**Output:** Documentation standards and deliverables
 
 ## Usage Workflow
 

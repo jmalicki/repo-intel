@@ -9,6 +9,7 @@ This directory contains discrete prompts for ensuring appropriate category cover
 
 ## Discrete Prompts
 
+### Core Assessment Prompts
 ### 1. [Scale Diversity](scale-diversity.md)
 **Purpose:** Assess scale diversity across project categories
 **Focus:** Small, medium, and large project representation
@@ -23,6 +24,22 @@ This directory contains discrete prompts for ensuring appropriate category cover
 **Purpose:** Assess community diversity across project categories
 **Focus:** Community sizes, governance models, contribution patterns
 **Output:** Community diversity analysis and recommendations
+
+### Process Support Prompts
+### 4. [Pre-Assessment Checklist](pre-assessment-checklist.md)
+**Purpose:** Ensure all necessary data and preparations are complete
+**Focus:** Data collection, team preparation, process readiness
+**Output:** Readiness validation and go/no-go decision
+
+### 5. [Quality Assurance](quality-assurance.md)
+**Purpose:** Ensure consistent, high-quality decisions throughout the process
+**Focus:** Cross-validation, documentation quality, process consistency
+**Output:** Quality assurance procedures and validation
+
+### 6. [Documentation Requirements](documentation-requirements.md)
+**Purpose:** Define comprehensive documentation requirements
+**Focus:** Diversity documentation, representation documentation, category documentation
+**Output:** Documentation standards and deliverables
 
 ## Usage Workflow
 
