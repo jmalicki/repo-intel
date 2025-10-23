@@ -262,40 +262,7 @@ common-library/
 - `MetricsCalculator::activity_score()` - Calculate repository activity metrics
 - `MetricsCalculator::community_health()` - Assess community engagement
 - `MetricsCalculator::performance_indicators()` - Generate performance metrics
-        let slope = self.calculate_slope(recent_values);
-        
-        match slope {
-            s if s > 0.1 => Trend::Increasing,
-            s if s < -0.1 => Trend::Decreasing,
-            _ => Trend::Stable,
-        }
-    }
     
-    pub fn normalize_scores(&self, scores: &[f64], method: NormalizationMethod) -> Vec<f64> {
-        match method {
-            NormalizationMethod::MinMax => {
-                let min = scores.iter().fold(f64::INFINITY, |a, &b| a.min(b));
-                let max = scores.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
-                let range = max - min;
-                
-                if range == 0.0 {
-                    scores.iter().map(|_| 0.5).collect()
-                } else {
-                    scores.iter().map(|&score| (score - min) / range).collect()
-                }
-            }
-            NormalizationMethod::ZScore => {
-                let mean = scores.iter().sum::<f64>() / scores.len() as f64;
-                let variance = scores.iter().map(|&x| (x - mean).powi(2)).sum::<f64>() / scores.len() as f64;
-                let std_dev = variance.sqrt();
-                
-                if std_dev == 0.0 {
-                    scores.iter().map(|_| 0.0).collect()
-                } else {
-                    scores.iter().map(|&score| (score - mean) / std_dev).collect()
-                }
-            }
-        }
 ## Validation Library
 
 ### Schema Validation
