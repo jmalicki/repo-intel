@@ -11,6 +11,11 @@ This document identifies parts of the candidate identification workflow that can
 - [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Execution plan
 - [Tool Designs](../../projects/01-project-selection/) - Detailed tool specifications
 
+**Document Relationships:**
+- **PROJECT_SELECTION_METHODOLOGY.md**: High-level strategy, criteria, and timeline
+- **CANDIDATE_IDENTIFICATION_PLAN.md**: Detailed implementation steps and specific queries
+- **AUTOMATION_OPPORTUNITIES.md** (this document): Which tasks can be automated vs. require human judgment
+
 ## Highly Automatable Tasks
 
 ### 1. GitHub API Data Collection

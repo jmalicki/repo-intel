@@ -12,6 +12,11 @@ This document outlines the systematic approach for selecting representative proj
 - [Automation Opportunities](AUTOMATION_OPPORTUNITIES.md) - Tasks that can be automated
 - [Candidate Identification Plan](CANDIDATE_IDENTIFICATION_PLAN.md) - Detailed execution plan
 
+**Document Relationships:**
+- **PROJECT_SELECTION_METHODOLOGY.md** (this document): High-level strategy, criteria, and timeline
+- **CANDIDATE_IDENTIFICATION_PLAN.md**: Detailed implementation steps and specific queries
+- **AUTOMATION_OPPORTUNITIES.md**: Which tasks can be automated vs. require human judgment
+
 ### Phase 1: Initial Candidate Identification
 
 #### Knowledge-Based Selection

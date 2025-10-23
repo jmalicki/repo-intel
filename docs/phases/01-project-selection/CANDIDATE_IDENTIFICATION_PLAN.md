@@ -1,8 +1,16 @@
 # Phase 1: Detailed Candidate Identification Plan
 
+**Parent:** [Project Design](../../PROJECT_DESIGN.md)
+**Related:** [Project Selection Methodology](PROJECT_SELECTION_METHODOLOGY.md) - High-level selection approach
+
 ## Overview
 
-This document provides specific implementation details for identifying candidate projects across all 8 categories using multiple discovery methods.
+This document provides specific implementation details for identifying candidate projects across all 8 categories using multiple discovery methods. This is the **detailed execution plan** that implements the high-level methodology described in PROJECT_SELECTION_METHODOLOGY.md.
+
+**Relationship to PROJECT_SELECTION_METHODOLOGY.md:**
+- **PROJECT_SELECTION_METHODOLOGY.md**: High-level strategy, criteria, and timeline
+- **CANDIDATE_IDENTIFICATION_PLAN.md**: Detailed implementation steps and specific queries
+- **AUTOMATION_OPPORTUNITIES.md**: Which tasks can be automated vs. require human judgment
 
 ## Method 1: Knowledge-Based Selection
 
