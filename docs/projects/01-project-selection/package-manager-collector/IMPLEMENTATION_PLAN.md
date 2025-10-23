@@ -11,6 +11,13 @@ Each phase is designed to be a focused unit of work, resulting in a pull request
 
 The implementation will leverage the `common-library` for shared functionalities like HTTP client, storage, configuration, logging, metrics, and validation.
 
+**⚠️ IMPORTANT: Common Library Dependency**
+The `common-library` must be implemented first before starting this implementation plan. Key phases depend on specific common library components:
+- **Phase 1**: Configuration management
+- **Phase 2**: Database operations and storage
+- **Phase 3**: HTTP client and rate limiting
+- **Phase 16**: Logging and configuration
+
 ## Development Workflow for Each Phase
 
 For each phase, the following workflow will be strictly adhered to:
@@ -68,6 +75,10 @@ For each phase, the following workflow will be strictly adhered to:
 
 **Goal**: Implement comprehensive data models and database schema for all package manager data.
 
+**Dependencies**: 
+- **Common Library**: Database operations, storage management, validation
+- **Related**: [Common Library Implementation Plan](../common-library/IMPLEMENTATION_PLAN.md) - Database component must be available
+
 **Deliverables**:
 -   [ ] Implement all core data models (`Package`, `PackageVersion`, `PackageMetadata`, `PackageHealth`, `PackageStatistics`, etc.).
 -   [ ] Implement registry-specific data models (`NpmPackageData`, `PypiPackageData`, `CratesPackageData`, etc.).
@@ -98,6 +109,10 @@ For each phase, the following workflow will be strictly adhered to:
 ### Phase 3: Base Collector Infrastructure
 
 **Goal**: Implement the base collector traits and infrastructure that all package manager collectors will inherit from.
+
+**Dependencies**: 
+- **Common Library**: HTTP client, rate limiting, authentication, logging
+- **Related**: [Common Library Implementation Plan](../common-library/IMPLEMENTATION_PLAN.md) - HTTP client and rate limiting components must be available
 
 **Deliverables**:
 -   [ ] Implement `BaseCollector` trait with common functionality (rate limiting, error handling, retry logic).
@@ -527,6 +542,10 @@ For each phase, the following workflow will be strictly adhered to:
 ### Phase 16: CLI Interface & User Experience
 
 **Goal**: Develop a comprehensive command-line interface for configuring and running the Package Manager Collector.
+
+**Dependencies**: 
+- **Common Library**: Logging, configuration management, metrics
+- **Related**: [Common Library Implementation Plan](../common-library/IMPLEMENTATION_PLAN.md) - Logger and configuration components must be available
 
 **Deliverables**:
 -   [ ] Implement CLI using `clap` for argument parsing.
