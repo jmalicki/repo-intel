@@ -72,17 +72,25 @@ The Pattern Matcher is a **Python script** that uses LLM analysis to discover no
 
 ## Script Implementation
 
-### Repository Discovery
+### Smart Repository Discovery
 ```python
 def discover_repository_structure(repo_path):
-    # Scan entire repository structure
+    # Smart scanning - look for patterns, not every file
     all_files = scan_directory(repo_path)
     
-    # Categorize files by type and purpose
-    security_files = find_security_related_files(all_files)
-    docs_files = find_documentation_files(all_files)
-    ci_files = find_ci_cd_files(all_files)
-    config_files = find_config_files(all_files)
+    # Use heuristics to identify relevant files
+    security_files = find_files_by_pattern(all_files, [
+        "security", "vulnerability", "dependabot", "snyk", "owasp"
+    ])
+    docs_files = find_files_by_pattern(all_files, [
+        "readme", "contributing", "docs", "guide", "tutorial"
+    ])
+    ci_files = find_files_by_pattern(all_files, [
+        "workflow", "action", "ci", "cd", "deploy", "test"
+    ])
+    config_files = find_files_by_pattern(all_files, [
+        "config", "package", "cargo", "pom", "requirements"
+    ])
     
     return {
         "security": security_files,
@@ -92,21 +100,36 @@ def discover_repository_structure(repo_path):
     }
 ```
 
-### Pattern Discovery
+### Efficient Pattern Discovery
 ```python
 def analyze_repository(repo_path):
-    # Discover repository structure
+    # Smart discovery - only analyze relevant files
     structure = discover_repository_structure(repo_path)
     
-    # Analyze each category for novel patterns
+    # Limit file size and count for efficiency
     results = {}
     for category, files in structure.items():
         if files:
-            content = read_files(files)
-            prompt = f"Analyze these {category} files for novel practices, innovative approaches, and unexpected patterns. What new or interesting things do you see?"
-            results[category] = call_llm_api(content, prompt)
+            # Limit to reasonable number of files
+            relevant_files = files[:5]  # Max 5 files per category
+            content = read_files_smart(relevant_files)  # Limit content size
+            
+            if content:  # Only if we have content
+                prompt = f"Analyze these {category} files for novel practices, innovative approaches, and unexpected patterns. What new or interesting things do you see?"
+                results[category] = call_llm_api(content, prompt)
     
     return results
+
+def read_files_smart(files):
+    # Limit total content size
+    max_size = 10000  # characters
+    content = ""
+    for file in files:
+        if len(content) > max_size:
+            break
+        file_content = read_file(file)
+        content += f"\n--- {file} ---\n{file_content[:2000]}"  # Limit per file
+    return content
 ```
 
 ### LLM API Call
