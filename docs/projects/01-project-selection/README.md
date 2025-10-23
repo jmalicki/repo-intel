@@ -1,47 +1,61 @@
-# Phase 2: Repository Analysis Tools
+# Phase 1: Project Selection Tools
 
-**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Phase 2 Tools
+**Parent:** [Projects Overview](../README.md)
+**Related:** [Automation Opportunities](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Project Selection Tools
 
-This directory contains tools for **analyzing** the selected projects to discover patterns and best practices.
+This directory contains tools for **selecting** high-quality projects for analysis across 8 categories.
 
-## Phase 2 Purpose
-**Goal**: Deep analysis of selected projects to discover novel patterns, best practices, and innovative approaches
+## Phase 1 Purpose
+**Goal**: Identify and select 3-5 high-quality projects per category (24-40 total) for deep analysis
 
-## What Phase 2 Does
-1. **Deep repository analysis** of selected projects
-2. **Pattern discovery** across different project types
-3. **Best practice identification** within and across categories
-4. **Innovation detection** and novel approach discovery
+## What Phase 1 Does
+1. **Automated data collection** from GitHub, package managers, and trending APIs
+2. **Quantitative analysis** using metrics and scoring algorithms
+3. **Human judgment** for final selection and quality assessment
+4. **Project shortlisting** with clear selection rationale
 
-## What Phase 2 Does NOT Do
-- Project selection (that's Phase 1)
+## What Phase 1 Does NOT Do
+- Deep repository analysis (that's Phase 2)
+- Pattern discovery (that's Phase 2)
 - Template generation (that's Phase 3)
-- Guideline creation (that's Phase 4)
 
-## Tools Needed for Phase 2
+## Tools for Phase 1
 
-### 1. Deep Analysis Tools
-- **Pattern Matcher** - Discover novel patterns and practices
-- **Code Quality Analyzer** - Analyze code organization and quality
-- **Documentation Analyzer** - Analyze documentation approaches
-- **CI/CD Analyzer** - Analyze CI/CD and deployment practices
+### 1. Data Collection Tools
+- **[GitHub API Collector](github-api-collector/README.md)** - Automated GitHub API data collection
+- **[Package Manager Collector](package-manager-collector/README.md)** - NPM, PyPI, crates.io data collection
+- **[Trending Analyzer](trending-analyzer/README.md)** - GitHub trending repository analysis
 
-### 2. Cross-Project Analysis Tools
-- **Pattern Aggregator** - Aggregate patterns across projects
-- **Best Practice Identifier** - Identify common best practices
-- **Innovation Detector** - Find novel and innovative approaches
-- **Category Comparator** - Compare approaches across categories
+### 2. Analysis Tools
+- **[Metrics Calculator](metrics-calculator/README.md)** - Quantitative metrics calculation and scoring
+- **[Pattern Matcher](pattern-matcher/README.md)** - File detection and pattern matching
+- **[Quality Filter](quality-filter/README.md)** - Automated filtering and threshold application
 
-### 3. Analysis Reporting Tools
-- **Analysis Report Generator** - Generate detailed analysis reports
-- **Pattern Documentation** - Document discovered patterns
-- **Best Practice Catalog** - Catalog identified best practices
+### 3. Integration Tools
+- **[Data Aggregator](data-aggregator/README.md)** - Multi-source data integration
+- **[Report Generator](report-generator/README.md)** - Automated report generation
+- **[Common Library](common-library/README.md)** - Shared functionality across all tools
 
-## Output of Phase 2
-- **Detailed analysis reports** for each project
-- **Pattern catalog** of discovered practices
-- **Best practice inventory** across categories
-- **Innovation examples** and novel approaches
+### 4. Human Judgment Tasks
+- **[Human Prompts](../../data/prompts/01-project-selection/)** - Structured prompts for human judgment
+
+## Common Library Benefits
+
+The **[Common Library](common-library/README.md)** eliminates duplication across all tools by providing:
+
+- **HTTP Client Library** - Rate limiting, retry logic, authentication
+- **Data Processing Library** - Validation, normalization, transformation
+- **Storage Library** - File I/O, database operations, serialization
+- **Configuration Library** - Settings management, environment variables
+- **Logging Library** - Structured logging, performance metrics
+- **Metrics Library** - Statistical calculations, scoring algorithms
+- **Validation Library** - Schema validation, business rules
+
+## Output of Phase 1
+- **Project shortlist** (3-5 projects per category)
+- **Quality assessments** for each selected project
+- **Selection rationale** and decision documentation
+- **Handoff to Phase 2** with complete project data
 
 ## Next Phase
-Phase 2 feeds into **Phase 3: Templates** where we create template repositories based on discovered patterns.
+Phase 1 feeds into **Phase 2: Repository Analysis** where we perform deep analysis of selected projects.
