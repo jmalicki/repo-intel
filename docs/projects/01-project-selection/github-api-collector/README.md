@@ -1,7 +1,7 @@
 # GitHub API Collector
 
 **Parent:** [Projects Overview](../README.md)
-**Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - GitHub API Data Collection task
+**Related:** [Automation Opportunities](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - GitHub API Data Collection task
 
 ## Overview
 

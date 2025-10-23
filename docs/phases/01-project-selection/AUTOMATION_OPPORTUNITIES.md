@@ -1,6 +1,6 @@
 # Automation Opportunities for Candidate Identification
 
-**Parent:** [Project Design](../PROJECT_DESIGN.md)
+**Parent:** [Project Design](../../PROJECT_DESIGN.md)
 
 ## Overview
 
