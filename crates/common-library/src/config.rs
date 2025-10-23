@@ -1,7 +1,7 @@
 //! Configuration management for the common library
 
 use crate::error::{Error, Result};
-use config::{Config, ConfigError, Environment, File, FileFormat};
+use config::{Config, Environment, File, FileFormat};
 use serde::{Deserialize, Serialize};
 
 /// Configuration manager for the common library
@@ -59,7 +59,7 @@ impl Default for AppConfig {
                 timeout_seconds: 30,
                 max_retries: 3,
                 rate_limit_per_minute: 60,
-                user_agent: "common-library/0.1.0".to_string(),
+                user_agent: format!("common-library/{}", env!("CARGO_PKG_VERSION")),
             },
             logging: LoggingConfig {
                 level: "info".to_string(),
@@ -195,7 +195,7 @@ impl ConfigManager {
     }
 
     /// Set a configuration value (runtime configuration changes)
-    pub fn set<T>(&mut self, key: &str, value: T) -> Result<()>
+    pub fn set<T>(&mut self, _key: &str, _value: T) -> Result<()>
     where
         T: serde::Serialize,
     {

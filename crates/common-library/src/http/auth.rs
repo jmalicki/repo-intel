@@ -120,7 +120,7 @@ impl AuthManager {
         if self.auth_configs.is_empty() {
             return None;
         }
-        
+
         self.current_index = (self.current_index + 1) % self.auth_configs.len();
         self.current_auth()
     }

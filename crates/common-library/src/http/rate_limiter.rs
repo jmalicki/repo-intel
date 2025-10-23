@@ -100,10 +100,10 @@ impl SlidingWindowRateLimiter {
     /// Check if a request is allowed
     pub fn is_allowed(&mut self) -> bool {
         let now = Instant::now();
-        
+
         // Remove old requests outside the window
         self.requests.retain(|&time| now.duration_since(time) <= self.window_size);
-        
+
         // Check if we're under the limit
         if self.requests.len() < self.max_requests as usize {
             self.requests.push(now);

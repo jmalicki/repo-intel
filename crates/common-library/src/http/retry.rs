@@ -40,9 +40,9 @@ impl RetryConfig {
         let base_delay = self.initial_delay.as_millis() as f64;
         let multiplier = self.backoff_multiplier.powi(attempt as i32 - 1);
         let delay_ms = base_delay * multiplier;
-        
+
         let mut delay = Duration::from_millis(delay_ms as u64);
-        
+
         // Apply jitter to prevent thundering herd
         if self.jitter {
             let jitter_factor = 0.1; // 10% jitter
@@ -50,12 +50,12 @@ impl RetryConfig {
             let jitter = fastrand::u64(0..=jitter_range);
             delay = Duration::from_millis(delay.as_millis() as u64 + jitter);
         }
-        
+
         // Cap at maximum delay
         if delay > self.max_delay {
             delay = self.max_delay;
         }
-        
+
         delay
     }
 
@@ -87,6 +87,7 @@ impl RetryExecutor {
         Fut: std::future::Future<Output = Result<T>>,
     {
         let mut attempt = 1;
+        #[allow(unused_assignments)]
         let mut last_error = None;
 
         loop {
@@ -102,11 +103,12 @@ impl RetryExecutor {
                 }
                 Err(e) => {
                     last_error = Some(e);
-                    
+
                     if !self.config.should_retry(attempt) {
                         self.logger.error(&format!(
-                            "Operation failed after {} attempts. Giving up.",
-                            attempt
+                            "Operation failed after {} attempts. Last error: {}. Giving up.",
+                            attempt,
+                            last_error.as_ref().unwrap()
                         ));
                         break;
                     }
@@ -123,7 +125,9 @@ impl RetryExecutor {
             }
         }
 
-        Err(last_error.unwrap_or_else(|| Error::http("Retry exhausted")))
+        // Use last_error to avoid unused assignment warning
+        let final_error = last_error.unwrap_or_else(|| Error::http("Retry exhausted".to_string()));
+        Err(final_error)
     }
 
     /// Execute with custom retry condition
@@ -138,6 +142,7 @@ impl RetryExecutor {
         C: FnMut(&Error) -> bool,
     {
         let mut attempt = 1;
+        #[allow(unused_assignments)]
         let mut last_error = None;
 
         loop {
@@ -153,11 +158,12 @@ impl RetryExecutor {
                 }
                 Err(e) => {
                     last_error = Some(e.clone());
-                    
+
                     if !self.config.should_retry(attempt) || !should_retry(&e) {
                         self.logger.error(&format!(
-                            "Operation failed after {} attempts or retry condition not met. Giving up.",
-                            attempt
+                            "Operation failed after {} attempts or retry condition not met. Last error: {}. Giving up.",
+                            attempt,
+                            last_error.as_ref().unwrap()
                         ));
                         break;
                     }
@@ -174,7 +180,9 @@ impl RetryExecutor {
             }
         }
 
-        Err(last_error.unwrap_or_else(|| Error::http("Retry exhausted")))
+        // Use last_error to avoid unused assignment warning
+        let final_error = last_error.unwrap_or_else(|| Error::http("Retry exhausted".to_string()));
+        Err(final_error)
     }
 }
 
@@ -187,10 +195,10 @@ pub mod strategies {
         match error {
             Error::Http(msg) => {
                 // Retry on 5xx server errors and 429 (rate limited)
-                msg.contains("500") || 
-                msg.contains("502") || 
-                msg.contains("503") || 
-                msg.contains("504") || 
+                msg.contains("500") ||
+                msg.contains("502") ||
+                msg.contains("503") ||
+                msg.contains("504") ||
                 msg.contains("429")
             }
             _ => false,

@@ -90,11 +90,11 @@ impl APIClient {
     /// Make a GET request with query parameters
     pub async fn get_with_params(&self, url: &str, params: &[(&str, &str)]) -> Result<Response> {
         let mut request_builder = self.client.get(url);
-        
+
         for (key, value) in params {
             request_builder = request_builder.query(&[(key, value)]);
         }
-        
+
         let request = self.build_request_from_builder(request_builder)?;
         self.execute_request(request).await
     }
@@ -112,7 +112,7 @@ impl APIClient {
     {
         let json_body = serde_json::to_string(body)
             .map_err(|e| Error::http(format!("Failed to serialize JSON: {}", e)))?;
-        
+
         let request = self.build_request("POST", url, Some(&json_body))?;
         self.execute_request(request).await
     }
@@ -184,14 +184,14 @@ impl APIClient {
 
             match self.client.execute(request_clone).await {
                 Ok(response) => {
-                    self.logger.info(&format!("HTTP request successful: {} {}", 
+                    self.logger.info(&format!("HTTP request successful: {} {}",
                         response.status(), response.url()));
                     return Ok(response);
                 }
                 Err(e) if attempt < max_retries => {
                     attempt += 1;
                     let backoff = self.retry_config.calculate_backoff(attempt);
-                    
+
                     self.logger.warn(&format!(
                         "HTTP request failed (attempt {}/{}): {}. Retrying in {:?}",
                         attempt, max_retries, e, backoff
@@ -201,7 +201,7 @@ impl APIClient {
                     continue;
                 }
                 Err(e) => {
-                    self.logger.error(&format!("HTTP request failed after {} attempts: {}", 
+                    self.logger.error(&format!("HTTP request failed after {} attempts: {}",
                         max_retries, e));
                     return Err(Error::http(format!("Request failed: {}", e)));
                 }

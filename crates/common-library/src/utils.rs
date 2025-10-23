@@ -32,13 +32,25 @@ pub mod date {
         dt.format("%Y-%m-%d %H:%M:%S").to_string()
     }
 
+    /// Format a DateTime as RFC3339 string
+    pub fn format_rfc3339(dt: DateTime<Utc>) -> String {
+        dt.to_rfc3339()
+    }
+
+    /// Parse RFC3339 / ISO8601 timestamp (e.g., "2025-10-23T12:34:56Z")
+    pub fn parse_rfc3339(s: &str) -> Result<DateTime<Utc>> {
+        DateTime::parse_from_rfc3339(s)
+            .map(|dt| dt.with_timezone(&Utc))
+            .map_err(|e| Error::generic(format!("Failed to parse RFC3339 timestamp: {}", e)))
+    }
+
     /// Get a timestamp from SystemTime
     pub fn from_system_time(time: SystemTime) -> Result<DateTime<Utc>> {
         let duration = time
             .duration_since(UNIX_EPOCH)
             .map_err(|e| Error::generic(format!("Invalid system time: {}", e)))?;
-        Ok(DateTime::from_timestamp(duration.as_secs() as i64, 0)
-            .ok_or_else(|| Error::generic("Invalid timestamp"))?)
+        DateTime::from_timestamp(duration.as_secs() as i64, duration.subsec_nanos())
+            .ok_or_else(|| Error::generic("Invalid timestamp"))
     }
 }
 
@@ -128,7 +140,6 @@ pub mod compression {
 
 /// String utilities
 pub mod string {
-    use super::*;
 
     /// Truncate a string to the specified length with ellipsis
     pub fn truncate(s: &str, max_len: usize) -> String {
@@ -147,9 +158,8 @@ pub mod string {
     /// Convert a string to snake_case
     pub fn to_snake_case(s: &str) -> String {
         let mut result = String::new();
-        let mut chars = s.chars().peekable();
 
-        while let Some(c) = chars.next() {
+        for c in s.chars() {
             if c.is_uppercase() && !result.is_empty() {
                 result.push('_');
             }
@@ -223,7 +233,6 @@ pub mod fs {
 
 /// Validation utilities
 pub mod validation {
-    use super::*;
 
     /// Validate an email address format
     pub fn is_valid_email(email: &str) -> bool {
