@@ -2,15 +2,15 @@
 
 ## Overview
 
-The Pattern Matcher is an LLM-powered tool that performs specific, concrete analysis tasks on repository content to identify patterns that automated scripts cannot detect.
+The Pattern Matcher is a script that makes LLM API calls to analyze specific repository files and content, then returns structured JSON responses with boolean indicators and counts.
 
-## Purpose
+## What It Actually Does
 
-- **Detect specific file patterns** that indicate practices (e.g., "has .github/dependabot.yml")
-- **Analyze specific content patterns** in configuration files
-- **Identify specific practice indicators** in documentation and code
-- **Generate structured reports** with specific findings
-- **Complement automated detection** with content analysis
+1. **Takes a repository path** as input
+2. **Reads specific files** (.github/dependabot.yml, README.md, etc.)
+3. **Makes LLM API calls** with file content and specific prompts
+4. **Returns structured JSON** with yes/no answers and counts
+5. **No human interaction** - fully automated script
 
 ## Design Principles
 
@@ -20,57 +20,89 @@ The Pattern Matcher is an LLM-powered tool that performs specific, concrete anal
 4. **Focused Analysis** - Target specific areas where judgment is needed
 5. **Efficient Token Usage** - Optimize LLM calls for maximum value
 
-## Specific Analysis Tasks
+## Actual Implementation
 
-### 1. Security Practice Detection
-- **Dependabot Check**: Does .github/dependabot.yml exist and have security updates enabled?
-- **Security Policy Check**: Does SECURITY.md exist and contain vulnerability disclosure process?
-- **Dependency Scanning Check**: Are there security scanning tools in CI/CD (Snyk, OWASP, etc.)?
-- **Security Headers Check**: Do web apps have security headers (CSP, HSTS, etc.)?
-- **Dependency Update Check**: Are there automated dependency update workflows?
+### Input
+- **Repository path** (e.g., "/path/to/repo" or "owner/repo")
+- **Specific files to analyze** (predefined list)
 
-### 2. Documentation Quality Assessment
-- **README Installation Check**: Does README.md have installation instructions?
-- **README Usage Check**: Does README.md have usage examples with code?
-- **API Docs Check**: Are there API docs (OpenAPI spec, JSDoc comments, etc.)?
-- **Contributing Check**: Does CONTRIBUTING.md exist and have clear contribution process?
-- **Docs Structure Check**: Is there a docs/ directory with organized documentation?
+### Process
+1. **Read files**: Script reads specific files from repository
+2. **LLM API call**: Send file content + prompt to LLM API
+3. **Parse response**: Extract structured data from LLM response
+4. **Return JSON**: Return structured analysis results
 
-### 3. CI/CD Practice Detection
-- **GitHub Actions Check**: Are there .github/workflows/ files with CI/CD pipelines?
-- **Testing Integration Check**: Do CI/CD pipelines run automated tests?
-- **Deployment Check**: Are there automated deployment workflows?
-- **Quality Gates Check**: Do CI/CD pipelines have quality gates (linting, security scans)?
-- **Multi-Platform Check**: Are there cross-platform testing workflows (Linux, Windows, macOS)?
+### Output
+```json
+{
+  "repository": "owner/repo",
+  "has_dependabot": true,
+  "has_security_md": false,
+  "readme_has_installation": true,
+  "readme_has_examples": true,
+  "test_file_count": 15,
+  "docs_file_count": 8
+}
+```
 
-### 4. Code Quality Indicators
-- **Linting Check**: Are there linting config files (.eslintrc, .prettierrc, etc.)?
-- **Testing Setup Check**: Are there test config files (jest.config.js, pytest.ini, etc.)?
-- **Coverage Check**: Is there code coverage reporting in CI/CD?
-- **Type Safety Check**: Is TypeScript or similar type safety used?
-- **Performance Check**: Are there performance testing or monitoring tools?
+## Specific File Checks
 
-## Specific LLM Tasks
+### Security Files
+- **Check .github/dependabot.yml**: Read file, send to LLM with prompt "Does this file enable security updates?"
+- **Check SECURITY.md**: Read file, send to LLM with prompt "Does this file contain vulnerability disclosure process?"
 
-### 1. File Content Analysis
-- **Check .github/dependabot.yml**: Does it exist and have security updates enabled?
-- **Check SECURITY.md**: Does it exist and contain vulnerability disclosure process?
-- **Check README.md**: Does it have installation instructions and usage examples?
-- **Check CONTRIBUTING.md**: Does it exist and have clear contribution process?
-- **Check .github/workflows/**: Are there CI/CD pipeline files?
+### Documentation Files  
+- **Check README.md**: Read file, send to LLM with prompt "Does this README have installation instructions and usage examples?"
+- **Check CONTRIBUTING.md**: Read file, send to LLM with prompt "Does this file have clear contribution process?"
 
-### 2. Specific Pattern Detection
-- **Count test files**: How many test files are there (test/, tests/, __tests__/)?
-- **Count documentation files**: How many documentation files are there?
-- **Check for linting configs**: Are there .eslintrc, .prettierrc, etc.?
-- **Check for type safety**: Is TypeScript or similar used?
-- **Check for coverage reporting**: Is code coverage reported in CI/CD?
+### CI/CD Files
+- **Check .github/workflows/**: List directory, send to LLM with prompt "Are there CI/CD pipeline files here?"
+- **Check package.json**: Read file, send to LLM with prompt "Does this have test scripts and CI/CD configuration?"
 
-### 3. Structured Output Generation
-- **Boolean answers**: Yes/No for each specific check
-- **Count metrics**: Number of test files, docs files, etc.
-- **Quality scores**: 0-1 scores for each quality dimension
-- **Evidence**: Specific file names and content snippets as evidence
+## Script Implementation
+
+### Python Script Structure
+```python
+def analyze_repository(repo_path):
+    results = {}
+    
+    # Check .github/dependabot.yml
+    dependabot_file = f"{repo_path}/.github/dependabot.yml"
+    if os.path.exists(dependabot_file):
+        content = read_file(dependabot_file)
+        prompt = "Does this dependabot.yml file enable security updates? Answer yes/no only."
+        results["has_dependabot"] = call_llm_api(content, prompt)
+    
+    # Check SECURITY.md
+    security_file = f"{repo_path}/SECURITY.md"
+    if os.path.exists(security_file):
+        content = read_file(security_file)
+        prompt = "Does this SECURITY.md file contain vulnerability disclosure process? Answer yes/no only."
+        results["has_security_md"] = call_llm_api(content, prompt)
+    
+    # Check README.md
+    readme_file = f"{repo_path}/README.md"
+    if os.path.exists(readme_file):
+        content = read_file(readme_file)
+        prompt = "Does this README have installation instructions and usage examples? Answer yes/no only."
+        results["readme_has_installation"] = call_llm_api(content, prompt)
+    
+    return results
+```
+
+### LLM API Call
+```python
+def call_llm_api(file_content, prompt):
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a code analysis tool. Answer only yes/no."},
+            {"role": "user", "content": f"{prompt}\n\nFile content:\n{file_content}"}
+        ],
+        temperature=0
+    )
+    return response.choices[0].message.content.strip().lower() == "yes"
+```
 
 ## Specific LLM Prompts
 
