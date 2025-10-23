@@ -23,52 +23,54 @@ The Pattern Matcher is an LLM-powered tool that performs specific, concrete anal
 ## Specific Analysis Tasks
 
 ### 1. Security Practice Detection
-- **Dependabot Configuration**: Analyze .github/dependabot.yml for security scanning setup
-- **Security Policy**: Check for SECURITY.md file and analyze content
-- **Vulnerability Disclosure**: Look for vulnerability disclosure processes in documentation
-- **Dependency Scanning**: Detect automated dependency vulnerability scanning
-- **Security Headers**: Check for security headers in web applications
+- **Dependabot Check**: Does .github/dependabot.yml exist and have security updates enabled?
+- **Security Policy Check**: Does SECURITY.md exist and contain vulnerability disclosure process?
+- **Dependency Scanning Check**: Are there security scanning tools in CI/CD (Snyk, OWASP, etc.)?
+- **Security Headers Check**: Do web apps have security headers (CSP, HSTS, etc.)?
+- **Dependency Update Check**: Are there automated dependency update workflows?
 
 ### 2. Documentation Quality Assessment
-- **README Completeness**: Analyze README.md for required sections (installation, usage, examples)
-- **API Documentation**: Check for API documentation generation (OpenAPI, JSDoc, etc.)
-- **Contributing Guidelines**: Analyze CONTRIBUTING.md for contribution process clarity
-- **Code Examples**: Count and assess quality of code examples in documentation
-- **Documentation Structure**: Check for organized documentation hierarchy
+- **README Installation Check**: Does README.md have installation instructions?
+- **README Usage Check**: Does README.md have usage examples with code?
+- **API Docs Check**: Are there API docs (OpenAPI spec, JSDoc comments, etc.)?
+- **Contributing Check**: Does CONTRIBUTING.md exist and have clear contribution process?
+- **Docs Structure Check**: Is there a docs/ directory with organized documentation?
 
 ### 3. CI/CD Practice Detection
-- **GitHub Actions**: Analyze .github/workflows/ for CI/CD pipeline sophistication
-- **Testing Integration**: Detect automated testing in CI/CD pipelines
-- **Deployment Automation**: Check for automated deployment processes
-- **Quality Gates**: Look for quality gates in CI/CD (tests, linting, security scans)
-- **Multi-Platform Support**: Detect cross-platform testing and deployment
+- **GitHub Actions Check**: Are there .github/workflows/ files with CI/CD pipelines?
+- **Testing Integration Check**: Do CI/CD pipelines run automated tests?
+- **Deployment Check**: Are there automated deployment workflows?
+- **Quality Gates Check**: Do CI/CD pipelines have quality gates (linting, security scans)?
+- **Multi-Platform Check**: Are there cross-platform testing workflows (Linux, Windows, macOS)?
 
 ### 4. Code Quality Indicators
-- **Linting Configuration**: Check for ESLint, Prettier, or similar configuration files
-- **Testing Setup**: Analyze test configuration and setup files
-- **Code Coverage**: Look for code coverage reporting in CI/CD
-- **Type Safety**: Detect TypeScript usage or similar type safety measures
-- **Performance Monitoring**: Check for performance testing and monitoring setup
+- **Linting Check**: Are there linting config files (.eslintrc, .prettierrc, etc.)?
+- **Testing Setup Check**: Are there test config files (jest.config.js, pytest.ini, etc.)?
+- **Coverage Check**: Is there code coverage reporting in CI/CD?
+- **Type Safety Check**: Is TypeScript or similar type safety used?
+- **Performance Check**: Are there performance testing or monitoring tools?
 
 ## Specific LLM Tasks
 
 ### 1. File Content Analysis
-- **Configuration File Analysis**: Analyze specific config files (.github/dependabot.yml, package.json, Cargo.toml)
-- **Documentation Content Analysis**: Analyze README.md, CONTRIBUTING.md, SECURITY.md content
-- **CI/CD Workflow Analysis**: Analyze .github/workflows/ files for pipeline sophistication
-- **Code Quality Config Analysis**: Analyze linting, testing, and quality configuration files
+- **Check .github/dependabot.yml**: Does it exist and have security updates enabled?
+- **Check SECURITY.md**: Does it exist and contain vulnerability disclosure process?
+- **Check README.md**: Does it have installation instructions and usage examples?
+- **Check CONTRIBUTING.md**: Does it exist and have clear contribution process?
+- **Check .github/workflows/**: Are there CI/CD pipeline files?
 
 ### 2. Specific Pattern Detection
-- **Security Practice Detection**: Look for specific security practices in config files
-- **Documentation Quality Assessment**: Check for specific documentation elements
-- **CI/CD Sophistication**: Detect specific CI/CD practices and automation
-- **Code Quality Practices**: Identify specific code quality measures
+- **Count test files**: How many test files are there (test/, tests/, __tests__/)?
+- **Count documentation files**: How many documentation files are there?
+- **Check for linting configs**: Are there .eslintrc, .prettierrc, etc.?
+- **Check for type safety**: Is TypeScript or similar used?
+- **Check for coverage reporting**: Is code coverage reported in CI/CD?
 
 ### 3. Structured Output Generation
-- **Boolean Indicators**: Generate yes/no answers for specific practices
-- **Count Metrics**: Count specific elements (e.g., number of test files, documentation sections)
-- **Quality Scores**: Generate 0-1 scores for specific quality dimensions
-- **Specific Findings**: List specific practices found with evidence
+- **Boolean answers**: Yes/No for each specific check
+- **Count metrics**: Number of test files, docs files, etc.
+- **Quality scores**: 0-1 scores for each quality dimension
+- **Evidence**: Specific file names and content snippets as evidence
 
 ## Specific LLM Prompts
 
