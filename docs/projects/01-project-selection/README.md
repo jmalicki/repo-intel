@@ -2,69 +2,44 @@
 
 **Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Phase 1 Tools
 
-This directory contains the detailed design specifications for tools needed to support Phase 1 (Project Selection) of the repo intelligence project.
+This directory contains tools for **selecting** which projects to analyze, not for analyzing them.
 
-## Tool Architecture
+## Phase 1 Purpose
+**Goal**: Choose a high-quality, diverse set of projects for rigorous analysis
 
-The Phase 1 tools are designed to automate candidate identification while minimizing token usage and maximizing human judgment on high-value tasks.
+## What Phase 1 Does
+1. **Identify candidate projects** across 8 categories
+2. **Apply initial filters** (stars, activity, quality indicators)
+3. **Generate shortlist** of projects worth deep analysis
+4. **Provide selection rationale** for each chosen project
 
-## Tool Categories
+## What Phase 1 Does NOT Do
+- Deep repository analysis
+- Pattern discovery
+- Best practice identification
+- Template generation
 
-### 1. Data Collection Tools
-- **GitHub API Collector** - Automated GitHub API data collection
-- **Package Manager Collector** - NPM, PyPI, crates.io data collection
-- **Trending Analyzer** - GitHub trending repository analysis
+## Tools Needed for Phase 1
 
-### 2. Analysis Tools
-- **Metrics Calculator** - Quantitative metrics calculation and scoring
-- **Pattern Matcher** - LLM-based pattern matching and discovery
-- **Data Aggregator** - Multi-source data integration
+### 1. Project Discovery Tools
+- **GitHub API Collector** - Find projects by category, stars, activity
+- **Package Manager Collector** - Find projects by download stats
+- **Trending Analyzer** - Find trending and emerging projects
 
-### 3. Filtering & Reporting Tools
-- **Quality Filter** - Automated filtering and threshold application
-- **Report Generator** - Automated report generation and formatting
+### 2. Initial Filtering Tools
+- **Metrics Calculator** - Calculate basic quality metrics
+- **Quality Filter** - Apply minimum thresholds
+- **Data Aggregator** - Combine data from multiple sources
 
-## Design Principles
+### 3. Selection Tools
+- **Report Generator** - Generate selection reports
+- **Selection Rationale** - Document why projects were chosen
 
-1. **Maximize Automation** - Use scripts for mechanistic tasks
-2. **Minimize LLM Usage** - Only use LLMs where judgment is required
-3. **Preserve Human Review** - Focus human intelligence on high-value assessment
-4. **Token Efficiency** - Reduce token usage by 70% through automation
-5. **Scalability** - Handle 160-240 candidate projects efficiently
+## Output of Phase 1
+- **Shortlist of 24-40 projects** (3-5 per category)
+- **Selection rationale** for each project
+- **Quality metrics** for each project
+- **Diversity analysis** across categories and scales
 
-## Tool Integration
-
-Each tool is designed to work independently while integrating seamlessly with the overall workflow:
-
-```
-Data Collection → Analysis → Pattern Matching → Report Generation → Human Review
-```
-
-## Directory Structure
-
-```
-docs/projects/01-project-selection/
-├── README.md                    # This overview
-├── github-api-collector/         # GitHub API data collection tool
-├── package-manager-collector/    # Package manager data collection
-├── trending-analyzer/           # Trending repository analysis
-├── metrics-calculator/          # Quantitative metrics calculation
-├── pattern-matcher/             # LLM-based pattern matching
-├── data-aggregator/             # Multi-source data integration
-├── quality-filter/              # Automated filtering and thresholds
-└── report-generator/            # Automated report generation
-```
-
-## Implementation Priority
-
-1. **High Priority** - GitHub API Collector, Metrics Calculator, Data Aggregator
-2. **Medium Priority** - Package Manager Collector, Trending Analyzer, Quality Filter
-3. **Low Priority** - Pattern Matcher, Report Generator
-
-## Success Metrics
-
-- **Automation Rate** - 70% reduction in manual tasks
-- **Token Efficiency** - 70% reduction in token usage
-- **Processing Speed** - Handle 160-240 projects in 3 weeks
-- **Quality Assurance** - Maintain high-quality candidate selection
-- **Human Focus** - Preserve human judgment for critical decisions
+## Next Phase
+Phase 1 feeds into **Phase 2: Analysis** where we do the deep repository analysis and pattern discovery.
