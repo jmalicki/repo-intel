@@ -1,7 +1,11 @@
 # Final Quality Assessment Prompt
 
-**Task:** Final quality decisions and threshold application
-**Context:** Apply human judgment to quality assessment after automated metrics collection
+**Parent:** [Human Prompts](../README.md)
+**Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Final Quality Assessment task
+
+## Overview
+
+This prompt guides human reviewers through final quality decisions and threshold application. It provides a structured framework for applying human judgment to quality assessment after automated metrics collection.
 
 ## Pre-Assessment Checklist
 

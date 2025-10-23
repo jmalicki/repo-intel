@@ -1,7 +1,11 @@
 # Project Selection and Ranking Prompt
 
-**Task:** Final project selection and ranking decisions
-**Context:** Review automated metrics and apply human judgment for final selection
+**Parent:** [Human Prompts](../README.md)
+**Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Project Selection and Ranking task
+
+## Overview
+
+This prompt guides human reviewers through the final project selection and ranking decisions. It provides a structured framework for evaluating projects and making informed selection choices.
 
 ## Pre-Review Checklist
 

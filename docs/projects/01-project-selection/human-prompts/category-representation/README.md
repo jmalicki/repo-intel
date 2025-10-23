@@ -1,7 +1,11 @@
 # Category Representation Assessment Prompt
 
-**Task:** Ensure appropriate category coverage and diversity
-**Context:** Review selected projects to ensure comprehensive category representation
+**Parent:** [Human Prompts](../README.md)
+**Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Category Representation task
+
+## Overview
+
+This prompt guides human reviewers through ensuring appropriate category coverage and diversity. It provides a structured framework for assessing representation across all project categories.
 
 ## Pre-Assessment Checklist
 

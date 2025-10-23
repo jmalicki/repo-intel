@@ -1,30 +1,30 @@
 # Human Prompts for Phase 1: Project Selection
 
 **Parent:** [Projects Overview](../README.md)
-**Related:** [Automation Opportunities](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Human judgment tasks
+**Related:** [Automation Opportunities](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Human judgment tasks
 
 ## Overview
 
-This directory contains carefully designed prompts for the human judgment tasks in Phase 1 that cannot be automated. These prompts guide human reviewers through the qualitative assessment and final selection decisions.
+This directory contains carefully designed prompts for the human judgment tasks in Phase 1 that cannot be automated. Each prompt is organized in its own directory for focused, discrete guidance.
 
 ## Human Judgment Tasks
 
-Based on [AUTOMATION_OPPORTUNITIES.md](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md), the following tasks require human judgment:
+Based on [AUTOMATION_OPPORTUNITIES.md](../../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md), the following tasks require human judgment:
 
 ### 1. Project Selection and Ranking
 **Task:** Final project selection and ranking decisions
 **Automation Potential:** 0% - Requires human judgment
-**Prompt:** [project-selection-ranking.md](project-selection-ranking.md)
+**Prompt:** [Project Selection and Ranking](project-selection-ranking/README.md)
 
 ### 2. Category Representation Assessment
 **Task:** Ensure appropriate category coverage and diversity
 **Automation Potential:** 0% - Requires human judgment
-**Prompt:** [category-representation.md](category-representation.md)
+**Prompt:** [Category Representation](category-representation/README.md)
 
 ### 3. Final Quality Assessment
 **Task:** Final quality decisions and threshold application
 **Automation Potential:** 0% - Requires human judgment
-**Prompt:** [final-quality-assessment.md](final-quality-assessment.md)
+**Prompt:** [Final Quality Assessment](final-quality-assessment/README.md)
 
 ## Prompt Design Principles
 
