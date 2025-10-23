@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Data Aggregator is a fully automated tool that integrates data from multiple sources (GitHub API, package managers, trending analysis) into a unified dataset for comprehensive project analysis.
+The Data Aggregator is a **deterministic Python script** that merges data from multiple sources, resolves conflicts, and creates unified datasets. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 

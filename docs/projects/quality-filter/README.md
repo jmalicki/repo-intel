@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Quality Filter is a fully automated tool that applies quality thresholds and filtering criteria to candidate projects to identify high-quality repositories for analysis.
+The Quality Filter is a **deterministic Python script** that applies mathematical thresholds and filtering rules to candidate projects. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 

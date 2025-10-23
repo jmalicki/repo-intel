@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Pattern Matcher is a script that makes LLM API calls to analyze specific repository files and content, then returns structured JSON responses with boolean indicators and counts.
+The Pattern Matcher is a **hybrid Python script** that reads repository files and makes LLM API calls to analyze content, then returns structured JSON responses. It's a deterministic script that occasionally asks LLM questions.
 
 ## What It Actually Does
 

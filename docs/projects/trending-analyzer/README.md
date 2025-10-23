@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Trending Analyzer is a fully automated tool that analyzes GitHub trending repositories to identify popular and emerging projects across different categories and time periods.
+The Trending Analyzer is a **deterministic Python script** that queries GitHub's trending APIs, performs mathematical calculations on trending data, and generates trending scores and rankings. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 

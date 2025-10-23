@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Package Manager Collector is a fully automated tool that collects download statistics, ratings, and metadata from package managers (NPM, PyPI, crates.io) for candidate projects.
+The Package Manager Collector is a **deterministic Python script** that makes HTTP requests to package manager APIs (NPM, PyPI, crates.io), processes JSON responses, and stores data. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 

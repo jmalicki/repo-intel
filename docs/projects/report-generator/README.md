@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Report Generator is a fully automated tool that creates comprehensive reports from aggregated project data, quality assessments, and analysis results for human review.
+The Report Generator is a **deterministic Python script** that processes structured data and generates reports using templates and formatting rules. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 

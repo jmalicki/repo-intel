@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Metrics Calculator is a fully automated tool that processes raw repository data to calculate quantitative metrics, scores, and rankings for candidate projects.
+The Metrics Calculator is a **deterministic Python script** that performs mathematical calculations on repository data to generate scores, rankings, and metrics. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 

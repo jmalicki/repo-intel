@@ -2,7 +2,7 @@
 
 ## Overview
 
-The GitHub API Collector is a fully automated tool that collects comprehensive repository data from GitHub's API for all candidate projects across the 8 categories.
+The GitHub API Collector is a **deterministic Python script** that makes HTTP requests to GitHub's API, processes JSON responses, and stores data in structured formats. No LLM calls, no human interaction, no subagents.
 
 ## Purpose
 
