@@ -3,6 +3,22 @@
 **Parent:** [Projects Overview](../README.md)
 **Related:** [Automation Opportunities](../../phases/01-project-selection/AUTOMATION_OPPORTUNITIES.md) - Human judgment task orchestration
 
+## ⚠️ **NOT READY FOR IMPLEMENTATION** ⚠️
+
+**🚨 CRITICAL DECISION PENDING 🚨**
+
+This component requires **significant strategic decisions** before implementation can begin:
+
+- **LLM Provider Strategy**: Pure Rust vs. PyO3 + Python vs. Pure Python vs. Microservice approach
+- **Library Integration**: Which LLM abstraction libraries to use (LiteLLM, OpenRouter, custom implementation)
+- **Performance Requirements**: How critical is performance vs. development speed
+- **Ecosystem Access**: Importance of Python LLM ecosystem vs. native Rust performance
+- **Deployment Strategy**: Single binary vs. multiple services vs. Python environment
+
+**See [LLM Abstraction Strategy](LLM_ABSTRACTION_STRATEGY.md) for detailed analysis and decision framework.**
+
+**DO NOT START IMPLEMENTATION** until these strategic decisions are made and documented.
+
 ## Overview
 
 The LLM Orchestrator is a **hybrid Python script** that uses LLM API calls to execute human judgment tasks by templating and chaining prompts from the human prompts directory. It automates the execution of human judgment workflows while maintaining the quality and structure of human decision-making.
@@ -30,6 +46,16 @@ This tool uses the **[Common Library](../common-library/README.md)** for:
 - **Storage Library** - File I/O, database operations, serialization
 - **Logging Library** - Structured logging, performance metrics
 - **Configuration Library** - Settings management, environment variables
+
+## LLM Provider Strategy
+
+**Strategy Document**: See [LLM Abstraction Strategy](LLM_ABSTRACTION_STRATEGY.md) for detailed analysis of LLM provider integration options, trade-offs, and recommended implementation approach.
+
+**Quick Summary**:
+- **Custom Rust Implementation**: Core orchestration with trait-based abstraction
+- **OpenRouter Integration**: Unified access to 100+ models with cost optimization
+- **LiteLLM Microservice**: Optional advanced features and extended provider support
+- **Hybrid Approach**: Combine custom implementation with existing libraries
 
 ## Human Prompt Integration
 
@@ -293,7 +319,7 @@ workflows:
 - **Package Manager Collector** - Package ecosystem data
 - **Trending Analyzer** - Trending patterns and growth
 - **Metrics Calculator** - Calculated scores and rankings
-- **Data Aggregator** - Unified project datasets
+- **Repository Data Aggregator** - Unified project datasets
 
 ### Output Destinations
 - **Report Generator** - Final report formatting

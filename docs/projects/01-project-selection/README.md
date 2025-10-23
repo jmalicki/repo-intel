@@ -23,6 +23,7 @@ This directory contains tools for **selecting** high-quality projects for analys
 
 ### 1. Data Collection Tools
 - **[GitHub API Collector](github-api-collector/README.md)** - Automated GitHub API data collection
+- **[GitHub Archive Collector](github-archive-collector/README.md)** - Historical time series data collection
 - **[Package Manager Collector](package-manager-collector/README.md)** - NPM, PyPI, crates.io data collection
 - **[Trending Analyzer](trending-analyzer/README.md)** - GitHub trending repository analysis
 
@@ -32,7 +33,7 @@ This directory contains tools for **selecting** high-quality projects for analys
 - **[Quality Filter](quality-filter/README.md)** - Automated filtering and threshold application
 
 ### 3. Integration Tools
-- **[Data Aggregator](data-aggregator/README.md)** - Multi-source data integration
+- **[Repository Data Aggregator](repository-data-aggregator/README.md)** - Multi-source data integration
 - **[Report Generator](report-generator/README.md)** - Automated report generation
 - **[LLM Orchestrator](llm-orchestrator/README.md)** - Human judgment task execution
 - **[Common Library](common-library/README.md)** - Shared functionality across all tools

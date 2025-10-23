@@ -189,7 +189,7 @@ class Validator:
 - **Uses:** Metrics, Validation, Storage, Logging
 - **Benefits:** Standardized calculations, data validation
 
-### Data Aggregator
+### Repository Data Aggregator
 - **Uses:** Data Processing, Storage, Validation, Logging
 - **Benefits:** Consistent data merging, validation, storage
 

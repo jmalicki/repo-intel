@@ -69,67 +69,14 @@ This tool uses the **[Common Library](../common-library/README.md)** for:
 
 ## Data Schema
 
-### Package Data Schema
-```json
-{
-  "package_id": "unique_identifier",
-  "name": "package_name",
-  "registry": "npm|pypi|crates.io",
-  "github_repo": "owner/repository",
-  "metadata": {
-    "description": "Package description",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://package-homepage.com",
-    "repository": "https://github.com/owner/repo",
-    "keywords": ["keyword1", "keyword2"],
-    "author": "Author Name",
-    "maintainers": ["maintainer1", "maintainer2"]
-  },
-  "downloads": {
-    "total": 1000000,
-    "monthly": 50000,
-    "weekly": 12000,
-    "daily": 1700,
-    "trends": {
-      "growth_rate": 0.15,
-      "download_velocity": 0.85,
-      "popularity_rank": 5
-    }
-  },
-  "dependencies": {
-    "count": 25,
-    "list": ["dep1", "dep2", "dep3"],
-    "dev_dependencies": 5,
-    "peer_dependencies": 2
-  },
-  "dependents": {
-    "count": 1500,
-    "direct": 800,
-    "indirect": 700
-  },
-  "versions": {
-    "latest": "1.0.0",
-    "total": 50,
-    "release_dates": {
-      "1.0.0": "2024-01-15T10:00:00Z",
-      "0.9.0": "2024-01-01T10:00:00Z"
-    }
-  },
-  "ratings": {
-    "average": 4.8,
-    "count": 150,
-    "distribution": {
-      "5_star": 120,
-      "4_star": 20,
-      "3_star": 5,
-      "2_star": 3,
-      "1_star": 2
-    }
-  },
-  "collection_timestamp": "2024-01-15T10:30:00Z"
-}
-```
+**See [API_SCHEMAS.md](API_SCHEMAS.md) for actual API response schemas from NPM, PyPI, and Crates.io.**
+
+The package manager APIs provide different data structures. We collect and normalize:
+- **Package metadata** (name, description, version, license)
+- **Repository information** (GitHub URLs, homepage)
+- **Dependencies** (direct dependencies per version)
+- **Version history** (release dates, version numbers)
+- **Download statistics** (where available via separate endpoints)
 
 ## API Integration
 

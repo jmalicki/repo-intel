@@ -22,7 +22,7 @@ The Phase 1 tools are designed to automate candidate identification while minimi
 
 ### 3. Orchestration Tools
 - **Workflow Orchestrator** - End-to-end automation coordination
-- **Data Aggregator** - Multi-source data integration
+- **Repository Data Aggregator** - Multi-source data integration
 - **Quality Filter** - Automated filtering and threshold application
 
 ## Design Principles
@@ -55,7 +55,7 @@ docs/projects/
 ## Implementation Priority
 
 1. **High Priority** - GitHub API Collector, Metrics Calculator, Workflow Orchestrator
-2. **Medium Priority** - Package Manager Collector, Trending Analyzer, Data Aggregator
+2. **Medium Priority** - Package Manager Collector, Trending Analyzer, Repository Data Aggregator
 3. **Low Priority** - Pattern Matcher, Report Generator, Quality Filter
 
 ## Success Metrics
