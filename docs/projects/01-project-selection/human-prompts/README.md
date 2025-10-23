@@ -26,6 +26,25 @@ Based on [AUTOMATION_OPPORTUNITIES.md](../../../phases/01-project-selection/AUTO
 **Automation Potential:** 0% - Requires human judgment
 **Prompt:** [Final Quality Assessment](final-quality-assessment/README.md)
 
+## Shared Process Support Prompts
+
+These prompts support all human judgment tasks:
+
+### 4. Pre-Assessment Checklist
+**Purpose:** Ensure all necessary data and preparations are complete
+**Focus:** Data collection, team preparation, process readiness
+**Prompt:** [Pre-Assessment Checklist](pre-assessment-checklist.md)
+
+### 5. Quality Assurance
+**Purpose:** Ensure consistent, high-quality decisions throughout the process
+**Focus:** Cross-validation, documentation quality, process consistency
+**Prompt:** [Quality Assurance](quality-assurance.md)
+
+### 6. Documentation Requirements
+**Purpose:** Define comprehensive documentation requirements
+**Focus:** Assessment documentation, decision documentation, process documentation
+**Prompt:** [Documentation Requirements](documentation-requirements.md)
+
 ## Prompt Design Principles
 
 ### 1. **Clear Structure**

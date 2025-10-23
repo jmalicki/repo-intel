@@ -60,17 +60,17 @@ All prompts use Jinja-like templating with the following variables:
 **Output:** Final validation report and Phase 2 handoff
 
 ### Process Support Prompts
-### 4. [Pre-Assessment Checklist](pre-assessment-checklist.md)
+### 4. [Pre-Assessment Checklist](../pre-assessment-checklist.md)
 **Purpose:** Ensure all necessary data and preparations are complete
 **Focus:** Data collection, team preparation, process readiness
 **Output:** Readiness validation and go/no-go decision
 
-### 5. [Quality Assurance](quality-assurance.md)
+### 5. [Quality Assurance](../quality-assurance.md)
 **Purpose:** Ensure consistent, high-quality decisions throughout the process
 **Focus:** Cross-validation, documentation quality, process consistency
 **Output:** Quality assurance procedures and validation
 
-### 6. [Documentation Requirements](documentation-requirements.md)
+### 6. [Documentation Requirements](../documentation-requirements.md)
 **Purpose:** Define comprehensive documentation requirements
 **Focus:** Quality documentation, excellence documentation, validation documentation
 **Output:** Documentation standards and deliverables

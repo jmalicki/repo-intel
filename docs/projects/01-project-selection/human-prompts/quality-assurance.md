@@ -1,10 +1,10 @@
 # Quality Assurance
 
-**Parent:** [Category Representation](README.md)
+**Parent:** [Human Prompts](README.md)
 
 ## Overview
 
-This prompt provides comprehensive quality assurance procedures for the category representation assessment process. It ensures consistent, high-quality decisions while maintaining process integrity.
+This prompt provides comprehensive quality assurance procedures for all human judgment tasks in the project selection process. It ensures consistent, high-quality decisions while maintaining process integrity.
 
 ## Quality Assurance Framework
 
@@ -17,13 +17,13 @@ This prompt provides comprehensive quality assurance procedures for the category
 - [ ] Disagreements are resolved through discussion
 
 **Data Cross-Reference:**
-- [ ] Human decisions are validated against data
-- [ ] Diversity assessments are verified
+- [ ] Human decisions are validated against automated data
 - [ ] Quality assessments are cross-referenced
+- [ ] Diversity assessments are verified
 - [ ] Data consistency is maintained
 
-**Representation Criteria Validation:**
-- [ ] All representation criteria are consistently applied
+**Criteria Validation:**
+- [ ] All selection criteria are consistently applied
 - [ ] Criteria interpretation is standardized
 - [ ] Decision rationale is documented
 - [ ] Criteria compliance is verified
@@ -31,22 +31,22 @@ This prompt provides comprehensive quality assurance procedures for the category
 ### 2. Documentation Quality Assurance
 
 **Assessment Documentation:**
-- [ ] All diversity assessments are documented
+- [ ] All assessments are documented for {{ project_name }}
 - [ ] Assessment rationale is clear and comprehensive
-- [ ] Diversity scores are justified
+- [ ] Quality scores are justified
 - [ ] Assessment methodology is consistent
 
-**Representation Documentation:**
-- [ ] All representation decisions are documented
-- [ ] Representation rationale is clear and comprehensive
-- [ ] Representation methodology is consistent
-- [ ] Representation criteria are applied uniformly
+**Decision Documentation:**
+- [ ] All decisions are documented
+- [ ] Decision rationale is clear and comprehensive
+- [ ] Decision methodology is consistent
+- [ ] Decision criteria are applied uniformly
 
-**Category Documentation:**
-- [ ] All category assessments are documented
-- [ ] Category rationale is clear and comprehensive
-- [ ] Category criteria are consistently applied
-- [ ] Category methodology is documented
+**Process Documentation:**
+- [ ] All processes are documented
+- [ ] Process rationale is clear and comprehensive
+- [ ] Process methodology is consistent
+- [ ] Process criteria are applied uniformly
 
 ### 3. Process Quality Assurance
 
@@ -168,4 +168,4 @@ This prompt provides comprehensive quality assurance procedures for the category
 - [ ] Process compliance is verified
 - [ ] Quality report is generated
 
-This prompt ensures comprehensive quality assurance throughout the category representation assessment process while maintaining high standards and process integrity.
+This prompt ensures comprehensive quality assurance throughout all human judgment tasks while maintaining high standards and process integrity.

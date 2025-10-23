@@ -1,68 +1,68 @@
 # Documentation Requirements
 
-**Parent:** [Category Representation](README.md)
+**Parent:** [Human Prompts](README.md)
 
 ## Overview
 
-This prompt defines the comprehensive documentation requirements for the category representation assessment process. It ensures all decisions, rationale, and processes are properly documented.
+This prompt defines the comprehensive documentation requirements for all human judgment tasks in the project selection process. It ensures all decisions, rationale, and processes are properly documented.
 
 ## Documentation Framework
 
-### 1. Diversity Assessment Documentation
+### 1. Assessment Documentation
 
-**Scale Diversity Documentation:**
-- [ ] Scale diversity assessment methodology is documented
-- [ ] Scale diversity criteria are clearly defined
-- [ ] Scale diversity scores are documented with rationale
-- [ ] Scale diversity assessment process is recorded
+**Quality Assessment Documentation:**
+- [ ] Quality assessment methodology is documented for {{ project_name }}
+- [ ] Quality criteria are clearly defined
+- [ ] Quality scores are documented with rationale
+- [ ] Quality assessment process is recorded
 
-**Scale Diversity Content:**
-- [ ] Scale distribution across categories
-- [ ] Scale diversity rationale
-- [ ] Scale diversity strengths and weaknesses
-- [ ] Scale diversity improvement recommendations
+**Quality Assessment Content:**
+- [ ] Quality scores for {{ project_name }}: {{ quality_scores }}
+- [ ] Quality assessment rationale for {{ project_name }}
+- [ ] Quality strengths and weaknesses for {{ project_name }}
+- [ ] Quality improvement recommendations for {{ project_name }}
 
-**Scale Diversity Format:**
+**Quality Assessment Format:**
 - [ ] Standardized documentation format
 - [ ] Clear and comprehensive content
 - [ ] Consistent documentation structure
 - [ ] Professional presentation
 
-### 2. Approach Diversity Documentation
+### 2. Decision Documentation
 
-**Approach Diversity Assessment Documentation:**
-- [ ] Approach diversity assessment methodology is documented
-- [ ] Approach diversity criteria are clearly defined
-- [ ] Approach diversity scores are documented with rationale
-- [ ] Approach diversity assessment process is recorded
+**Selection Decision Documentation:**
+- [ ] Selection decision methodology is documented
+- [ ] Selection criteria are clearly defined
+- [ ] Selection decisions are documented with rationale
+- [ ] Selection decision process is recorded
 
-**Approach Diversity Content:**
-- [ ] Approach distribution across categories
-- [ ] Approach diversity rationale
-- [ ] Approach diversity strengths and weaknesses
-- [ ] Approach diversity improvement recommendations
+**Selection Decision Content:**
+- [ ] Final selection decisions for {{ project_name }}
+- [ ] Selection decision rationale for {{ project_name }}
+- [ ] Selection criteria applied to {{ project_name }}
+- [ ] Selection decision justification for {{ project_name }}
 
-**Approach Diversity Format:**
+**Selection Decision Format:**
 - [ ] Standardized documentation format
 - [ ] Clear and comprehensive content
 - [ ] Consistent documentation structure
 - [ ] Professional presentation
 
-### 3. Community Diversity Documentation
+### 3. Process Documentation
 
-**Community Diversity Assessment Documentation:**
-- [ ] Community diversity assessment methodology is documented
-- [ ] Community diversity criteria are clearly defined
-- [ ] Community diversity scores are documented with rationale
-- [ ] Community diversity assessment process is recorded
+**Process Documentation:**
+- [ ] Process methodology is documented
+- [ ] Process criteria are clearly defined
+- [ ] Process results are documented with rationale
+- [ ] Process documentation is recorded
 
-**Community Diversity Content:**
-- [ ] Community distribution across categories
-- [ ] Community diversity rationale
-- [ ] Community diversity strengths and weaknesses
-- [ ] Community diversity improvement recommendations
+**Process Content:**
+- [ ] Process results for {{ project_name }}
+- [ ] Process rationale for {{ project_name }}
+- [ ] Process criteria applied to {{ project_name }}
+- [ ] Process justification for {{ project_name }}
 
-**Community Diversity Format:**
+**Process Format:**
 - [ ] Standardized documentation format
 - [ ] Clear and comprehensive content
 - [ ] Consistent documentation structure
@@ -90,14 +90,14 @@ This prompt defines the comprehensive documentation requirements for the categor
 
 ## Documentation Deliverables
 
-### 1. Scale Diversity Report
+### 1. Assessment Report
 **Content Requirements:**
-- [ ] Scale diversity assessment methodology
-- [ ] Scale diversity criteria and standards
-- [ ] Scale diversity scores for all categories
-- [ ] Scale diversity assessment rationale
-- [ ] Scale diversity strengths and weaknesses
-- [ ] Scale diversity improvement recommendations
+- [ ] Assessment methodology for {{ project_name }}
+- [ ] Assessment criteria and standards
+- [ ] Assessment scores for {{ project_name }}
+- [ ] Assessment rationale for {{ project_name }}
+- [ ] Assessment strengths and weaknesses
+- [ ] Assessment improvement recommendations
 
 **Format Requirements:**
 - [ ] Standardized report format
@@ -105,14 +105,14 @@ This prompt defines the comprehensive documentation requirements for the categor
 - [ ] Professional presentation
 - [ ] Consistent structure
 
-### 2. Approach Diversity Report
+### 2. Decision Report
 **Content Requirements:**
-- [ ] Approach diversity assessment methodology
-- [ ] Approach diversity criteria and standards
-- [ ] Approach diversity scores for all categories
-- [ ] Approach diversity assessment rationale
-- [ ] Approach diversity strengths and weaknesses
-- [ ] Approach diversity improvement recommendations
+- [ ] Decision methodology
+- [ ] Decision criteria and standards
+- [ ] Final decisions for {{ project_name }}
+- [ ] Decision rationale for {{ project_name }}
+- [ ] Decision strengths and weaknesses
+- [ ] Decision improvement recommendations
 
 **Format Requirements:**
 - [ ] Standardized report format
@@ -120,14 +120,14 @@ This prompt defines the comprehensive documentation requirements for the categor
 - [ ] Professional presentation
 - [ ] Consistent structure
 
-### 3. Community Diversity Report
+### 3. Process Report
 **Content Requirements:**
-- [ ] Community diversity assessment methodology
-- [ ] Community diversity criteria and standards
-- [ ] Community diversity scores for all categories
-- [ ] Community diversity assessment rationale
-- [ ] Community diversity strengths and weaknesses
-- [ ] Community diversity improvement recommendations
+- [ ] Process methodology
+- [ ] Process criteria and standards
+- [ ] Process results for {{ project_name }}
+- [ ] Process rationale for {{ project_name }}
+- [ ] Process strengths and weaknesses
+- [ ] Process improvement recommendations
 
 **Format Requirements:**
 - [ ] Standardized report format
@@ -144,9 +144,9 @@ This prompt defines the comprehensive documentation requirements for the categor
 - Assign documentation responsibilities
 
 ### Step 2: Documentation Creation
-- Create scale diversity documentation
-- Create approach diversity documentation
-- Create community diversity documentation
+- Create assessment documentation
+- Create decision documentation
+- Create process documentation
 - Ensure documentation completeness
 
 ### Step 3: Documentation Review
@@ -156,7 +156,7 @@ This prompt defines the comprehensive documentation requirements for the categor
 - Finalize documentation
 
 ### Step 4: Documentation Delivery
-- Deliver final documentation
+- Deliver final documentation to {{ output_report }}
 - Ensure documentation accessibility
 - Provide documentation support
 - Archive documentation
@@ -199,6 +199,6 @@ This prompt defines the comprehensive documentation requirements for the categor
 - [ ] Documentation is reviewed for quality
 - [ ] Documentation is validated for completeness
 - [ ] Documentation is checked for consistency
-- [ ] Documentation is finalized and delivered
+- [ ] Documentation is finalized and delivered to {{ output_report }}
 
-This prompt ensures comprehensive documentation of the category representation assessment process while maintaining high documentation standards and process integrity.
+This prompt ensures comprehensive documentation of all human judgment tasks while maintaining high documentation standards and process integrity.

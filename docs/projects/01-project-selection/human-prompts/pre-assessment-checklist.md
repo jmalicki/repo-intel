@@ -1,19 +1,27 @@
 # Pre-Assessment Checklist
 
-**Parent:** [Category Representation](README.md)
+**Parent:** [Human Prompts](README.md)
 
 ## Overview
 
-This prompt provides a comprehensive checklist to ensure all necessary data and preparations are complete before beginning the category representation assessment process.
+This prompt provides a comprehensive checklist to ensure all necessary data and preparations are complete before beginning any human judgment task in the project selection process.
 
 ## Data Collection Checklist
 
-### Project Selection Data
-- [ ] Projects have been selected for each category
-- [ ] Project characteristics have been identified
-- [ ] Project scales have been determined
-- [ ] Project approaches have been analyzed
-- [ ] Project communities have been assessed
+### Automated Data Collection
+- [ ] GitHub API data has been collected for all candidates
+- [ ] Quantitative scores have been calculated
+- [ ] Trending analysis has been completed
+- [ ] Package manager data has been collected
+- [ ] Community health metrics are available
+- [ ] Documentation file detection is complete
+- [ ] Security file detection is complete
+
+### Quality Assessment Data
+- [ ] Quality assessments have been completed for {{ project_name }}
+- [ ] Quality standards have been applied
+- [ ] Quality scores have been calculated
+- [ ] Quality insights have been generated
 
 ### Diversity Assessment Data
 - [ ] Scale diversity analysis is complete
@@ -21,11 +29,11 @@ This prompt provides a comprehensive checklist to ensure all necessary data and 
 - [ ] Community diversity analysis is complete
 - [ ] Category representation assessment is done
 
-### Quality Assessment Data
-- [ ] Quality assessments have been completed
-- [ ] Quality standards have been applied
-- [ ] Excellence examples have been identified
-- [ ] Quality insights have been generated
+### Selection Data
+- [ ] Project selection decisions have been made
+- [ ] Selection rationale has been documented
+- [ ] Selection criteria have been applied
+- [ ] Selection methodology has been documented
 
 ## Preparation Checklist
 
@@ -56,9 +64,9 @@ This prompt provides a comprehensive checklist to ensure all necessary data and 
 - [ ] Data consistency is verified
 
 ### Data Accuracy
-- [ ] Project characteristics are accurate
-- [ ] Diversity assessments are valid
-- [ ] Quality assessments are reliable
+- [ ] Automated metrics are validated
+- [ ] Quantitative scores are verified
+- [ ] Data sources are reliable
 - [ ] Data integrity is maintained
 
 ### Data Accessibility
@@ -115,4 +123,4 @@ This prompt provides a comprehensive checklist to ensure all necessary data and 
 - [ ] Team preparation is documented
 - [ ] Data preparation is documented
 
-This prompt ensures comprehensive preparation for the category representation assessment process while maintaining quality standards and process integrity.
+This prompt ensures comprehensive preparation for any human judgment task while maintaining quality standards and process integrity.
