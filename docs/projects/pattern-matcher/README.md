@@ -2,15 +2,15 @@
 
 ## Overview
 
-The Pattern Matcher is an LLM-powered tool that analyzes repository content to discover unexpected patterns, practices, and configurations that automated scripts might miss.
+The Pattern Matcher is an LLM-powered tool that performs specific, concrete analysis tasks on repository content to identify patterns that automated scripts cannot detect.
 
 ## Purpose
 
-- **Discover unexpected patterns** in repository organization
-- **Identify novel practices** and innovative approaches
-- **Analyze content for relevant patterns** beyond file presence
-- **Generate pattern reports** for human review
-- **Complement automated detection** with intelligent analysis
+- **Detect specific file patterns** that indicate practices (e.g., "has .github/dependabot.yml")
+- **Analyze specific content patterns** in configuration files
+- **Identify specific practice indicators** in documentation and code
+- **Generate structured reports** with specific findings
+- **Complement automated detection** with content analysis
 
 ## Design Principles
 
@@ -20,191 +20,165 @@ The Pattern Matcher is an LLM-powered tool that analyzes repository content to d
 4. **Focused Analysis** - Target specific areas where judgment is needed
 5. **Efficient Token Usage** - Optimize LLM calls for maximum value
 
-## Analysis Areas
+## Specific Analysis Tasks
 
-### 1. Security Practices
-- **Security Documentation**: Analyze security policies and procedures
-- **Vulnerability Management**: Identify vulnerability handling practices
-- **Dependency Security**: Analyze dependency security practices
-- **Access Control**: Identify access control and permission patterns
-- **Security Automation**: Detect security automation and tooling
+### 1. Security Practice Detection
+- **Dependabot Configuration**: Analyze .github/dependabot.yml for security scanning setup
+- **Security Policy**: Check for SECURITY.md file and analyze content
+- **Vulnerability Disclosure**: Look for vulnerability disclosure processes in documentation
+- **Dependency Scanning**: Detect automated dependency vulnerability scanning
+- **Security Headers**: Check for security headers in web applications
 
-### 2. Documentation Patterns
-- **Documentation Structure**: Analyze documentation organization
-- **Content Quality**: Assess documentation completeness and clarity
-- **User Experience**: Evaluate documentation user experience
-- **Maintenance Practices**: Identify documentation maintenance patterns
-- **Accessibility**: Assess documentation accessibility practices
+### 2. Documentation Quality Assessment
+- **README Completeness**: Analyze README.md for required sections (installation, usage, examples)
+- **API Documentation**: Check for API documentation generation (OpenAPI, JSDoc, etc.)
+- **Contributing Guidelines**: Analyze CONTRIBUTING.md for contribution process clarity
+- **Code Examples**: Count and assess quality of code examples in documentation
+- **Documentation Structure**: Check for organized documentation hierarchy
 
-### 3. Community Practices
-- **Governance Models**: Analyze project governance and decision-making
-- **Contribution Processes**: Identify contribution workflows and practices
-- **Communication Patterns**: Analyze community communication styles
-- **Conflict Resolution**: Identify conflict resolution practices
-- **Inclusivity**: Assess community inclusivity and diversity practices
+### 3. CI/CD Practice Detection
+- **GitHub Actions**: Analyze .github/workflows/ for CI/CD pipeline sophistication
+- **Testing Integration**: Detect automated testing in CI/CD pipelines
+- **Deployment Automation**: Check for automated deployment processes
+- **Quality Gates**: Look for quality gates in CI/CD (tests, linting, security scans)
+- **Multi-Platform Support**: Detect cross-platform testing and deployment
 
-### 4. Development Practices
-- **Code Organization**: Analyze code structure and organization patterns
-- **Testing Strategies**: Identify testing approaches and methodologies
-- **Release Management**: Analyze release and versioning practices
-- **CI/CD Patterns**: Identify continuous integration and deployment patterns
-- **Performance Practices**: Analyze performance optimization practices
+### 4. Code Quality Indicators
+- **Linting Configuration**: Check for ESLint, Prettier, or similar configuration files
+- **Testing Setup**: Analyze test configuration and setup files
+- **Code Coverage**: Look for code coverage reporting in CI/CD
+- **Type Safety**: Detect TypeScript usage or similar type safety measures
+- **Performance Monitoring**: Check for performance testing and monitoring setup
 
-## LLM Analysis Process
+## Specific LLM Tasks
 
-### 1. Content Collection
-- **File Content**: Extract relevant file contents
-- **Directory Structure**: Analyze repository structure
-- **Configuration Files**: Extract configuration and setup files
-- **Documentation**: Extract documentation content
-- **Code Samples**: Extract representative code samples
+### 1. File Content Analysis
+- **Configuration File Analysis**: Analyze specific config files (.github/dependabot.yml, package.json, Cargo.toml)
+- **Documentation Content Analysis**: Analyze README.md, CONTRIBUTING.md, SECURITY.md content
+- **CI/CD Workflow Analysis**: Analyze .github/workflows/ files for pipeline sophistication
+- **Code Quality Config Analysis**: Analyze linting, testing, and quality configuration files
 
-### 2. Pattern Analysis
-- **Security Patterns**: Analyze security-related content and practices
-- **Documentation Patterns**: Analyze documentation structure and quality
-- **Community Patterns**: Analyze community and governance practices
-- **Development Patterns**: Analyze development and maintenance practices
-- **Innovation Patterns**: Identify novel and innovative approaches
+### 2. Specific Pattern Detection
+- **Security Practice Detection**: Look for specific security practices in config files
+- **Documentation Quality Assessment**: Check for specific documentation elements
+- **CI/CD Sophistication**: Detect specific CI/CD practices and automation
+- **Code Quality Practices**: Identify specific code quality measures
 
-### 3. Report Generation
-- **Pattern Summary**: Summarize discovered patterns
-- **Practice Analysis**: Analyze specific practices and approaches
-- **Innovation Identification**: Identify novel and innovative practices
-- **Recommendation Generation**: Generate recommendations based on patterns
-- **Quality Assessment**: Assess overall practice quality
+### 3. Structured Output Generation
+- **Boolean Indicators**: Generate yes/no answers for specific practices
+- **Count Metrics**: Count specific elements (e.g., number of test files, documentation sections)
+- **Quality Scores**: Generate 0-1 scores for specific quality dimensions
+- **Specific Findings**: List specific practices found with evidence
 
-## LLM Prompts
+## Specific LLM Prompts
 
-### Security Analysis Prompt
+### Security Practice Detection Prompt
 ```
-Analyze the following repository content for security practices and patterns:
+Analyze the following repository content for specific security practices:
 
 Repository: {repository_name}
-Category: {category}
 Content: {extracted_content}
 
-Identify:
-1. Security documentation and policies
-2. Vulnerability management practices
-3. Dependency security practices
-4. Access control and permission patterns
-5. Security automation and tooling
-6. Novel security practices or innovations
+Answer these specific questions with yes/no and evidence:
+1. Does this repository have automated dependency vulnerability scanning? (Look for .github/dependabot.yml)
+2. Does this repository have a SECURITY.md file with vulnerability disclosure process?
+3. Does this repository use security headers in web applications?
+4. Does this repository have automated security testing in CI/CD?
+5. Does this repository have dependency update automation?
 
-Provide a structured analysis with specific examples and recommendations.
+Provide specific evidence for each finding.
 ```
 
-### Documentation Analysis Prompt
+### Documentation Quality Assessment Prompt
 ```
-Analyze the following repository content for documentation practices and patterns:
+Analyze the following repository content for documentation quality:
 
 Repository: {repository_name}
-Category: {category}
 Content: {extracted_content}
 
-Identify:
-1. Documentation structure and organization
-2. Content quality and completeness
-3. User experience and accessibility
-4. Maintenance and update practices
-5. Documentation automation and tooling
-6. Novel documentation approaches
+Answer these specific questions with yes/no and evidence:
+1. Does the README.md have installation instructions?
+2. Does the README.md have usage examples?
+3. Does the README.md have API documentation?
+4. Does the repository have CONTRIBUTING.md with clear contribution process?
+5. Does the repository have organized documentation structure?
 
-Provide a structured analysis with specific examples and recommendations.
+Provide specific evidence for each finding.
 ```
 
-### Community Analysis Prompt
+### CI/CD Practice Detection Prompt
 ```
-Analyze the following repository content for community practices and patterns:
+Analyze the following repository content for CI/CD practices:
 
 Repository: {repository_name}
-Category: {category}
 Content: {extracted_content}
 
-Identify:
-1. Governance and decision-making processes
-2. Contribution workflows and practices
-3. Communication patterns and styles
-4. Conflict resolution and moderation
-5. Inclusivity and diversity practices
-6. Novel community management approaches
+Answer these specific questions with yes/no and evidence:
+1. Does this repository have automated testing in CI/CD?
+2. Does this repository have automated deployment?
+3. Does this repository have quality gates (linting, security scans)?
+4. Does this repository have multi-platform testing?
+5. Does this repository have automated release processes?
 
-Provide a structured analysis with specific examples and recommendations.
+Provide specific evidence for each finding.
 ```
 
-## Content Extraction
+## Specific Content Extraction
 
-### File Selection
-- **Configuration Files**: `.github/`, `package.json`, `Cargo.toml`, etc.
-- **Documentation Files**: `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, etc.
-- **Code Files**: Representative source code samples
-- **Script Files**: Build scripts, automation scripts
-- **Template Files**: Issue templates, PR templates
+### File Selection (Specific Files)
+- **Security Files**: `.github/dependabot.yml`, `SECURITY.md`, `.github/security.yml`
+- **Documentation Files**: `README.md`, `CONTRIBUTING.md`, `docs/` directory
+- **CI/CD Files**: `.github/workflows/` directory, `package.json`, `Cargo.toml`
+- **Quality Files**: `.eslintrc`, `.prettierrc`, `jest.config.js`, `pytest.ini`
 
-### Content Processing
-- **Text Extraction**: Extract text content from files
-- **Structure Analysis**: Analyze file and directory structure
-- **Metadata Extraction**: Extract file metadata and timestamps
-- **Content Filtering**: Filter relevant content for analysis
-- **Size Optimization**: Optimize content size for LLM processing
+### Content Processing (Specific Tasks)
+- **Extract specific file contents** for analysis
+- **Count specific elements** (test files, documentation sections)
+- **Check for specific patterns** in configuration files
+- **Validate specific requirements** (installation instructions, examples)
+- **Measure specific metrics** (documentation completeness, test coverage)
 
-## Output Format
+## Specific Output Format
 
-### Pattern Report
+### Structured Analysis Report
 ```json
 {
   "repository": "tokio-rs/tokio",
   "category": "rust-libraries",
   "analysis_timestamp": "2024-01-15T10:30:00Z",
-  "patterns": {
-    "security": {
-      "practices": [
-        "Comprehensive security documentation",
-        "Automated vulnerability scanning",
-        "Dependency security management"
-      ],
-      "innovations": [
-        "Custom security automation",
-        "Novel vulnerability handling"
-      ],
-      "quality_score": 0.92
-    },
-    "documentation": {
-      "practices": [
-        "Structured documentation hierarchy",
-        "Interactive examples and tutorials",
-        "API documentation automation"
-      ],
-      "innovations": [
-        "Custom documentation tooling",
-        "Novel user experience patterns"
-      ],
-      "quality_score": 0.88
-    },
-    "community": {
-      "practices": [
-        "Clear contribution guidelines",
-        "Automated issue triage",
-        "Inclusive communication practices"
-      ],
-      "innovations": [
-        "Novel governance model",
-        "Custom community tooling"
-      ],
-      "quality_score": 0.85
-    }
+  "security_practices": {
+    "has_dependabot": true,
+    "has_security_md": true,
+    "has_security_headers": false,
+    "has_security_testing": true,
+    "has_dependency_automation": true,
+    "security_score": 0.8
   },
-  "overall_quality": 0.88,
-  "innovations": [
-    "Custom security automation",
-    "Novel documentation approach",
-    "Innovative governance model"
-  ],
-  "recommendations": [
-    "Consider adopting security automation",
-    "Evaluate documentation structure",
-    "Assess governance practices"
-  ]
+  "documentation_quality": {
+    "has_installation_instructions": true,
+    "has_usage_examples": true,
+    "has_api_docs": true,
+    "has_contributing_guidelines": true,
+    "has_organized_structure": true,
+    "documentation_score": 0.9
+  },
+  "cicd_practices": {
+    "has_automated_testing": true,
+    "has_automated_deployment": true,
+    "has_quality_gates": true,
+    "has_multi_platform": true,
+    "has_automated_releases": true,
+    "cicd_score": 0.85
+  },
+  "code_quality": {
+    "has_linting": true,
+    "has_testing_setup": true,
+    "has_coverage_reporting": true,
+    "has_type_safety": true,
+    "has_performance_monitoring": false,
+    "code_quality_score": 0.75
+  },
+  "overall_score": 0.825
 }
 ```
 
