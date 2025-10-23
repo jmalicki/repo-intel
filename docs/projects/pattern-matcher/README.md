@@ -2,7 +2,13 @@
 
 ## Overview
 
-The Pattern Matcher is a **Python script** that reads specific repository files (hardcoded list) and makes LLM API calls to analyze content. The script follows a predefined list of files to check - it doesn't decide what to look at, it just follows instructions.
+The Pattern Matcher is a **Python script** that reads specific repository files (hardcoded list) and makes LLM API calls to analyze content. 
+
+**LIMITATION**: This approach can only find files in expected locations with standard names. It cannot discover:
+- Different security tools (Snyk, OWASP, custom tools)
+- Files in non-standard locations (security/ directory, config/security.yml)
+- Non-standard naming (security-policy.md, SECURITY.txt)
+- Custom implementations or novel approaches
 
 ## What It Actually Does
 
@@ -13,6 +19,12 @@ The Pattern Matcher is a **Python script** that reads specific repository files 
 5. **No human interaction** - fully automated script
 
 **The script follows a hardcoded list** - it doesn't decide what files to look at, it just checks the predefined list.
+
+**This means it will miss**:
+- Projects with non-standard file locations
+- Projects using different security tools
+- Projects with custom implementations
+- Projects with novel approaches
 
 ## Design Principles
 
