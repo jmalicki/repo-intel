@@ -1,7 +1,8 @@
 [package]
 name = "common-library"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
+rust-version = "1.90"
 description = "Shared functionality for Phase 1 project selection tools"
 authors = ["Repository Intelligence Team"]
 license = "MIT"
@@ -10,49 +11,49 @@ keywords = ["http", "storage", "metrics", "validation", "logging"]
 categories = ["web-programming::http-client", "development-tools"]
 
 [dependencies]
-# Async runtime
-tokio = { version = "1.0", features = ["full"] }
+# Async runtime - updated to latest
+tokio = { version = "1.40", features = ["full"] }
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
-# Error handling
+# Error handling - updated to latest
 anyhow = "1.0"
-thiserror = "1.0"
+thiserror = "2.0"
 
 # Logging
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
 
-# Configuration
-config = "0.13"
+# Configuration - updated to latest
+config = "0.14"
 
-# HTTP client (for future phases)
-reqwest = { version = "0.11", features = ["json"], optional = true }
+# HTTP client (for future phases) - updated to latest
+reqwest = { version = "0.12", features = ["json"], optional = true }
 
-# Database (for future phases)
-diesel = { version = "2.0", features = ["sqlite"], optional = true }
+# Database (for future phases) - updated to latest
+diesel = { version = "2.1", features = ["sqlite"], optional = true }
 diesel-async = { version = "0.7", features = ["sqlite"], optional = true }
 
 # Date/time handling
 chrono = { version = "0.4", features = ["serde"] }
 
-# UUID generation
-uuid = { version = "1.0", features = ["v4", "serde"] }
+# UUID generation - updated to latest
+uuid = { version = "1.8", features = ["v4", "serde"] }
 
-# Base64 encoding
-base64 = "0.21"
+# Base64 encoding - updated to latest
+base64 = "0.22"
 
 # Compression (for future phases)
 flate2 = { version = "1.0", optional = true }
 
-# Clap for CLI (for future phases)
-clap = { version = "4.0", features = ["derive"], optional = true }
+# Clap for CLI (for future phases) - updated to latest
+clap = { version = "4.5", features = ["derive"], optional = true }
 
 [dev-dependencies]
 tokio-test = "0.4"
-wiremock = "0.5"
+wiremock = "0.6"
 
 [features]
 default = []
