@@ -1,5 +1,28 @@
 # Pattern Matcher
 
+## 🚨 CRITICAL DESIGN DECISION TODO 🚨
+
+**FUNDAMENTAL QUESTION**: How do we balance discovery vs. efficiency?
+
+**Option A: Specific File Approach**
+- Check predetermined files (.github/dependabot.yml, README.md, etc.)
+- Fast, efficient, predictable
+- **LIMITATION**: Misses novel approaches, non-standard locations, custom implementations
+
+**Option B: Discovery Approach** 
+- Scan repository structure to find unexpected patterns
+- Expensive, slow, unpredictable
+- **BENEFIT**: Finds truly novel approaches and innovations
+
+**Option C: Hybrid Approach**
+- Start with known patterns, use LLM to discover new ones
+- Balance efficiency with discovery
+- **CHALLENGE**: Complex implementation, still expensive
+
+**DECISION NEEDED**: Which approach aligns with project goals of learning about novel practices?
+
+---
+
 ## Overview
 
 The Pattern Matcher is a **Python script** that uses LLM analysis to discover completely novel patterns and practices in repositories. It's designed to find unexpected approaches that we've never seen before.
