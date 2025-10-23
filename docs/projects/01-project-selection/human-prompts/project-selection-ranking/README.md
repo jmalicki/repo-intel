@@ -95,16 +95,6 @@ All prompts use Jinja-like templating with the following variables:
 
 ## Quality Assurance
 
-### Cross-Validation
-- [ ] Multiple reviewers for controversial decisions
-- [ ] Cross-reference with automated metrics
-- [ ] Validate against selection criteria
-- [ ] Ensure diversity requirements met
-
-### Documentation Review
-- [ ] All assessments are documented
-- [ ] Rankings are well-reasoned
-- [ ] Selection decisions are clear
-- [ ] Rationale is comprehensive
+Use the [Quality Assurance](quality-assurance.md) prompt to ensure consistent, high-quality decisions throughout the process.
 
 This approach ensures consistent, high-quality project selection while maintaining the diversity and quality standards required for comprehensive analysis.

@@ -102,22 +102,6 @@ All prompts use Jinja-like templating with the following variables:
 
 ## Quality Assurance
 
-### Cross-Category Validation
-- [ ] Patterns are represented across categories
-- [ ] Approaches are balanced within categories
-- [ ] Quality is maintained across diversity
-- [ ] Innovation is represented appropriately
-
-### Category-Specific Validation
-- [ ] Each category meets specific requirements
-- [ ] Category-specific patterns are represented
-- [ ] Technology stacks are appropriate
-- [ ] Community models are diverse
-
-### Overall Balance Validation
-- [ ] No single approach dominates
-- [ ] Quality is distributed across diversity
-- [ ] Innovation is represented appropriately
-- [ ] Best practices are well-distributed
+Use the [Quality Assurance](quality-assurance.md) prompt to ensure consistent, high-quality decisions throughout the process.
 
 This approach ensures comprehensive category representation while maintaining quality standards and enabling meaningful cross-project analysis.
