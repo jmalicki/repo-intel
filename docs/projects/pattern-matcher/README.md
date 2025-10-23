@@ -70,84 +70,19 @@ The Pattern Matcher is a **Python script** that uses LLM analysis to discover co
 - **Check .github/workflows/**: List directory, send to LLM with prompt "Are there CI/CD pipeline files here?"
 - **Check package.json**: Read file, send to LLM with prompt "Does this have test scripts and CI/CD configuration?"
 
-## Script Implementation
+## Implementation Approach
 
 ### Novel Pattern Discovery
-```python
-def discover_novel_patterns(repo_path):
-    """Discover completely novel patterns and practices"""
-    all_files = scan_directory(repo_path)
-    
-    # Send entire repository structure to LLM for novel pattern discovery
-    structure_summary = create_structure_summary(all_files)
-    
-    prompt = f"""
-    Analyze this repository structure for NOVEL and UNEXPECTED patterns:
-    
-    {structure_summary}
-    
-    Look for:
-    - Completely new approaches to organization
-    - Unexpected file naming conventions
-    - Novel directory structures
-    - Innovative practices we haven't seen before
-    - Creative solutions to common problems
-    
-    What NEW and INTERESTING patterns do you see that challenge conventional wisdom?
-    """
-    
-    novel_patterns = call_llm_api(structure_summary, prompt)
-    return novel_patterns
-```
+The tool analyzes repository structure and content to identify completely novel patterns and practices that challenge conventional wisdom about project organization.
 
-### Learning and Discovery
-```python
-def analyze_repository(repo_path):
-    structure = discover_repository_structure(repo_path)
-    results = {}
-    new_patterns = {}
-    
-    for category, files in structure.items():
-        if files:
-            relevant_files = files[:5]  # Max 5 files per category
-            content = read_files_smart(relevant_files)
-            
-            if content:
-                prompt = f"Analyze these {category} files for novel practices, innovative approaches, and unexpected patterns. What new or interesting things do you see?"
-                analysis = call_llm_api(content, prompt)
-                results[category] = analysis
-                
-                # Extract new patterns discovered by LLM
-                new_patterns[category] = extract_new_patterns(analysis)
-    
-    # Update known patterns database with new discoveries
-    update_patterns_database(new_patterns)
-    
-    return results
+### Key Capabilities
+- **Structure Analysis**: Examines directory organization and file naming patterns
+- **Content Analysis**: Analyzes file contents for innovative approaches
+- **Pattern Recognition**: Identifies novel practices and creative solutions
+- **Innovation Detection**: Finds unexpected approaches to common problems
 
-def update_patterns_database(new_patterns):
-    """Update the known patterns database with new discoveries"""
-    for category, patterns in new_patterns.items():
-        if patterns:
-            # Add new patterns to database
-            KNOWN_PATTERNS[category].extend(patterns)
-            # Save to file for persistence
-            save_patterns_to_file(KNOWN_PATTERNS)
-```
-
-### LLM API Call
-```python
-def call_llm_api(file_content, prompt):
-    response = openai.chat.completions.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "You are a code analysis tool. Answer only yes/no."},
-            {"role": "user", "content": f"{prompt}\n\nFile content:\n{file_content}"}
-        ],
-        temperature=0
-    )
-    return response.choices[0].message.content.strip().lower() == "yes"
-```
+### Output Format
+Returns structured analysis of discovered patterns, innovations, and novel approaches with evidence and examples.
 
 ## Specific LLM Prompts
 
