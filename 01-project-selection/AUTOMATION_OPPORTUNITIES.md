@@ -100,6 +100,11 @@ This document identifies parts of the candidate identification workflow that can
 - Detection of unexpected documentation structures
 - Identification of novel documentation practices
 
+**Subagent Approach:**
+- Script spawns subagent to analyze documentation patterns
+- Subagent generates documentation practice sub-report
+- Human reviews subagent findings, not individual pattern matching
+
 **Human Role:** Review documentation completeness assessment, not individual file analysis
 
 ## Partially Automatable Tasks
@@ -126,6 +131,11 @@ This document identifies parts of the candidate identification workflow that can
 - Detection of unexpected community practices
 - Identification of novel community engagement patterns
 
+**Subagent Approach:**
+- Script spawns subagent to analyze community patterns
+- Subagent generates community practice sub-report
+- Human reviews subagent findings, not individual pattern matching
+
 **Human Role:** Review community health assessment, not individual metric calculations
 
 ### 7. Security Practice Detection
@@ -149,6 +159,11 @@ This document identifies parts of the candidate identification workflow that can
 - Content analysis for security-related terms in file contents
 - Detection of unexpected security configurations
 - Identification of novel security practices
+
+**Subagent Approach:**
+- Script spawns subagent to analyze security-related patterns
+- Subagent generates security practice sub-report
+- Human reviews subagent findings, not individual pattern matching
 
 **Human Role:** Review security file presence assessment, not individual file detection
 
