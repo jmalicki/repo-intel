@@ -1,1 +1,59 @@
+# Rust build artifacts
 target/
+**/target/
+
+# Rust debug files
+*.pdb
+
+# Rust coverage files
+tarpaulin-report.html
+lcov.info
+coverage/
+
+# Rust profiling files
+perf.data*
+*.prof
+
+# Rust IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Rust documentation
+/doc/
+/docs/
+
+# Rust temporary files
+*.tmp
+*.temp
+
+# Rust lock files (keep Cargo.lock for applications, ignore for libraries)
+# Cargo.lock
+
+# Rust cache files
+.cargo/
+**/.cargo/
+
+# Rust test artifacts
+test-results/
+test-output/
+
+# Rust benchmark results
+criterion/
+
+# Rust flamegraph files
+flamegraph.svg
+flamegraph.html
+
+# Rust memory profiling
+*.heapsnapshot
+
+# Rust system files
+.DS_Store
+Thumbs.db
+
+# Rust backup files
+*.bak
+*.backup
