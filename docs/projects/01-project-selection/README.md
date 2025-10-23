@@ -1,6 +1,6 @@
-# Phase 1 Tool Design Overview
+# Phase 1: Project Selection Tools
 
-**Navigation:** [Project Selection](../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Projects Overview
+**Navigation:** [Projects Overview](../README.md) → [Project Selection](../../01-project-selection/AUTOMATION_OPPORTUNITIES.md) → Phase 1 Tools
 
 This directory contains the detailed design specifications for tools needed to support Phase 1 (Project Selection) of the repo intelligence project.
 
@@ -18,12 +18,11 @@ The Phase 1 tools are designed to automate candidate identification while minimi
 ### 2. Analysis Tools
 - **Metrics Calculator** - Quantitative metrics calculation and scoring
 - **Pattern Matcher** - LLM-based pattern matching and discovery
-- **Report Generator** - Automated report generation and formatting
-
-### 3. Orchestration Tools
-- **Workflow Orchestrator** - End-to-end automation coordination
 - **Data Aggregator** - Multi-source data integration
+
+### 3. Filtering & Reporting Tools
 - **Quality Filter** - Automated filtering and threshold application
+- **Report Generator** - Automated report generation and formatting
 
 ## Design Principles
 
@@ -44,19 +43,23 @@ Data Collection → Analysis → Pattern Matching → Report Generation → Huma
 ## Directory Structure
 
 ```
-docs/projects/
+docs/projects/01-project-selection/
 ├── README.md                    # This overview
-├── 01-project-selection/        # Phase 1: Project Selection Tools
-├── 02-analysis/                # Phase 2: Repository Analysis Tools
-├── 03-templates/               # Phase 3: Template Generation Tools
-└── 04-guidelines/              # Phase 4: Best Practice Guidelines
+├── github-api-collector/         # GitHub API data collection tool
+├── package-manager-collector/    # Package manager data collection
+├── trending-analyzer/           # Trending repository analysis
+├── metrics-calculator/          # Quantitative metrics calculation
+├── pattern-matcher/             # LLM-based pattern matching
+├── data-aggregator/             # Multi-source data integration
+├── quality-filter/              # Automated filtering and thresholds
+└── report-generator/            # Automated report generation
 ```
 
 ## Implementation Priority
 
-1. **High Priority** - GitHub API Collector, Metrics Calculator, Workflow Orchestrator
-2. **Medium Priority** - Package Manager Collector, Trending Analyzer, Data Aggregator
-3. **Low Priority** - Pattern Matcher, Report Generator, Quality Filter
+1. **High Priority** - GitHub API Collector, Metrics Calculator, Data Aggregator
+2. **Medium Priority** - Package Manager Collector, Trending Analyzer, Quality Filter
+3. **Low Priority** - Pattern Matcher, Report Generator
 
 ## Success Metrics
 
