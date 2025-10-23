@@ -127,6 +127,59 @@ All human prompts must use Jinja-like templating with standardized variables:
 4. Ensure documentation quality
 5. Maintain consistency
 
+## Model Implementation: Common Library
+
+### Documentation Standards Model
+The [Common Library](../projects/01-project-selection/common-library/) serves as the **gold standard** for documentation and implementation practices:
+
+#### Design Documentation
+- **[Common Library Design](../projects/01-project-selection/common-library/DESIGN.md)** - API-focused architecture documentation
+- **No Implementation Code** - Pure design and API descriptions
+- **Component Purposes** - Clear descriptions of what each component provides
+- **API Surface Definitions** - Detailed method and function specifications
+
+#### Implementation Planning
+- **[Common Library Implementation Plan](../projects/01-project-selection/common-library/IMPLEMENTATION_PLAN.md)** - Step-by-step development workflow
+- **Phased Development** - 6 focused phases with specific deliverables
+- **Stacked Branches** - Each phase builds on the previous
+- **Quality Standards** - Comprehensive testing, benchmarking, and review processes
+
+### Implementation Standards Model
+
+#### Project Structure
+```
+common-library/
+├── README.md              # Overview and navigation
+├── DESIGN.md              # API-focused architecture
+├── IMPLEMENTATION_PLAN.md # Step-by-step development
+└── src/                   # Implementation code
+```
+
+#### Documentation Hierarchy
+- **README.md** - Project overview and navigation
+- **DESIGN.md** - Architecture and API specifications
+- **IMPLEMENTATION_PLAN.md** - Development workflow and standards
+
+#### Quality Standards
+- **API-Focused Design** - No implementation code in design docs
+- **Comprehensive Testing** - Unit, integration, performance, mock tests
+- **Benchmarking** - Performance measurement and optimization
+- **Code Quality** - Formatting, linting, documentation standards
+
+### Using Common Library as a Model
+
+#### For New Projects
+1. **Follow the Structure** - Use the same documentation hierarchy
+2. **API-Focused Design** - Keep design docs focused on architecture
+3. **Implementation Planning** - Create detailed step-by-step plans
+4. **Quality Standards** - Apply the same testing and review processes
+
+#### For Documentation Updates
+1. **Maintain API Focus** - Keep design docs architectural
+2. **Update Implementation Plans** - Keep development workflows current
+3. **Follow Quality Standards** - Apply consistent testing and review
+4. **Link to Model** - Reference Common Library as the standard
+
 ## Standards Compliance
 
 ### Template Compliance
@@ -147,4 +200,10 @@ All human prompts must use Jinja-like templating with standardized variables:
 - [ ] All standards are followed
 - [ ] All quality is maintained
 
-This document ensures consistent development practices while maintaining high standards for templating, documentation, and quality assurance.
+### Model Compliance
+- [ ] Follow Common Library documentation structure
+- [ ] Use API-focused design approach
+- [ ] Implement comprehensive testing standards
+- [ ] Apply quality review processes
+
+This document ensures consistent development practices while maintaining high standards for templating, documentation, and quality assurance. The Common Library serves as the model implementation for all project documentation and development standards.
