@@ -1,8 +1,8 @@
 //! Authentication support for HTTP requests
 
-use reqwest::{RequestBuilder, header::AUTHORIZATION};
 use crate::error::{Error, Result};
 use base64::Engine;
+use reqwest::{header::AUTHORIZATION, RequestBuilder};
 
 /// Authentication configuration
 #[derive(Debug, Clone)]
@@ -60,12 +60,8 @@ impl AuthConfig {
                 let auth_header = format!("Basic {}", credentials);
                 request_builder.header(AUTHORIZATION, auth_header)
             }
-            AuthConfig::ApiKey { key, header } => {
-                request_builder.header(header, key)
-            }
-            AuthConfig::Custom { header, value } => {
-                request_builder.header(header, value)
-            }
+            AuthConfig::ApiKey { key, header } => request_builder.header(header, key),
+            AuthConfig::Custom { header, value } => request_builder.header(header, value),
         }
     }
 
@@ -83,7 +79,9 @@ impl AuthConfig {
     pub fn is_valid(&self) -> bool {
         match self {
             AuthConfig::Bearer(token) => !token.is_empty(),
-            AuthConfig::Basic { username, password } => !username.is_empty() && !password.is_empty(),
+            AuthConfig::Basic { username, password } => {
+                !username.is_empty() && !password.is_empty()
+            }
             AuthConfig::ApiKey { key, header } => !key.is_empty() && !header.is_empty(),
             AuthConfig::Custom { header, value } => !header.is_empty() && !value.is_empty(),
         }
@@ -130,7 +128,8 @@ impl AuthManager {
         if index >= self.auth_configs.len() {
             return Err(Error::http(format!(
                 "Invalid auth index: {}. Available: {}",
-                index, self.auth_configs.len()
+                index,
+                self.auth_configs.len()
             )));
         }
         self.current_index = index;

@@ -34,6 +34,8 @@ reqwest = { version = "0.11", default-features = false, features = ["json", "rus
 # Database (for future phases)
 diesel = { version = "2.0", features = ["sqlite"], optional = true }
 diesel-async = { version = "0.7", features = ["sqlite"], optional = true }
+bb8 = { version = "0.8", optional = true }
+bb8-diesel = { version = "0.2", optional = true }
 
 # Date/time handling
 chrono = { version = "0.4", features = ["serde"] }
@@ -61,6 +63,6 @@ tempfile = "3.0"
 [features]
 default = ["http"]
 http = []
-database = ["diesel", "diesel-async"]
+database = ["diesel", "diesel-async", "bb8", "bb8-diesel"]
 compression = ["flate2"]
 cli = ["clap"]
