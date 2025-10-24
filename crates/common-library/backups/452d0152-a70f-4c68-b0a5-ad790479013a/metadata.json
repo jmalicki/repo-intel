@@ -1,0 +1,10 @@
+{
+  "id": "452d0152-a70f-4c68-b0a5-ad790479013a",
+  "name": "example_backup",
+  "strategy": "Full",
+  "compression": "None",
+  "created_at": "2025-10-24T00:35:35.104243Z",
+  "size_bytes": 0,
+  "file_count": 0,
+  "checksum": "d1fba762150c532c"
+}

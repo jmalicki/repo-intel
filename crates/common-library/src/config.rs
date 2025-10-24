@@ -3,10 +3,12 @@
 use crate::error::{Error, Result};
 use config::{Config, Environment, File, FileFormat};
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 /// Configuration manager for the common library
 pub struct ConfigManager {
     config: Config,
+    runtime_overrides: HashMap<String, serde_json::Value>,
 }
 
 /// Application configuration structure
@@ -98,7 +100,10 @@ impl ConfigManager {
         builder = builder.add_source(Environment::with_prefix("COMMON_LIBRARY").separator("_"));
 
         let config = builder.build()?;
-        Ok(Self { config })
+        Ok(Self {
+            config,
+            runtime_overrides: HashMap::new(),
+        })
     }
 
     /// Get a typed configuration value
@@ -106,6 +111,12 @@ impl ConfigManager {
     where
         T: for<'de> serde::Deserialize<'de>,
     {
+        // Check runtime overrides first
+        if let Some(override_value) = self.runtime_overrides.get(key) {
+            return serde_json::from_value(override_value.clone()).map_err(Error::from);
+        }
+
+        // Fall back to original configuration
         self.config.get(key).map_err(Error::from)
     }
 
@@ -162,9 +173,19 @@ impl ConfigManager {
 
     /// Reload configuration from sources
     pub fn reload(&mut self) -> Result<()> {
-        // This would reload from the same sources used during initialization
-        // For now, we'll just re-validate the current configuration
+        // Clear runtime overrides and re-validate
+        self.runtime_overrides.clear();
         self.validate()
+    }
+
+    /// Clear all runtime configuration overrides
+    pub fn clear_overrides(&mut self) {
+        self.runtime_overrides.clear();
+    }
+
+    /// Get all runtime override keys
+    pub fn get_override_keys(&self) -> Vec<String> {
+        self.runtime_overrides.keys().cloned().collect()
     }
 
     /// Export current configuration as JSON
@@ -195,15 +216,13 @@ impl ConfigManager {
     }
 
     /// Set a configuration value (runtime configuration changes)
-    pub fn set<T>(&mut self, _key: &str, _value: T) -> Result<()>
+    pub fn set<T>(&mut self, key: &str, value: T) -> Result<()>
     where
         T: serde::Serialize,
     {
-        // This is a simplified implementation
-        // In a real implementation, you'd update the internal configuration
-        // and potentially persist the changes
-        Err(Error::config(
-            "runtime configuration changes not yet implemented",
-        ))
+        // Serialize the value to JSON and store it as a runtime override
+        let json_value = serde_json::to_value(value).map_err(Error::from)?;
+        self.runtime_overrides.insert(key.to_string(), json_value);
+        Ok(())
     }
 }

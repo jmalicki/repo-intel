@@ -348,6 +348,156 @@ async fn test_error_recovery_patterns() {
 }
 
 #[tokio::test]
+async fn test_runtime_configuration_changes() {
+    // Test: Runtime configuration changes work correctly
+    let mut config_manager = ConfigManager::new().expect("ConfigManager should be created");
+
+    // Test setting runtime configuration values
+    config_manager.set("app.name", "runtime-test").expect("Should set app.name");
+    config_manager.set("app.version", "2.0.0").expect("Should set app.version");
+    config_manager.set("http.timeout_seconds", 60u64).expect("Should set http.timeout_seconds");
+    config_manager.set("database.max_connections", 20u32).expect("Should set database.max_connections");
+
+    // Test retrieving runtime configuration values
+    let app_name: String = config_manager.get("app.name").expect("Should get app.name");
+    let app_version: String = config_manager.get("app.version").expect("Should get app.version");
+    let http_timeout: u64 = config_manager.get("http.timeout_seconds").expect("Should get http.timeout_seconds");
+    let max_connections: u32 = config_manager.get("database.max_connections").expect("Should get database.max_connections");
+
+    assert_eq!(app_name, "runtime-test", "Runtime app.name should match");
+    assert_eq!(app_version, "2.0.0", "Runtime app.version should match");
+    assert_eq!(http_timeout, 60, "Runtime http.timeout_seconds should match");
+    assert_eq!(max_connections, 20, "Runtime database.max_connections should match");
+
+    // Test that runtime overrides take precedence over default values
+    let default_timeout: u64 = config_manager.get("http.timeout_seconds").expect("Should get runtime override");
+    assert_eq!(default_timeout, 60, "Runtime override should take precedence");
+
+    // Test getting override keys
+    let override_keys = config_manager.get_override_keys();
+    assert_eq!(override_keys.len(), 4, "Should have 4 runtime overrides");
+    assert!(override_keys.contains(&"app.name".to_string()), "Should contain app.name override");
+    assert!(override_keys.contains(&"app.version".to_string()), "Should contain app.version override");
+    assert!(override_keys.contains(&"http.timeout_seconds".to_string()), "Should contain http.timeout_seconds override");
+    assert!(override_keys.contains(&"database.max_connections".to_string()), "Should contain database.max_connections override");
+}
+
+#[tokio::test]
+async fn test_runtime_configuration_override_behavior() {
+    // Test: Runtime overrides behave correctly with different types
+    let mut config_manager = ConfigManager::new().expect("ConfigManager should be created");
+
+    // Test string overrides
+    config_manager.set("app.name", "override-test").expect("Should set string override");
+    let app_name: String = config_manager.get("app.name").expect("Should get string override");
+    assert_eq!(app_name, "override-test", "String override should work");
+
+    // Test numeric overrides
+    config_manager.set("http.timeout_seconds", 120u64).expect("Should set numeric override");
+    let timeout: u64 = config_manager.get("http.timeout_seconds").expect("Should get numeric override");
+    assert_eq!(timeout, 120, "Numeric override should work");
+
+    // Test boolean overrides
+    config_manager.set("storage.backup_enabled", true).expect("Should set boolean override");
+    let backup_enabled: bool = config_manager.get("storage.backup_enabled").expect("Should get boolean override");
+    assert_eq!(backup_enabled, true, "Boolean override should work");
+
+    // Test that overrides can be changed
+    config_manager.set("app.name", "changed-test").expect("Should change string override");
+    let changed_name: String = config_manager.get("app.name").expect("Should get changed override");
+    assert_eq!(changed_name, "changed-test", "Changed override should work");
+}
+
+#[tokio::test]
+async fn test_runtime_configuration_clear_overrides() {
+    // Test: Clearing runtime overrides works correctly
+    let mut config_manager = ConfigManager::new().expect("ConfigManager should be created");
+
+    // Set some runtime overrides
+    config_manager.set("app.name", "test-app").expect("Should set override");
+    config_manager.set("http.timeout_seconds", 90u64).expect("Should set override");
+
+    // Verify overrides are set
+    let override_keys = config_manager.get_override_keys();
+    assert_eq!(override_keys.len(), 2, "Should have 2 overrides");
+
+    // Clear overrides
+    config_manager.clear_overrides();
+
+    // Verify overrides are cleared
+    let cleared_keys = config_manager.get_override_keys();
+    assert_eq!(cleared_keys.len(), 0, "Should have no overrides after clearing");
+
+    // Verify that original configuration values are returned for existing keys
+    let timeout: u64 = config_manager.get("http.timeout_seconds").expect("Should get original value");
+    assert_ne!(timeout, 90, "Should not return override value after clearing");
+
+    // Verify that non-existent keys return errors after clearing
+    let result: common_library::Result<String> = config_manager.get("app.name");
+    assert!(result.is_err(), "Should return error for non-existent key after clearing");
+}
+
+#[tokio::test]
+async fn test_runtime_configuration_reload() {
+    // Test: Reloading configuration clears runtime overrides
+    let mut config_manager = ConfigManager::new().expect("ConfigManager should be created");
+
+    // Set runtime overrides
+    config_manager.set("app.name", "reload-test").expect("Should set override");
+    config_manager.set("http.timeout_seconds", 45u64).expect("Should set override");
+
+    // Verify overrides are set
+    let override_keys = config_manager.get_override_keys();
+    assert_eq!(override_keys.len(), 2, "Should have 2 overrides");
+
+    // Reload configuration
+    config_manager.reload().expect("Should reload configuration");
+
+    // Verify overrides are cleared after reload
+    let cleared_keys = config_manager.get_override_keys();
+    assert_eq!(cleared_keys.len(), 0, "Should have no overrides after reload");
+}
+
+#[tokio::test]
+async fn test_runtime_configuration_type_safety() {
+    // Test: Runtime configuration maintains type safety
+    let mut config_manager = ConfigManager::new().expect("ConfigManager should be created");
+
+    // Test correct type setting and getting
+    config_manager.set("http.timeout_seconds", 30u64).expect("Should set u64");
+    let timeout: u64 = config_manager.get("http.timeout_seconds").expect("Should get u64");
+    assert_eq!(timeout, 30, "u64 should work correctly");
+
+    // Test type mismatch error
+    config_manager.set("http.timeout_seconds", "invalid").expect("Should set string");
+    let result: common_library::Result<u64> = config_manager.get("http.timeout_seconds");
+    assert!(result.is_err(), "Should fail when trying to get u64 from string value");
+}
+
+#[tokio::test]
+async fn test_runtime_configuration_serialization() {
+    // Test: Runtime configuration values are properly serialized/deserialized
+    let mut config_manager = ConfigManager::new().expect("ConfigManager should be created");
+
+    // Test complex data types
+    let complex_data = serde_json::json!({
+        "nested": {
+            "value": 42,
+            "enabled": true
+        },
+        "array": [1, 2, 3]
+    });
+
+    config_manager.set("complex.config", complex_data.clone()).expect("Should set complex data");
+    let retrieved: serde_json::Value = config_manager.get("complex.config").expect("Should get complex data");
+    assert_eq!(retrieved, complex_data, "Complex data should be preserved");
+
+    // Test that the override is stored correctly
+    let override_keys = config_manager.get_override_keys();
+    assert!(override_keys.contains(&"complex.config".to_string()), "Should contain complex config override");
+}
+
+#[tokio::test]
 async fn test_logging_performance_metrics() {
     // Test: Performance logging works correctly
     let logger = Logger::new("performance_test");

@@ -332,6 +332,7 @@ dependencies = [
  "diesel-async",
  "fastrand 2.3.0",
  "flate2",
+ "futures",
  "regex",
  "reqwest",
  "serde",
