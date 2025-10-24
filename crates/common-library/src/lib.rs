@@ -46,6 +46,9 @@ pub mod http;
 // Storage module
 pub mod storage;
 
+// Metrics module
+pub mod metrics;
+
 /// Re-exports for convenient usage
 pub mod prelude {
     pub use crate::config::ConfigManager;
@@ -53,6 +56,7 @@ pub mod prelude {
     pub use crate::http::*;
     pub use crate::logging::Logger;
     pub use crate::storage::*;
+    pub use crate::metrics::*;
     pub use crate::utils::*;
 }
 
