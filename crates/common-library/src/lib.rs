@@ -49,15 +49,19 @@ pub mod storage;
 // Metrics module
 pub mod metrics;
 
+// Validation module
+pub mod validation;
+
 /// Re-exports for convenient usage
 pub mod prelude {
     pub use crate::config::ConfigManager;
     pub use crate::error::{Error, Result};
     pub use crate::http::*;
     pub use crate::logging::Logger;
-    pub use crate::storage::*;
     pub use crate::metrics::*;
+    pub use crate::storage::*;
     pub use crate::utils::*;
+    pub use crate::validation::*;
 }
 
 /// Common result type used throughout the library

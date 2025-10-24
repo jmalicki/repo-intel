@@ -62,10 +62,13 @@ impl TrendAnalyzer {
     /// Analyze trends in a dataset
     pub fn analyze_trend(&self, data: &[f64]) -> Result<TrendResult> {
         if data.len() < 3 {
-            return Err(Error::metrics("Insufficient data points for trend analysis (minimum 3 required)".to_string()));
+            return Err(Error::metrics(
+                "Insufficient data points for trend analysis (minimum 3 required)".to_string(),
+            ));
         }
 
-        self.logger.info(&format!("Analyzing trends in {} data points", data.len()));
+        self.logger
+            .info(&format!("Analyzing trends in {} data points", data.len()));
 
         let linear_regression = self.perform_linear_regression(data)?;
         let trend_type = self.classify_trend(&linear_regression, data);
@@ -82,14 +85,19 @@ impl TrendAnalyzer {
             data_points: data.len(),
         };
 
-        self.logger.info(&format!("Trend analysis completed: {:?}", result.trend_type));
+        self.logger.info(&format!(
+            "Trend analysis completed: {:?}",
+            result.trend_type
+        ));
         Ok(result)
     }
 
     /// Perform linear regression on the dataset
     pub fn perform_linear_regression(&self, data: &[f64]) -> Result<LinearRegression> {
         if data.len() < 2 {
-            return Err(Error::metrics("Insufficient data points for linear regression".to_string()));
+            return Err(Error::metrics(
+                "Insufficient data points for linear regression".to_string(),
+            ));
         }
 
         let n = data.len() as f64;
@@ -107,7 +115,8 @@ impl TrendAnalyzer {
         // Calculate R-squared
         let y_mean = sum_y / n;
         let ss_tot: f64 = data.iter().map(|&y| (y - y_mean).powi(2)).sum();
-        let ss_res: f64 = x_values.iter()
+        let ss_res: f64 = x_values
+            .iter()
             .zip(data.iter())
             .map(|(x, y)| {
                 let y_pred = slope * x + intercept;
@@ -115,7 +124,11 @@ impl TrendAnalyzer {
             })
             .sum();
 
-        let r_squared = if ss_tot == 0.0 { 1.0 } else { 1.0 - (ss_res / ss_tot) };
+        let r_squared = if ss_tot == 0.0 {
+            1.0
+        } else {
+            1.0 - (ss_res / ss_tot)
+        };
 
         // Calculate standard error
         let standard_error = if n > 2.0 {
@@ -213,12 +226,15 @@ impl TrendAnalyzer {
         }
 
         let mean = data.iter().sum::<f64>() / data.len() as f64;
-        let variance: f64 = data.iter()
-            .map(|&x| (x - mean).powi(2))
-            .sum::<f64>() / (data.len() - 1) as f64;
+        let variance: f64 =
+            data.iter().map(|&x| (x - mean).powi(2)).sum::<f64>() / (data.len() - 1) as f64;
 
         let std_dev = variance.sqrt();
-        if mean == 0.0 { 0.0 } else { std_dev / mean.abs() }
+        if mean == 0.0 {
+            0.0
+        } else {
+            std_dev / mean.abs()
+        }
     }
 
     /// Detect cyclical patterns in the data
@@ -229,9 +245,8 @@ impl TrendAnalyzer {
 
         // Simple cyclical detection using autocorrelation
         let mean = data.iter().sum::<f64>() / data.len() as f64;
-        let variance: f64 = data.iter()
-            .map(|&x| (x - mean).powi(2))
-            .sum::<f64>() / data.len() as f64;
+        let variance: f64 =
+            data.iter().map(|&x| (x - mean).powi(2)).sum::<f64>() / data.len() as f64;
 
         if variance == 0.0 {
             return false;
@@ -278,7 +293,9 @@ impl TrendAnalyzer {
     /// Calculate moving average
     pub fn calculate_moving_average(&self, data: &[f64], window_size: usize) -> Result<Vec<f64>> {
         if window_size == 0 || window_size > data.len() {
-            return Err(Error::metrics("Invalid window size for moving average".to_string()));
+            return Err(Error::metrics(
+                "Invalid window size for moving average".to_string(),
+            ));
         }
 
         let mut moving_averages = Vec::new();
@@ -294,13 +311,19 @@ impl TrendAnalyzer {
     }
 
     /// Calculate exponential moving average
-    pub fn calculate_exponential_moving_average(&self, data: &[f64], alpha: f64) -> Result<Vec<f64>> {
+    pub fn calculate_exponential_moving_average(
+        &self,
+        data: &[f64],
+        alpha: f64,
+    ) -> Result<Vec<f64>> {
         if data.is_empty() {
             return Ok(Vec::new());
         }
 
         if alpha <= 0.0 || alpha > 1.0 {
-            return Err(Error::metrics("Alpha must be between 0 and 1 for exponential moving average".to_string()));
+            return Err(Error::metrics(
+                "Alpha must be between 0 and 1 for exponential moving average".to_string(),
+            ));
         }
 
         let mut ema_values = Vec::new();

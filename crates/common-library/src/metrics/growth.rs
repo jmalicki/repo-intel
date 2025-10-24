@@ -52,12 +52,21 @@ impl GrowthCalculator {
     }
 
     /// Calculate comprehensive growth metrics for a time series
-    pub fn calculate_growth_rate(&self, data: &[f64], periods: Option<&[f64]>) -> Result<GrowthRate> {
+    pub fn calculate_growth_rate(
+        &self,
+        data: &[f64],
+        periods: Option<&[f64]>,
+    ) -> Result<GrowthRate> {
         if data.len() < 2 {
-            return Err(Error::metrics("Insufficient data points for growth calculation (minimum 2 required)".to_string()));
+            return Err(Error::metrics(
+                "Insufficient data points for growth calculation (minimum 2 required)".to_string(),
+            ));
         }
 
-        self.logger.info(&format!("Calculating growth rate for {} data points", data.len()));
+        self.logger.info(&format!(
+            "Calculating growth rate for {} data points",
+            data.len()
+        ));
 
         let first_value = data[0];
         let last_value = data[data.len() - 1];
@@ -85,7 +94,10 @@ impl GrowthCalculator {
             growth_trend,
         };
 
-        self.logger.info(&format!("Growth calculation completed: {:.2}% total growth", percentage_growth));
+        self.logger.info(&format!(
+            "Growth calculation completed: {:.2}% total growth",
+            percentage_growth
+        ));
         Ok(result)
     }
 
@@ -135,9 +147,13 @@ impl GrowthCalculator {
         if period_growth.len() >= 3 {
             let recent_avg = period_growth[period_growth.len() - 3..].iter().sum::<f64>() / 3.0;
             let earlier_avg = if period_growth.len() >= 6 {
-                period_growth[period_growth.len() - 6..period_growth.len() - 3].iter().sum::<f64>() / 3.0
+                period_growth[period_growth.len() - 6..period_growth.len() - 3]
+                    .iter()
+                    .sum::<f64>()
+                    / 3.0
             } else {
-                period_growth[..period_growth.len() - 3].iter().sum::<f64>() / (period_growth.len() - 3) as f64
+                period_growth[..period_growth.len() - 3].iter().sum::<f64>()
+                    / (period_growth.len() - 3) as f64
             };
 
             if recent_avg > earlier_avg + 5.0 {
@@ -162,9 +178,11 @@ impl GrowthCalculator {
         }
 
         let mean = period_growth.iter().sum::<f64>() / period_growth.len() as f64;
-        let variance: f64 = period_growth.iter()
+        let variance: f64 = period_growth
+            .iter()
             .map(|&x| (x - mean).powi(2))
-            .sum::<f64>() / (period_growth.len() - 1) as f64;
+            .sum::<f64>()
+            / (period_growth.len() - 1) as f64;
 
         variance.sqrt()
     }
@@ -172,7 +190,9 @@ impl GrowthCalculator {
     /// Calculate comprehensive growth metrics
     pub fn calculate_growth_metrics(&self, data: &[f64]) -> Result<GrowthMetrics> {
         if data.len() < 2 {
-            return Err(Error::metrics("Insufficient data points for growth metrics calculation".to_string()));
+            return Err(Error::metrics(
+                "Insufficient data points for growth metrics calculation".to_string(),
+            ));
         }
 
         let period_growth = self.calculate_period_growth(data);
@@ -190,7 +210,9 @@ impl GrowthCalculator {
 
         let growth_volatility = self.calculate_growth_volatility(&period_growth);
         let growth_consistency = self.calculate_growth_consistency(&period_growth);
-        let peak_growth = period_growth.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+        let peak_growth = period_growth
+            .iter()
+            .fold(f64::NEG_INFINITY, |a, &b| a.max(b));
         let trough_growth = period_growth.iter().fold(f64::INFINITY, |a, &b| a.min(b));
         let growth_acceleration = self.calculate_growth_acceleration(&period_growth);
 
@@ -224,9 +246,13 @@ impl GrowthCalculator {
 
         let recent_avg = period_growth[period_growth.len() - 3..].iter().sum::<f64>() / 3.0;
         let earlier_avg = if period_growth.len() >= 6 {
-            period_growth[period_growth.len() - 6..period_growth.len() - 3].iter().sum::<f64>() / 3.0
+            period_growth[period_growth.len() - 6..period_growth.len() - 3]
+                .iter()
+                .sum::<f64>()
+                / 3.0
         } else {
-            period_growth[..period_growth.len() - 3].iter().sum::<f64>() / (period_growth.len() - 3) as f64
+            period_growth[..period_growth.len() - 3].iter().sum::<f64>()
+                / (period_growth.len() - 3) as f64
         };
 
         recent_avg - earlier_avg
@@ -235,7 +261,9 @@ impl GrowthCalculator {
     /// Calculate year-over-year growth
     pub fn calculate_yoy_growth(&self, data: &[f64], year_periods: &[f64]) -> Result<Vec<f64>> {
         if data.len() != year_periods.len() {
-            return Err(Error::metrics("Data and year periods must have the same length".to_string()));
+            return Err(Error::metrics(
+                "Data and year periods must have the same length".to_string(),
+            ));
         }
 
         if data.len() < 2 {
@@ -274,7 +302,9 @@ impl GrowthCalculator {
     /// Calculate quarter-over-quarter growth
     pub fn calculate_qoq_growth(&self, data: &[f64], quarter_periods: &[f64]) -> Result<Vec<f64>> {
         if data.len() != quarter_periods.len() {
-            return Err(Error::metrics("Data and quarter periods must have the same length".to_string()));
+            return Err(Error::metrics(
+                "Data and quarter periods must have the same length".to_string(),
+            ));
         }
 
         if data.len() < 2 {
@@ -288,7 +318,10 @@ impl GrowthCalculator {
             let previous_quarter = quarter_periods[i - 1];
 
             // Find the same quarter in the previous period
-            if let Some(prev_index) = quarter_periods.iter().position(|&q| q == current_quarter - 1.0) {
+            if let Some(prev_index) = quarter_periods
+                .iter()
+                .position(|&q| q == current_quarter - 1.0)
+            {
                 if prev_index < data.len() {
                     let current_value = data[i];
                     let previous_value = data[prev_index];

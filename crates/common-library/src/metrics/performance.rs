@@ -57,10 +57,15 @@ impl PerformanceAnalyzer {
         data_size_bytes: u64,
     ) -> Result<PerformanceMetrics> {
         if operations_count == 0 {
-            return Err(Error::metrics("Cannot calculate performance metrics for zero operations".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate performance metrics for zero operations".to_string(),
+            ));
         }
 
-        self.logger.info(&format!("Calculating performance metrics for {} operations", operations_count));
+        self.logger.info(&format!(
+            "Calculating performance metrics for {} operations",
+            operations_count
+        ));
 
         let total_operations = successful_operations + failed_operations;
         let throughput = operations_count as f64 / total_time.as_secs_f64();
@@ -101,7 +106,7 @@ impl PerformanceAnalyzer {
             throughput,
             efficiency,
             latency,
-            cpu_usage: 0.0, // Would need system monitoring
+            cpu_usage: 0.0,    // Would need system monitoring
             memory_usage: 0.0, // Would need system monitoring
             error_rate,
             success_rate,
@@ -148,10 +153,15 @@ impl PerformanceAnalyzer {
         F: Fn() -> Result<()>,
     {
         if iterations == 0 {
-            return Err(Error::metrics("Cannot run benchmark with zero iterations".to_string()));
+            return Err(Error::metrics(
+                "Cannot run benchmark with zero iterations".to_string(),
+            ));
         }
 
-        self.logger.info(&format!("Running benchmark '{}' with {} iterations", operation_name, iterations));
+        self.logger.info(&format!(
+            "Running benchmark '{}' with {} iterations",
+            operation_name, iterations
+        ));
 
         let mut latencies = Vec::with_capacity(iterations);
         let start_time = Instant::now();
@@ -169,7 +179,7 @@ impl PerformanceAnalyzer {
         // Calculate latency statistics
         latencies.sort();
         let average_latency = Duration::from_nanos(
-            latencies.iter().map(|d| d.as_nanos() as u64).sum::<u64>() / latencies.len() as u64
+            latencies.iter().map(|d| d.as_nanos() as u64).sum::<u64>() / latencies.len() as u64,
         );
         let min_latency = latencies[0];
         let max_latency = latencies[latencies.len() - 1];
@@ -194,7 +204,10 @@ impl PerformanceAnalyzer {
             throughput_mbps,
         };
 
-        self.logger.info(&format!("Benchmark completed: {:.2} ops/sec", operations_per_second));
+        self.logger.info(&format!(
+            "Benchmark completed: {:.2} ops/sec",
+            operations_per_second
+        ));
         Ok(result)
     }
 
@@ -207,7 +220,11 @@ impl PerformanceAnalyzer {
     }
 
     /// Calculate efficiency based on successful vs total operations
-    pub fn calculate_efficiency(&self, successful_operations: usize, total_operations: usize) -> f64 {
+    pub fn calculate_efficiency(
+        &self,
+        successful_operations: usize,
+        total_operations: usize,
+    ) -> f64 {
         if total_operations == 0 {
             return 0.0;
         }
@@ -223,9 +240,14 @@ impl PerformanceAnalyzer {
     }
 
     /// Calculate latency percentiles
-    pub fn calculate_latency_percentiles(&self, latencies: &[Duration]) -> Result<Vec<(f64, Duration)>> {
+    pub fn calculate_latency_percentiles(
+        &self,
+        latencies: &[Duration],
+    ) -> Result<Vec<(f64, Duration)>> {
         if latencies.is_empty() {
-            return Err(Error::metrics("Cannot calculate percentiles for empty latency data".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate percentiles for empty latency data".to_string(),
+            ));
         }
 
         let mut sorted_latencies = latencies.to_vec();
@@ -252,7 +274,12 @@ impl PerformanceAnalyzer {
     }
 
     /// Calculate CPU efficiency (simplified)
-    pub fn calculate_cpu_efficiency(&self, operations_count: usize, cpu_time: Duration, wall_time: Duration) -> f64 {
+    pub fn calculate_cpu_efficiency(
+        &self,
+        operations_count: usize,
+        cpu_time: Duration,
+        wall_time: Duration,
+    ) -> f64 {
         if wall_time.as_secs_f64() == 0.0 {
             return 0.0;
         }
@@ -260,12 +287,20 @@ impl PerformanceAnalyzer {
     }
 
     /// Compare performance between two benchmarks
-    pub fn compare_performance(&self, baseline: &BenchmarkResult, current: &BenchmarkResult) -> PerformanceComparison {
-        let throughput_improvement = ((current.operations_per_second - baseline.operations_per_second)
-            / baseline.operations_per_second) * 100.0;
+    pub fn compare_performance(
+        &self,
+        baseline: &BenchmarkResult,
+        current: &BenchmarkResult,
+    ) -> PerformanceComparison {
+        let throughput_improvement = ((current.operations_per_second
+            - baseline.operations_per_second)
+            / baseline.operations_per_second)
+            * 100.0;
 
-        let latency_improvement = ((baseline.average_latency.as_secs_f64() - current.average_latency.as_secs_f64())
-            / baseline.average_latency.as_secs_f64()) * 100.0;
+        let latency_improvement = ((baseline.average_latency.as_secs_f64()
+            - current.average_latency.as_secs_f64())
+            / baseline.average_latency.as_secs_f64())
+            * 100.0;
 
         PerformanceComparison {
             throughput_improvement,

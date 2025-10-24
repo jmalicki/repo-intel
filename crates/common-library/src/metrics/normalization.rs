@@ -60,7 +60,11 @@ impl DataNormalizer {
             return Err(Error::metrics("Cannot normalize empty dataset".to_string()));
         }
 
-        self.logger.info(&format!("Normalizing {} data points using {:?}", data.len(), method));
+        self.logger.info(&format!(
+            "Normalizing {} data points using {:?}",
+            data.len(),
+            method
+        ));
 
         let parameters = self.calculate_parameters(data);
         let normalized_data = match method {
@@ -74,7 +78,9 @@ impl DataNormalizer {
         let original_range = (parameters.min_value, parameters.max_value);
         let normalized_range = if !normalized_data.is_empty() {
             let min_norm = normalized_data.iter().fold(f64::INFINITY, |a, &b| a.min(b));
-            let max_norm = normalized_data.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+            let max_norm = normalized_data
+                .iter()
+                .fold(f64::NEG_INFINITY, |a, &b| a.max(b));
             (min_norm, max_norm)
         } else {
             (0.0, 0.0)
@@ -88,7 +94,8 @@ impl DataNormalizer {
             normalized_range,
         };
 
-        self.logger.info("Data normalization completed successfully");
+        self.logger
+            .info("Data normalization completed successfully");
         Ok(result)
     }
 
@@ -98,9 +105,8 @@ impl DataNormalizer {
         let max_value = data.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
         let mean = data.iter().sum::<f64>() / data.len() as f64;
 
-        let variance = data.iter()
-            .map(|&x| (x - mean).powi(2))
-            .sum::<f64>() / (data.len() - 1) as f64;
+        let variance =
+            data.iter().map(|&x| (x - mean).powi(2)).sum::<f64>() / (data.len() - 1) as f64;
         let standard_deviation = variance.sqrt();
 
         let mut sorted_data = data.to_vec();
@@ -164,23 +170,19 @@ impl DataNormalizer {
 
     /// Unit vector normalization (L2 norm = 1)
     fn unit_vector_normalize(&self, data: &[f64]) -> Vec<f64> {
-        let magnitude = data.iter()
-            .map(|&x| x * x)
-            .sum::<f64>()
-            .sqrt();
+        let magnitude = data.iter().map(|&x| x * x).sum::<f64>().sqrt();
 
         if magnitude == 0.0 {
             return vec![0.0; data.len()];
         }
 
-        data.iter()
-            .map(|&x| x / magnitude)
-            .collect()
+        data.iter().map(|&x| x / magnitude).collect()
     }
 
     /// Decimal scaling normalization
     fn decimal_scaling_normalize(&self, data: &[f64]) -> Vec<f64> {
-        let max_abs = data.iter()
+        let max_abs = data
+            .iter()
             .map(|&x| x.abs())
             .fold(f64::NEG_INFINITY, |a, b| a.max(b));
 
@@ -191,9 +193,7 @@ impl DataNormalizer {
         let j = max_abs.log10().ceil() as i32;
         let divisor = 10_f64.powi(j);
 
-        data.iter()
-            .map(|&x| x / divisor)
-            .collect()
+        data.iter().map(|&x| x / divisor).collect()
     }
 
     /// Denormalize data back to original scale
@@ -207,41 +207,46 @@ impl DataNormalizer {
             return Ok(Vec::new());
         }
 
-        self.logger.info(&format!("Denormalizing {} data points using {:?}", normalized_data.len(), method));
+        self.logger.info(&format!(
+            "Denormalizing {} data points using {:?}",
+            normalized_data.len(),
+            method
+        ));
 
         let denormalized_data = match method {
             NormalizationMethod::MinMax => {
                 let range = original_parameters.max_value - original_parameters.min_value;
-                normalized_data.iter()
+                normalized_data
+                    .iter()
                     .map(|&x| x * range + original_parameters.min_value)
                     .collect()
             }
-            NormalizationMethod::ZScore => {
-                normalized_data.iter()
-                    .map(|&x| x * original_parameters.standard_deviation + original_parameters.mean)
-                    .collect()
-            }
-            NormalizationMethod::Robust => {
-                normalized_data.iter()
-                    .map(|&x| x * original_parameters.iqr + original_parameters.median)
-                    .collect()
-            }
+            NormalizationMethod::ZScore => normalized_data
+                .iter()
+                .map(|&x| x * original_parameters.standard_deviation + original_parameters.mean)
+                .collect(),
+            NormalizationMethod::Robust => normalized_data
+                .iter()
+                .map(|&x| x * original_parameters.iqr + original_parameters.median)
+                .collect(),
             NormalizationMethod::UnitVector => {
                 // For unit vector, we need the original magnitude
                 // This is a simplified approach - in practice, you'd store the original magnitude
                 normalized_data.to_vec()
             }
             NormalizationMethod::DecimalScaling => {
-                let max_abs = original_parameters.max_value.abs().max(original_parameters.min_value.abs());
+                let max_abs = original_parameters
+                    .max_value
+                    .abs()
+                    .max(original_parameters.min_value.abs());
                 let j = max_abs.log10().ceil() as i32;
                 let divisor = 10_f64.powi(j);
-                normalized_data.iter()
-                    .map(|&x| x * divisor)
-                    .collect()
+                normalized_data.iter().map(|&x| x * divisor).collect()
             }
         };
 
-        self.logger.info("Data denormalization completed successfully");
+        self.logger
+            .info("Data denormalization completed successfully");
         Ok(denormalized_data)
     }
 
@@ -255,7 +260,11 @@ impl DataNormalizer {
             return Ok(Vec::new());
         }
 
-        self.logger.info(&format!("Normalizing {} datasets using {:?}", datasets.len(), method));
+        self.logger.info(&format!(
+            "Normalizing {} datasets using {:?}",
+            datasets.len(),
+            method
+        ));
 
         // Calculate global parameters across all datasets
         let all_data: Vec<f64> = datasets.iter().flatten().copied().collect();
@@ -275,7 +284,9 @@ impl DataNormalizer {
             let original_range = (global_parameters.min_value, global_parameters.max_value);
             let normalized_range = if !normalized_data.is_empty() {
                 let min_norm = normalized_data.iter().fold(f64::INFINITY, |a, &b| a.min(b));
-                let max_norm = normalized_data.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+                let max_norm = normalized_data
+                    .iter()
+                    .fold(f64::NEG_INFINITY, |a, &b| a.max(b));
                 (min_norm, max_norm)
             } else {
                 (0.0, 0.0)
@@ -290,7 +301,8 @@ impl DataNormalizer {
             });
         }
 
-        self.logger.info("Multiple dataset normalization completed successfully");
+        self.logger
+            .info("Multiple dataset normalization completed successfully");
         Ok(results)
     }
 
@@ -308,9 +320,8 @@ impl DataNormalizer {
             }
             NormalizationMethod::ZScore => {
                 let mean = data.iter().sum::<f64>() / data.len() as f64;
-                let variance = data.iter()
-                    .map(|&x| (x - mean).powi(2))
-                    .sum::<f64>() / data.len() as f64;
+                let variance =
+                    data.iter().map(|&x| (x - mean).powi(2)).sum::<f64>() / data.len() as f64;
                 let std_dev = variance.sqrt();
                 mean.abs() < 0.1 && (std_dev - 1.0).abs() < 0.1
             }
@@ -324,7 +335,10 @@ impl DataNormalizer {
                 (magnitude - 1.0).abs() < 0.1
             }
             NormalizationMethod::DecimalScaling => {
-                let max_abs = data.iter().map(|&x| x.abs()).fold(f64::NEG_INFINITY, |a, b| a.max(b));
+                let max_abs = data
+                    .iter()
+                    .map(|&x| x.abs())
+                    .fold(f64::NEG_INFINITY, |a, b| a.max(b));
                 max_abs <= 1.0
             }
         }
