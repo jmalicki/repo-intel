@@ -49,10 +49,15 @@ impl StatisticalCalculator {
     /// Calculate comprehensive statistics for a dataset
     pub fn calculate_statistics(&self, data: &[f64]) -> Result<StatisticalResult> {
         if data.is_empty() {
-            return Err(Error::metrics("Cannot calculate statistics for empty dataset".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate statistics for empty dataset".to_string(),
+            ));
         }
 
-        self.logger.info(&format!("Calculating statistics for {} data points", data.len()));
+        self.logger.info(&format!(
+            "Calculating statistics for {} data points",
+            data.len()
+        ));
 
         let mut sorted_data = data.to_vec();
         sorted_data.sort_by(|a, b| a.partial_cmp(b).unwrap());
@@ -84,7 +89,8 @@ impl StatisticalCalculator {
             count: data.len(),
         };
 
-        self.logger.info("Statistical calculations completed successfully");
+        self.logger
+            .info("Statistical calculations completed successfully");
         Ok(result)
     }
 
@@ -139,10 +145,7 @@ impl StatisticalCalculator {
             return 0.0;
         }
 
-        let sum_squared_differences: f64 = data
-            .iter()
-            .map(|&x| (x - mean).powi(2))
-            .sum();
+        let sum_squared_differences: f64 = data.iter().map(|&x| (x - mean).powi(2)).sum();
 
         sum_squared_differences / (data.len() - 1) as f64
     }
@@ -178,7 +181,10 @@ impl StatisticalCalculator {
                 &sorted_data[mid..]
             };
 
-            (self.calculate_median(q1_data), self.calculate_median(q3_data))
+            (
+                self.calculate_median(q1_data),
+                self.calculate_median(q3_data),
+            )
         };
 
         let iqr = q3 - q1;
@@ -193,10 +199,7 @@ impl StatisticalCalculator {
         }
 
         let n = data.len() as f64;
-        let sum_cubed_differences: f64 = data
-            .iter()
-            .map(|&x| ((x - mean) / std_dev).powi(3))
-            .sum();
+        let sum_cubed_differences: f64 = data.iter().map(|&x| ((x - mean) / std_dev).powi(3)).sum();
 
         (n / ((n - 1.0) * (n - 2.0))) * sum_cubed_differences
     }
@@ -208,12 +211,11 @@ impl StatisticalCalculator {
         }
 
         let n = data.len() as f64;
-        let sum_fourth_differences: f64 = data
-            .iter()
-            .map(|&x| ((x - mean) / std_dev).powi(4))
-            .sum();
+        let sum_fourth_differences: f64 =
+            data.iter().map(|&x| ((x - mean) / std_dev).powi(4)).sum();
 
-        let kurtosis = (n * (n + 1.0) / ((n - 1.0) * (n - 2.0) * (n - 3.0))) * sum_fourth_differences
+        let kurtosis = (n * (n + 1.0) / ((n - 1.0) * (n - 2.0) * (n - 3.0)))
+            * sum_fourth_differences
             - (3.0 * (n - 1.0).powi(2) / ((n - 2.0) * (n - 3.0)));
 
         kurtosis
@@ -222,18 +224,23 @@ impl StatisticalCalculator {
     /// Calculate the correlation coefficient between two datasets
     pub fn calculate_correlation(&self, x: &[f64], y: &[f64]) -> Result<f64> {
         if x.len() != y.len() {
-            return Err(Error::metrics("Datasets must have the same length for correlation calculation".to_string()));
+            return Err(Error::metrics(
+                "Datasets must have the same length for correlation calculation".to_string(),
+            ));
         }
 
         if x.is_empty() {
-            return Err(Error::metrics("Cannot calculate correlation for empty datasets".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate correlation for empty datasets".to_string(),
+            ));
         }
 
         let n = x.len() as f64;
         let mean_x = self.calculate_mean(x);
         let mean_y = self.calculate_mean(y);
 
-        let numerator: f64 = x.iter()
+        let numerator: f64 = x
+            .iter()
             .zip(y.iter())
             .map(|(&xi, &yi)| (xi - mean_x) * (yi - mean_y))
             .sum();
@@ -253,12 +260,16 @@ impl StatisticalCalculator {
     /// Calculate the coefficient of variation
     pub fn calculate_coefficient_of_variation(&self, data: &[f64]) -> Result<f64> {
         if data.is_empty() {
-            return Err(Error::metrics("Cannot calculate coefficient of variation for empty dataset".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate coefficient of variation for empty dataset".to_string(),
+            ));
         }
 
         let mean = self.calculate_mean(data);
         if mean == 0.0 {
-            return Err(Error::metrics("Cannot calculate coefficient of variation when mean is zero".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate coefficient of variation when mean is zero".to_string(),
+            ));
         }
 
         let variance = self.calculate_variance(data, mean);
@@ -280,7 +291,8 @@ impl StatisticalCalculator {
         let lower_bound = quartiles.q1 - 1.5 * quartiles.iqr;
         let upper_bound = quartiles.q3 + 1.5 * quartiles.iqr;
 
-        let outliers: Vec<f64> = data.iter()
+        let outliers: Vec<f64> = data
+            .iter()
             .filter(|&&x| x < lower_bound || x > upper_bound)
             .copied()
             .collect();
@@ -289,9 +301,15 @@ impl StatisticalCalculator {
     }
 
     /// Calculate the confidence interval for the mean
-    pub fn calculate_confidence_interval(&self, data: &[f64], confidence_level: f64) -> Result<(f64, f64)> {
+    pub fn calculate_confidence_interval(
+        &self,
+        data: &[f64],
+        confidence_level: f64,
+    ) -> Result<(f64, f64)> {
         if data.is_empty() {
-            return Err(Error::metrics("Cannot calculate confidence interval for empty dataset".to_string()));
+            return Err(Error::metrics(
+                "Cannot calculate confidence interval for empty dataset".to_string(),
+            ));
         }
 
         let mean = self.calculate_mean(data);
@@ -305,7 +323,11 @@ impl StatisticalCalculator {
             0.90 => 1.645,
             0.95 => 1.96,
             0.99 => 2.576,
-            _ => return Err(Error::metrics("Unsupported confidence level. Use 0.90, 0.95, or 0.99".to_string())),
+            _ => {
+                return Err(Error::metrics(
+                    "Unsupported confidence level. Use 0.90, 0.95, or 0.99".to_string(),
+                ))
+            }
         };
 
         let margin_of_error = z_score * (std_dev / n.sqrt());
