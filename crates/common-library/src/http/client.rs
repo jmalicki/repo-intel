@@ -1,10 +1,10 @@
 //! HTTP client implementation with rate limiting and retry logic
 
-use reqwest::{Client, ClientBuilder, Request, Response};
-use std::time::Duration;
+use super::{AuthConfig, RateLimiter, RetryConfig};
 use crate::error::{Error, Result};
 use crate::logging::Logger;
-use super::{RateLimiter, RetryConfig, AuthConfig};
+use reqwest::{Client, ClientBuilder, Request, Response};
+use std::time::Duration;
 
 /// HTTP client configuration
 #[derive(Debug, Clone)]
@@ -159,13 +159,17 @@ impl APIClient {
     }
 
     /// Build request from a request builder
-    fn build_request_from_builder(&self, mut request_builder: reqwest::RequestBuilder) -> Result<Request> {
+    fn build_request_from_builder(
+        &self,
+        mut request_builder: reqwest::RequestBuilder,
+    ) -> Result<Request> {
         // Add common headers
         request_builder = request_builder
             .header("Accept", "application/json")
             .header("Content-Type", "application/json");
 
-        request_builder.build()
+        request_builder
+            .build()
             .map_err(|e| Error::http(format!("Failed to build request: {}", e)))
     }
 
@@ -179,13 +183,17 @@ impl APIClient {
             self.rate_limiter.acquire().await?;
 
             // Clone the request for retry attempts
-            let request_clone = request.try_clone()
+            let request_clone = request
+                .try_clone()
                 .ok_or_else(|| Error::http("Failed to clone request".to_string()))?;
 
             match self.client.execute(request_clone).await {
                 Ok(response) => {
-                    self.logger.info(&format!("HTTP request successful: {} {}",
-                        response.status(), response.url()));
+                    self.logger.info(&format!(
+                        "HTTP request successful: {} {}",
+                        response.status(),
+                        response.url()
+                    ));
                     return Ok(response);
                 }
                 Err(e) if attempt < max_retries => {
@@ -201,8 +209,10 @@ impl APIClient {
                     continue;
                 }
                 Err(e) => {
-                    self.logger.error(&format!("HTTP request failed after {} attempts: {}",
-                        max_retries, e));
+                    self.logger.error(&format!(
+                        "HTTP request failed after {} attempts: {}",
+                        max_retries, e
+                    ));
                     return Err(Error::http(format!("Request failed: {}", e)));
                 }
             }

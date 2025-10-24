@@ -26,8 +26,14 @@ async fn test_foundation_components() {
     assert!(now.timestamp() > 0, "Current timestamp should be positive");
 
     // Test validation
-    assert!(validation::is_valid_email("test@example.com"), "Valid email should pass");
-    assert!(!validation::is_valid_email("invalid-email"), "Invalid email should fail");
+    assert!(
+        validation::is_valid_email("test@example.com"),
+        "Valid email should pass"
+    );
+    assert!(
+        !validation::is_valid_email("invalid-email"),
+        "Invalid email should fail"
+    );
 
     // Test string utilities
     let truncated = string::truncate("Hello World", 5);
@@ -40,17 +46,32 @@ async fn test_configuration_management() {
     let config_manager = ConfigManager::new().expect("ConfigManager should be created");
 
     // Test default configuration
-    let app_config = config_manager.get_app_config().expect("Should get app config");
-    assert_eq!(app_config.database.max_connections, 10, "Default max connections should be 10");
-    assert_eq!(app_config.http.timeout_seconds, 30, "Default timeout should be 30");
+    let app_config = config_manager
+        .get_app_config()
+        .expect("Should get app config");
+    assert_eq!(
+        app_config.database.max_connections, 10,
+        "Default max connections should be 10"
+    );
+    assert_eq!(
+        app_config.http.timeout_seconds, 30,
+        "Default timeout should be 30"
+    );
 
     // Test configuration validation
-    assert!(config_manager.validate().is_ok(), "Default config should be valid");
+    assert!(
+        config_manager.validate().is_ok(),
+        "Default config should be valid"
+    );
 
     // Test typed configuration retrieval
-    let max_connections: u32 = config_manager.get("database.max_connections")
+    let max_connections: u32 = config_manager
+        .get("database.max_connections")
         .expect("Should get max connections");
-    assert_eq!(max_connections, 10, "Should get correct max connections value");
+    assert_eq!(
+        max_connections, 10,
+        "Should get correct max connections value"
+    );
 }
 
 #[tokio::test]
@@ -77,8 +98,14 @@ async fn test_error_handling_comprehensive() {
 
     // Test error display
     let error_msg = config_error.to_string();
-    assert!(error_msg.contains("Configuration error"), "Error message should contain type");
-    assert!(error_msg.contains("test config error"), "Error message should contain details");
+    assert!(
+        error_msg.contains("Configuration error"),
+        "Error message should contain type"
+    );
+    assert!(
+        error_msg.contains("test config error"),
+        "Error message should contain details"
+    );
 }
 
 #[tokio::test]
@@ -108,16 +135,25 @@ async fn test_utility_functions_comprehensive() {
     // Date utilities
     let now = date::now();
     let timestamp_str = date::format_timestamp(now);
-    assert!(!timestamp_str.is_empty(), "Formatted timestamp should not be empty");
+    assert!(
+        !timestamp_str.is_empty(),
+        "Formatted timestamp should not be empty"
+    );
 
     // Test RFC3339 functionality
     let rfc3339_time = date::format_rfc3339(now);
-    assert!(!rfc3339_time.is_empty(), "RFC3339 timestamp should not be empty");
+    assert!(
+        !rfc3339_time.is_empty(),
+        "RFC3339 timestamp should not be empty"
+    );
     assert!(rfc3339_time.contains('T'), "RFC3339 should contain 'T'");
 
     // Test RFC3339 parsing
     let parsed_time = date::parse_rfc3339(&rfc3339_time);
-    assert!(parsed_time.is_ok(), "Should be able to parse RFC3339 timestamp");
+    assert!(
+        parsed_time.is_ok(),
+        "Should be able to parse RFC3339 timestamp"
+    );
 
     // Test SystemTime conversion with nanosecond precision
     let system_time = SystemTime::now();
@@ -130,7 +166,11 @@ async fn test_utility_functions_comprehensive() {
     assert_ne!(uuid1, uuid2, "Generated UUIDs should be unique");
 
     let random_string = crypto::generate_random_string(10);
-    assert_eq!(random_string.len(), 10, "Random string should have correct length");
+    assert_eq!(
+        random_string.len(),
+        10,
+        "Random string should have correct length"
+    );
 
     // Base64 roundtrip test
     let test_data = b"Hello, World!";
@@ -144,7 +184,10 @@ async fn test_utility_functions_comprehensive() {
     assert_eq!(truncated, "He...", "String should be truncated correctly");
 
     assert!(string::is_blank("   "), "Blank string should be detected");
-    assert!(!string::is_blank("hello"), "Non-blank string should not be detected");
+    assert!(
+        !string::is_blank("hello"),
+        "Non-blank string should not be detected"
+    );
 
     // Test case conversion
     let snake_case = string::to_snake_case("HelloWorld");
@@ -154,29 +197,56 @@ async fn test_utility_functions_comprehensive() {
     assert_eq!(camel_case, "helloWorld", "Should convert to camelCase");
 
     // Validation utilities
-    assert!(validation::is_valid_email("test@example.com"), "Valid email should pass");
-    assert!(!validation::is_valid_email("invalid-email"), "Invalid email should fail");
+    assert!(
+        validation::is_valid_email("test@example.com"),
+        "Valid email should pass"
+    );
+    assert!(
+        !validation::is_valid_email("invalid-email"),
+        "Invalid email should fail"
+    );
 
-    assert!(validation::is_valid_url("https://example.com"), "Valid URL should pass");
-    assert!(!validation::is_valid_url("invalid-url"), "Invalid URL should fail");
+    assert!(
+        validation::is_valid_url("https://example.com"),
+        "Valid URL should pass"
+    );
+    assert!(
+        !validation::is_valid_url("invalid-url"),
+        "Invalid URL should fail"
+    );
 
-    assert!(validation::is_not_empty("hello"), "Non-empty string should pass");
+    assert!(
+        validation::is_not_empty("hello"),
+        "Non-empty string should pass"
+    );
     assert!(!validation::is_not_empty(""), "Empty string should fail");
 
-    assert!(validation::is_in_range(5.0, 0.0, 10.0), "Value in range should pass");
-    assert!(!validation::is_in_range(15.0, 0.0, 10.0), "Value out of range should fail");
+    assert!(
+        validation::is_in_range(5.0, 0.0, 10.0),
+        "Value in range should pass"
+    );
+    assert!(
+        !validation::is_in_range(15.0, 0.0, 10.0),
+        "Value out of range should fail"
+    );
 
     // File system utilities
     let temp_dir = tempdir().expect("Should create temp directory");
     let test_path = temp_dir.path().join("test_subdir");
 
-    assert!(fs::ensure_dir(&test_path).is_ok(), "Should be able to create directory");
+    assert!(
+        fs::ensure_dir(&test_path).is_ok(),
+        "Should be able to create directory"
+    );
     assert!(test_path.is_dir(), "Directory should exist");
 
     let test_file = test_path.join("test_file.txt");
     std::fs::write(&test_file, "hello").expect("Should write test file");
     assert!(fs::is_file(&test_file), "Should detect file");
-    assert!(!fs::is_dir(&test_file), "File should not be detected as directory");
+    assert!(
+        !fs::is_dir(&test_file),
+        "File should not be detected as directory"
+    );
 
     // Test file size
     let file_size = fs::file_size(&test_file).expect("Should get file size");
@@ -187,7 +257,9 @@ async fn test_utility_functions_comprehensive() {
 async fn test_module_integration() {
     // Test: All modules work together correctly
     let config_manager = ConfigManager::new().expect("ConfigManager should be created");
-    let _app_config = config_manager.get_app_config().expect("Should get app config");
+    let _app_config = config_manager
+        .get_app_config()
+        .expect("Should get app config");
 
     // Note: Logging is already initialized by previous tests
 
@@ -230,7 +302,10 @@ async fn test_prelude_functionality() {
 
     // Test utility functions are available
     let uuid = crypto::generate_uuid();
-    assert!(!uuid.to_string().is_empty(), "Crypto utilities should be available");
+    assert!(
+        !uuid.to_string().is_empty(),
+        "Crypto utilities should be available"
+    );
 
     let now = date::now();
     assert!(now.timestamp() > 0, "Date utilities should be available");
@@ -263,7 +338,10 @@ async fn test_error_recovery_patterns() {
 
     match common_error {
         Error::Io(msg) => {
-            assert!(msg.contains("access denied"), "Error message should be preserved");
+            assert!(
+                msg.contains("access denied"),
+                "Error message should be preserved"
+            );
         }
         _ => panic!("Should be an Io error"),
     }

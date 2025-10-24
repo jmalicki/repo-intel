@@ -1,10 +1,10 @@
 //! Rate limiting implementation for HTTP requests
 
+use crate::error::{Error, Result};
+use crate::logging::Logger;
 use std::time::{Duration, Instant};
 use tokio::sync::Semaphore;
 use tokio::time::sleep;
-use crate::error::{Error, Result};
-use crate::logging::Logger;
 
 /// Rate limiter that controls the number of requests per minute
 pub struct RateLimiter {
@@ -29,11 +29,15 @@ impl RateLimiter {
     pub async fn acquire(&self) -> Result<()> {
         // Check if we need to reset the semaphore
         if self.should_reset() {
-            self.logger.debug("Rate limiter reset - all permits available");
+            self.logger
+                .debug("Rate limiter reset - all permits available");
         }
 
         // Acquire a permit
-        let _permit = self.semaphore.acquire().await
+        let _permit = self
+            .semaphore
+            .acquire()
+            .await
             .map_err(|e| Error::http(format!("Failed to acquire rate limit permit: {}", e)))?;
 
         self.logger.debug(&format!(
@@ -72,7 +76,10 @@ impl RateLimiter {
         let elapsed = self.last_reset.elapsed();
         if elapsed < Duration::from_secs(60) {
             let remaining = Duration::from_secs(60) - elapsed;
-            self.logger.info(&format!("Waiting {} seconds for rate limit reset", remaining.as_secs()));
+            self.logger.info(&format!(
+                "Waiting {} seconds for rate limit reset",
+                remaining.as_secs()
+            ));
             sleep(remaining).await;
         }
     }
@@ -102,7 +109,8 @@ impl SlidingWindowRateLimiter {
         let now = Instant::now();
 
         // Remove old requests outside the window
-        self.requests.retain(|&time| now.duration_since(time) <= self.window_size);
+        self.requests
+            .retain(|&time| now.duration_since(time) <= self.window_size);
 
         // Check if we're under the limit
         if self.requests.len() < self.max_requests as usize {

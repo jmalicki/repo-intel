@@ -1,10 +1,10 @@
 //! Integration tests for HTTP client functionality
 
+use common_library::http::{AuthManager, HttpClientConfig};
 use common_library::prelude::*;
-use common_library::http::{HttpClientConfig, AuthManager};
 use std::time::Duration;
-use wiremock::{Mock, MockServer, ResponseTemplate};
 use wiremock::matchers::{method, path};
+use wiremock::{Mock, MockServer, ResponseTemplate};
 
 #[tokio::test]
 async fn test_http_client_creation() {
@@ -13,8 +13,16 @@ async fn test_http_client_creation() {
     assert!(client.is_ok(), "APIClient should be created successfully");
 
     let client = client.unwrap();
-    assert_eq!(client.config().max_retries, 3, "Default max retries should be 3");
-    assert_eq!(client.config().rate_limit_per_minute, 60, "Default rate limit should be 60");
+    assert_eq!(
+        client.config().max_retries,
+        3,
+        "Default max retries should be 3"
+    );
+    assert_eq!(
+        client.config().rate_limit_per_minute,
+        60,
+        "Default rate limit should be 60"
+    );
 }
 
 #[tokio::test]
@@ -29,11 +37,22 @@ async fn test_http_client_with_config() {
     };
 
     let client = APIClient::with_config(config);
-    assert!(client.is_ok(), "APIClient should be created with custom config");
+    assert!(
+        client.is_ok(),
+        "APIClient should be created with custom config"
+    );
 
     let client = client.unwrap();
-    assert_eq!(client.config().max_retries, 5, "Custom max retries should be 5");
-    assert_eq!(client.config().rate_limit_per_minute, 120, "Custom rate limit should be 120");
+    assert_eq!(
+        client.config().max_retries,
+        5,
+        "Custom max retries should be 5"
+    );
+    assert_eq!(
+        client.config().rate_limit_per_minute,
+        120,
+        "Custom rate limit should be 120"
+    );
 }
 
 #[tokio::test]
@@ -67,7 +86,9 @@ async fn test_http_post_request() {
         .await;
 
     let client = APIClient::new().expect("Failed to create client");
-    let response = client.post(&format!("{}/test", mock_server.uri()), Some("test data")).await;
+    let response = client
+        .post(&format!("{}/test", mock_server.uri()), Some("test data"))
+        .await;
 
     assert!(response.is_ok(), "POST request should succeed");
     let response = response.unwrap();
@@ -119,8 +140,10 @@ async fn test_http_retry_logic() {
     match response {
         Ok(resp) => {
             // If we get a response, it should be successful
-            assert!(resp.status().is_success() || resp.status().as_u16() == 500,
-                "Response should be either successful or 500 (retry scenario)");
+            assert!(
+                resp.status().is_success() || resp.status().as_u16() == 500,
+                "Response should be either successful or 500 (retry scenario)"
+            );
         }
         Err(_) => {
             // If we get an error, that's also acceptable for this test
@@ -135,14 +158,23 @@ async fn test_rate_limiter() {
     let rate_limiter = RateLimiter::new(2); // 2 requests per minute
 
     // First two requests should succeed immediately
-    assert!(rate_limiter.acquire().await.is_ok(), "First request should succeed");
-    assert!(rate_limiter.acquire().await.is_ok(), "Second request should succeed");
+    assert!(
+        rate_limiter.acquire().await.is_ok(),
+        "First request should succeed"
+    );
+    assert!(
+        rate_limiter.acquire().await.is_ok(),
+        "Second request should succeed"
+    );
 
     // Third request should be rate limited
     // Note: This test might be flaky in CI, but it demonstrates the functionality
     let result = rate_limiter.acquire().await;
     // The result depends on timing, so we just check that the rate limiter exists
-    assert!(rate_limiter.available_permits() <= 2, "Rate limiter should have at most 2 permits");
+    assert!(
+        rate_limiter.available_permits() <= 2,
+        "Rate limiter should have at most 2 permits"
+    );
 }
 
 #[tokio::test]
@@ -154,17 +186,27 @@ async fn test_retry_config() {
     let backoff1 = config.calculate_backoff(1);
     let backoff2 = config.calculate_backoff(2);
 
-    assert!(backoff2 > backoff1, "Backoff should increase with attempt number");
+    assert!(
+        backoff2 > backoff1,
+        "Backoff should increase with attempt number"
+    );
     assert!(config.should_retry(1), "Should retry on first attempt");
     assert!(config.should_retry(3), "Should retry on third attempt");
-    assert!(!config.should_retry(4), "Should not retry after max attempts");
+    assert!(
+        !config.should_retry(4),
+        "Should not retry after max attempts"
+    );
 }
 
 #[tokio::test]
 async fn test_auth_config() {
     // Test: Authentication configuration works correctly
     let bearer_auth = AuthConfig::bearer("test-token");
-    assert_eq!(bearer_auth.auth_type(), "Bearer", "Auth type should be Bearer");
+    assert_eq!(
+        bearer_auth.auth_type(),
+        "Bearer",
+        "Auth type should be Bearer"
+    );
     assert!(bearer_auth.is_valid(), "Bearer auth should be valid");
 
     let basic_auth = AuthConfig::basic("user", "pass");
@@ -172,7 +214,11 @@ async fn test_auth_config() {
     assert!(basic_auth.is_valid(), "Basic auth should be valid");
 
     let api_key_auth = AuthConfig::api_key("key123", "X-API-Key");
-    assert_eq!(api_key_auth.auth_type(), "API Key", "Auth type should be API Key");
+    assert_eq!(
+        api_key_auth.auth_type(),
+        "API Key",
+        "Auth type should be API Key"
+    );
     assert!(api_key_auth.is_valid(), "API key auth should be valid");
 }
 
@@ -181,14 +227,24 @@ async fn test_auth_manager() {
     // Test: Authentication manager works correctly
     let mut auth_manager = AuthManager::new();
 
-    assert_eq!(auth_manager.auth_count(), 0, "Initial auth count should be 0");
-    assert!(auth_manager.current_auth().is_none(), "No current auth initially");
+    assert_eq!(
+        auth_manager.auth_count(),
+        0,
+        "Initial auth count should be 0"
+    );
+    assert!(
+        auth_manager.current_auth().is_none(),
+        "No current auth initially"
+    );
 
     auth_manager.add_auth(AuthConfig::bearer("token1"));
     auth_manager.add_auth(AuthConfig::bearer("token2"));
 
     assert_eq!(auth_manager.auth_count(), 2, "Auth count should be 2");
-    assert!(auth_manager.current_auth().is_some(), "Should have current auth");
+    assert!(
+        auth_manager.current_auth().is_some(),
+        "Should have current auth"
+    );
 
     let rotated = auth_manager.rotate_auth();
     assert!(rotated.is_some(), "Should be able to rotate auth");

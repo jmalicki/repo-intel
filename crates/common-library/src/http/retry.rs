@@ -1,8 +1,8 @@
 //! Retry logic with exponential backoff for HTTP requests
 
-use std::time::Duration;
 use crate::error::{Error, Result};
 use crate::logging::Logger;
+use std::time::Duration;
 
 /// Configuration for retry behavior
 #[derive(Debug, Clone)]
@@ -94,10 +94,8 @@ impl RetryExecutor {
             match operation().await {
                 Ok(result) => {
                     if attempt > 1 {
-                        self.logger.info(&format!(
-                            "Operation succeeded on attempt {}",
-                            attempt
-                        ));
+                        self.logger
+                            .info(&format!("Operation succeeded on attempt {}", attempt));
                     }
                     return Ok(result);
                 }
@@ -149,10 +147,8 @@ impl RetryExecutor {
             match operation().await {
                 Ok(result) => {
                     if attempt > 1 {
-                        self.logger.info(&format!(
-                            "Operation succeeded on attempt {}",
-                            attempt
-                        ));
+                        self.logger
+                            .info(&format!("Operation succeeded on attempt {}", attempt));
                     }
                     return Ok(result);
                 }
@@ -195,11 +191,11 @@ pub mod strategies {
         match error {
             Error::Http(msg) => {
                 // Retry on 5xx server errors and 429 (rate limited)
-                msg.contains("500") ||
-                msg.contains("502") ||
-                msg.contains("503") ||
-                msg.contains("504") ||
-                msg.contains("429")
+                msg.contains("500")
+                    || msg.contains("502")
+                    || msg.contains("503")
+                    || msg.contains("504")
+                    || msg.contains("429")
             }
             _ => false,
         }
@@ -209,9 +205,7 @@ pub mod strategies {
     pub fn network_retry(error: &Error) -> bool {
         match error {
             Error::Http(msg) => {
-                msg.contains("timeout") ||
-                msg.contains("connection") ||
-                msg.contains("network")
+                msg.contains("timeout") || msg.contains("connection") || msg.contains("network")
             }
             _ => false,
         }
@@ -220,9 +214,7 @@ pub mod strategies {
     /// Retry strategy for rate limiting
     pub fn rate_limit_retry(error: &Error) -> bool {
         match error {
-            Error::Http(msg) => {
-                msg.contains("429") || msg.contains("rate limit")
-            }
+            Error::Http(msg) => msg.contains("429") || msg.contains("rate limit"),
             _ => false,
         }
     }

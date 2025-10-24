@@ -43,13 +43,17 @@ pub mod utils;
 // HTTP client module
 pub mod http;
 
+// Storage module
+pub mod storage;
+
 /// Re-exports for convenient usage
 pub mod prelude {
     pub use crate::config::ConfigManager;
     pub use crate::error::{Error, Result};
-    pub use crate::logging::Logger;
-    pub use crate::utils::*;
     pub use crate::http::*;
+    pub use crate::logging::Logger;
+    pub use crate::storage::*;
+    pub use crate::utils::*;
 }
 
 /// Common result type used throughout the library

@@ -1,8 +1,8 @@
 //! Logging functionality for the common library
 
-use tracing::{info, warn, error, debug, Level};
-use tracing_subscriber::{fmt, EnvFilter, Registry, prelude::*};
 use crate::error::{Error, Result};
+use tracing::{debug, error, info, warn, Level};
+use tracing_subscriber::{fmt, prelude::*, EnvFilter, Registry};
 
 /// Logger configuration
 #[derive(Debug, Clone)]
